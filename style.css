@@ -4,14 +4,6 @@
   border-color: yellowgreen;
 } */
 
-body {
-    /* background:url(img/dev/1200/macri_web_1200.jpg); */
-    background:url(img/dev/1200/separados/macri-web-1200_fondo-movimiento.gif);
-    background-repeat: no-repeat;
-    background-position: top center;
-    /* max-width: 1200px; */
-}
-
 .title {
     color: white;
     font-size: 5rem;
@@ -51,10 +43,32 @@ footer {
     padding-right: 75px;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 700px) {
     .gif {
         max-width: 480px;
         padding-top: 60px;
+    }
 
+    body {
+    /* background:url(img/dev/1200/macri_web_1200.jpg); */
+    background:url(img/dev/1200/separados/macri-web-1200_fondo-movimiento.gif);
+    background-repeat: no-repeat;
+    background-position: top center;
+    /* max-width: 1200px; */
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .gif {
+        max-width: 480px;
+        padding-top: 60px;
+    }
+
+    body {
+    /* background:url(img/dev/1200/macri_web_1200.jpg); */
+    background:url(img/dev/576/separados/fondo_576.jpg);
+    background-repeat: no-repeat;
+    background-position: top center;
+    /* max-width: 1200px; */
     }
 }
