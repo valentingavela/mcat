@@ -4,22 +4,8 @@
   border-color: yellowgreen;
 } */
 
-.title {
-    color: white;
-    /* font-size: 5rem; */
-    font-size: 7vw;
-    font-weight: 1000;
-}
-
-.subtitle {
-    color: white;
-    /* text-align: center; */
-}
-
-.divimg {
-    margin: auto;
-    padding-top: 20px;
-    padding-bottom: 50px;
+* {
+    font-family: 'Open Sans', sans-serif;
 }
 
 .btnimg {
@@ -35,28 +21,114 @@
     transform: translateY(4px) translateX(4px);
 }
 
-.social {
-    color: rgba(255, 255, 255, 0.664);
-    padding: 5px;
+.social-buttons-grp {
+    padding-top: 21px;
+    padding-right: 83px;
 }
+
+.social-btn {
+    /* fill: rgba(255, 255, 255, 0.664); */
+    /* TODO: put real fill */
+    fill: rgba(176, 176, 194, 0.664);
+    width: 51px;
+    height: auto;
+    margin-left: 13px;
+}
+
+.sound-btn {
+    fill: rgba(255, 255, 255, 0.664);
+    width: 15%;
+    height: auto;
+    margin-left: 66px;
+    margin-top: 7px;
+    margin-right: -24px;
+}
+
+.sound-off {
+    fill: rgba(255, 255, 255, 0.664);
+    width: 15%;
+    height: auto;
+    margin-left: -49px;
+    padding-top: 7px;
+}
+
+.height-inherit {
+    max-height: inherit;
+}
+
+.filter-opacity {
+    filter: opacity(50%);
+}
+
+.red {
+    border-color: red;
+    color: red;
+}
+
+.suma-tu {
+    /* Centered text */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* PC */
 
 @media only screen and (min-width: 700px) {
     .gif {
         max-width: 480px;
         padding-top: 60px;
     }
+    header {
+        height: 184.65px;
+    }
     body {
-        background: url("https://raw.githubusercontent.com/valentingavela/mcat/master/img/dev/1200/separados/macri-web-1200_fondo-movimiento.gif");
-        /* background: url(img/dev/1200/separados/macri-web-1200_fondo-movimiento.gif); */
+        /* TODO: put real background */
+        background: url("img/dev/1200/macri_web_1200.jpg");
         background-repeat: no-repeat;
         background-position: top center;
     }
     .title {
-        color: white;
-        font-size: 5rem;
-        font-weight: 1000;
+        height: 107.83px;
+    }
+    .title h1 strong {
+        /* TODO: put white */
+        color: red;
+        font-size: 5.2rem;
+        font-weight: 800;
+        letter-spacing: -4.5px;
+    }
+    .subtitle {
+        height: 46px;
+        margin-top: -8px;
+        margin-left: -9px;
+    }
+    .subtitle h2 strong {
+        /* TODO: put white */
+        color: red;
+        /* color: white; */
+        font-weight: bold;
+        letter-spacing: -3.2px;
+        font-size: larger;
+    }
+    .divimg {
+        margin: auto;
+        padding-top: 20px;
+        padding-bottom: 50px;
+        height: 309px;
+    }
+    .divimg svg {
+        width: 266px;
+        margin-top: 22px;
+    }
+    footer {
+        height: 104px;
+        max-height: 104px;
     }
 }
+
+/* MOBILE */
 
 @media only screen and (max-width: 700px) {
     .gif {
@@ -64,7 +136,7 @@
         padding-top: 60px;
     }
     body {
-        background: url("https://github.com/valentingavela/mcat/blob/master/img/dev/576/separados/fondo_576.jpg?raw=true");
+        /* background: url("https://github.com/valentingavela/mcat/blob/master/img/dev/576/separados/fondo_576.jpg?raw=true"); */
         /* background: url(img/dev/576/separados/fondo_576.jpg); */
         background-repeat: no-repeat;
         background-position: top center;
@@ -79,7 +151,7 @@
         padding-top: 29px;
     }
     body {
-        background: url("https://github.com/valentingavela/mcat/blob/master/img/dev/576/separados/fondo_576.jpg?raw=true");
+        /* background: url("https://github.com/valentingavela/mcat/blob/master/img/dev/576/separados/fondo_576.jpg?raw=true"); */
         /* background: url(img/dev/576/separados/fondo_576.jpg); */
         background-repeat: no-repeat;
         background-position: top center;
@@ -96,9 +168,6 @@
         color: white;
         font-size: 6vw;
         word-spacing: -4px;
-    }
-    .social {
-        text-align: center !important;
     }
     .divimg {
         margin: auto;
