@@ -1,0 +1,112 @@
+/* * {
+  border-style: solid;
+  border-width: 1px;
+  border-color: yellowgreen;
+} */
+
+.title {
+    color: white;
+    /* font-size: 5rem; */
+    font-size: 7vw;
+    font-weight: 1000;
+}
+
+.subtitle {
+    color: white;
+    /* text-align: center; */
+}
+
+.divimg {
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+.btnimg {
+    transition: 0.3s;
+}
+
+.btnimg:hover {
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #fff);
+}
+
+.btnimg:active {
+    transform: translateY(4px) translateX(4px);
+}
+
+.social {
+    color: rgba(255, 255, 255, 0.664);
+    padding: 5px;
+}
+
+@media only screen and (min-width: 700px) {
+    .gif {
+        max-width: 480px;
+        padding-top: 60px;
+    }
+    body {
+        background: url("https://raw.githubusercontent.com/valentingavela/mcat/master/img/dev/1200/separados/macri-web-1200_fondo-movimiento.gif");
+        /* background: url(img/dev/1200/separados/macri-web-1200_fondo-movimiento.gif); */
+        background-repeat: no-repeat;
+        background-position: top center;
+    }
+    .title {
+        color: white;
+        font-size: 5rem;
+        font-weight: 1000;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .gif {
+        max-width: 480px;
+        padding-top: 60px;
+    }
+    body {
+        background: url("https://github.com/valentingavela/mcat/blob/master/img/dev/576/separados/fondo_576.jpg?raw=true");
+        /* background: url(img/dev/576/separados/fondo_576.jpg); */
+        background-repeat: no-repeat;
+        background-position: top center;
+    }
+}
+
+/* 320 max resolution */
+
+@media only screen and (max-width: 576px) {
+    .gif {
+        max-width: 70vw;
+        padding-top: 29px;
+    }
+    body {
+        background: url("https://github.com/valentingavela/mcat/blob/master/img/dev/576/separados/fondo_576.jpg?raw=true");
+        /* background: url(img/dev/576/separados/fondo_576.jpg); */
+        background-repeat: no-repeat;
+        background-position: top center;
+        text-align: center;
+    }
+    .title {
+        color: white;
+        font-size: 16vw;
+        word-spacing: -4px !important;
+        line-height: 79px;
+        margin-top: -12px;
+    }
+    .subtitle h2 {
+        color: white;
+        font-size: 6vw;
+        word-spacing: -4px;
+    }
+    .social {
+        text-align: center !important;
+    }
+    .divimg {
+        margin: auto;
+        padding-top: 7px;
+        padding-bottom: 15px;
+    }
+    .btnimg {
+        transition: 0.2s;
+        width: 34vw;
+    }
+}
