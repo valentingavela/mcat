@@ -2,10 +2,7 @@
   <div id="app">
     <div class="container">
       <header class="text-center">
-        <img
-          class="gif img-fluid select-none"
-          src="https://raw.githubusercontent.com/valentingavela/mcat/master/dist/img/macricat_animation_OK.gif"
-        >
+        <img class="gif img-fluid select-none" src="~@/assets/macricat_animation_OK.gif">
       </header>
       <Banner id="banner"/>
       <ButtonMiau id="buttonMiau"/>
