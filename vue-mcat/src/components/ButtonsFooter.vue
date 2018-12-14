@@ -1,6 +1,6 @@
 <template>
-  <footer class="row ">
-    <div class="col-xl-6 ">
+  <footer class="row">
+    <div class="col-xl-6 d-none d-sm-block border">
       <svg
         class="sound-btn pointer"
         version="1.1"

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="container">
-      <header class="text-center">
+      <header class="page-head text-center">
         <img class="gif img-fluid select-none" src="~@/assets/macricat_animation_OK.gif">
       </header>
       <Banner id="banner"/>
@@ -48,24 +48,24 @@ h6 {
   background: url("assets/1200_fondo_gif.gif");
   background-repeat: no-repeat;
   background-position: top center;
-  height: 750px;
+  // height: 750px;
+  height: 100%;
 }
-header {
-  height: 184.65px;
-  max-height: 184.65px;
+.page-head {
+    max-height: 9.625rem;
 }
 #banner {
-  height: 154px;
-  max-height: 154px;
+  // height: 154px;
+  max-height: 9.625rem;
 }
 .gif {
-  max-width: 480px;
-  padding-top: 60px;
+    max-width: 41%;
+    padding-top: 3%;
 }
 
 #buttonMiau {
-  height: 309px;
-  max-height: 309px;
+  // height: 309px;
+  // max-height: 309px;
 }
 
 .pointer {
@@ -74,4 +74,22 @@ header {
 .select-none {
   user-select: none;
 }
+
+.modal-content { 
+  background: url(~@/assets/macricat_modal.jpg);
+  background-repeat: no-repeat;
+  height: 88vh;
+  max-height: 700px;
+}
+.modal-dialog {
+    // max-width: 50vw;
+    max-width: 588px!important;
+}
+
+/* PC */
+@media only screen and (min-width: 700px) {}
+
+/* MOBILE */
+@media only screen and (max-width: 700px) {}
+
 </style>

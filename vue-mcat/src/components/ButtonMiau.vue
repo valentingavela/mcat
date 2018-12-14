@@ -1,11 +1,8 @@
 <template>
   <div class="text-center">
-    <b-modal id="modal1" size="m" title="Small Modal" centered>
-      <h4>Tenés 3 segundos para grabar el miau.</h4>
-      <RecordButton/>
-    </b-modal>
-    <!-- <div class="divimg btnimg" @click="showModal"> -->
-    <div class="divimg btnimg" v-b-modal.modal1>
+    <!-- <ModalC v-bind:show="modalShow"/> -->
+    <ModalC ref="modal"/>
+    <div class="divimg btnimg" @click="toogleModal">
       <!-- Button SUMA TU MIAU-->
       <svg
         class="pointer select-none"
@@ -971,28 +968,41 @@ fCkA+MD+7/vpv/ZlAAAAAP5U/78AAwA5ArnyAHt0NwAAAABJRU5ErkJggg=="
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import RecordButton from "./RecordButton.vue";
-
+// import RecordButton from "./RecordButton.vue";
+import ModalC from "./ModalC.vue";
 declare var MediaRecorder: any;
 
 @Component({
-  components: {RecordButton}
+  components: { 
+    // RecordButton,
+    ModalC
+    }
 })
-export default class ButtonMiau extends Vue {}
+export default class ButtonMiau extends Vue {
+  toogleModal() {
+    this.$emit('toogle');
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 .divimg {
   margin: auto;
-  padding-top: 20px;
-  padding-bottom: 50px;
-  height: 309px;
-  width: 260px;
+  // padding-top: 20px;
+  padding-top: 2%;
+  // padding-bottom: 50px;
+  padding-bottom: 4%;
+  // height: 309px;
+  height: 19.3125rem;
+  // width: 260px;
+  width: 16.25rem;
 }
 .divimg svg {
-  width: 266px;
-  margin-top: 10px;
+  // width: 266px;
+  width: 16.625rem;
+  // margin-top: 10px;
+  margin-top: 0.625rem;
 }
 
 .suma-tu {
