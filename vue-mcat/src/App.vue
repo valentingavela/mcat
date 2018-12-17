@@ -86,9 +86,6 @@ h6 {
     max-width: 588px!important;
 }
 
-/* PC */
-@media only screen and (min-width: 700px) {}
-
 /* MOBILE */
 @media only screen and (max-width: 700px) {}
 
