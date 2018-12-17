@@ -1,4 +1,5 @@
 <template>
+<!-- https://developers.facebook.com/docs/plugins/share-button/ -->
   <footer class="row">
     <div class="col-xl-6 d-none d-sm-block border">
       <svg

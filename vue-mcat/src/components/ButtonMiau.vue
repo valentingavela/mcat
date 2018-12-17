@@ -958,7 +958,7 @@ fCkA+MD+7/vpv/ZlAAAAAP5U/78AAwA5ArnyAHt0NwAAAABJRU5ErkJggg=="
           transform="matrix(0.6077 0 0 0.6077 0 0)"
         ></image>
       </svg>
-      <div class="suma-tu pointer select-none">
+      <div class="suma-tu pointer select-none non-visible">
         <h1>SUMÁ TU</h1>
         <h2>MIAU</h2>
       </div>

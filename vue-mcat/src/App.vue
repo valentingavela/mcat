@@ -2,9 +2,9 @@
   <div id="app">
     <div class="container">
       <header class="page-head text-center">
-        <img class="gif img-fluid select-none" src="~@/assets/macricat_animation_OK.gif">
+        <img class="gif img-fluid select-none non-visible" src="~@/assets/macricat_animation_OK.gif">
       </header>
-      <Banner id="banner"/>
+      <Banner id="banner" class="non-visible"/>
       <ButtonMiau id="buttonMiau"/>
       <ButtonsFooter/>
     </div>
@@ -74,8 +74,12 @@ h6 {
 .select-none {
   user-select: none;
 }
+.non-visible {
+  visibility: hidden;
+}
 
 .modal-content { 
+  // background: url(~@/assets/modal/Macricat_grabar.jpg);
   background: url(~@/assets/macricat_modal.jpg);
   background-repeat: no-repeat;
   height: 88vh;
@@ -87,6 +91,8 @@ h6 {
 }
 
 /* MOBILE */
-@media only screen and (max-width: 700px) {}
+@media only screen and (max-width: 700px) {
+  //TODO: change background to smaller background
+}
 
 </style>
