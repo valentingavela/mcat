@@ -1,10 +1,10 @@
 <template>
   <div>
     <!-- <button @click="onClick">Click!</button> -->
-    <!-- <img @click="onClick" class="Rec" src="~@/assets/modal/RecordButton/Microfono.svg"> -->
+    <!-- RECORD BUTTON -->
     <svg
-      @click="onClick"
-      v-bind:class="{ Rec: recording }"
+      @click="recordAndPlaySound"
+      v-bind:class="{ Rec: recordingAnimation, HideEl: hideRecBtn}"
       xmlns:dc="http://purl.org/dc/elements/1.1/"
       xmlns:cc="http://creativecommons.org/ns#"
       xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -78,42 +78,129 @@
         ></path>
       </g>
     </svg>
+    <!-- STOP BUTTON -->
+    <!-- <svg
+      @click="stopRecording"
+      v-bind:class="{ Rec: status === 1, HideEl: status === 2}"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      version="1.1"
+      id="Capa_1"
+      x="0px"
+      y="0px"
+      viewBox="0 0 420 420"
+      style="enable-background:new 0 0 420 420;"
+      xml:space="preserve"
+      width="512px"
+      height="512px"
+    >
+      <g>
+        <path
+          d="M210,21c104.216,0,189,84.784,189,189s-84.784,189-189,189S21,314.216,21,210S105.784,21,210,21 M210,0   C94.031,0,0,94.024,0,210s94.031,210,210,210s210-94.024,210-210S325.969,0,210,0L210,0z"
+          fill="#FFFFFF"
+        ></path>
+        <path
+          d="M276.066,108.941H143.941c-19.25,0-35,15.75-35,35v132.125c0,19.25,15.75,35,35,35h132.125c19.25,0,35-15.75,35-35V143.941   C311.066,124.691,295.316,108.941,276.066,108.941z M290.066,269.066c0,11.55-9.45,21-21,21H150.941c-11.55,0-21-9.45-21-21   V150.941c0-11.55,9.45-21,21-21h118.125c11.55,0,21,9.45,21,21V269.066z"
+          fill="#FFFFFF"
+        ></path>
+      </g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+    </svg>-->
+    <!-- PLAY BUTTON -->
+    <svg
+      v-bind:class="{ Rec: recordingAnimation, HideEl: !hideRecBtn}"
+      version="1.1"
+      id="Capa_1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      x="0px"
+      y="0px"
+      viewBox="0 0 60 60"
+      style="enable-background:new 0 0 60 60;"
+      xml:space="preserve"
+    >
+      <g>
+        <path
+          d="M45.563,29.174l-22-15c-0.307-0.208-0.703-0.231-1.031-0.058C22.205,14.289,22,14.629,22,15v30
+		c0,0.371,0.205,0.711,0.533,0.884C22.679,45.962,22.84,46,23,46c0.197,0,0.394-0.059,0.563-0.174l22-15
+		C45.836,30.64,46,30.331,46,30S45.836,29.36,45.563,29.174z M24,43.107V16.893L43.225,30L24,43.107z"
+        ></path>
+        <path
+          d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M30,58C14.561,58,2,45.439,2,30
+		S14.561,2,30,2s28,12.561,28,28S45.439,58,30,58z"
+        ></path>
+      </g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+      <g></g>
+    </svg>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-declare var MediaRecorder: any;
+import VoiceRecorder from "./VoiceRecorder";
+import { take } from "rxjs/operators";
 
 @Component
 export default class RecordButton extends Vue {
-  recording: boolean;
+  state: number;
+  // gumStream: any;
+  recordingAnimation: boolean;
+  hideRecBtn: boolean;
+  audioUrl: any;
+
+  recorder = new VoiceRecorder();
+
   constructor() {
     super();
-    this.recording = false;
+    this.state = 0;
+    this.recordingAnimation = false;
+    this.hideRecBtn = false;
   }
 
-  recorder: any;
-  gumStream: any;
+  recordAndPlaySound() {
+    this.recorder
+      .playRecording()
+      .pipe(take(2))
+      .subscribe(state => {
+        if (state === "play") {
+          this.recordingAnimation = false;
+          this.hideRecBtn = true;
+        }
+        if (state === "finish") {
+          this.hideRecBtn = false;
+        }
+      });
 
-  onClick() {
-    this.recordVoice();
-  }
-
-  recordVoice() {
-    this.recording = !this.recording;
-    navigator.mediaDevices.getUserMedia({ audio: true }).then(function(stream) {
-      const gumStream = stream;
-      const recorder = new MediaRecorder(stream);
-      recorder.ondataavailable = (e: any) => {
-        const audioUrl = URL.createObjectURL(e.data);
-        // var preview = document.createElement("audio");
-        // preview.controls = true;
-        // preview.src = url;
-        // document.body.appendChild(preview);
-      };
-      recorder.start();
-    });
+    this.recorder.recordVoice(3000);
+    this.recordingAnimation = true;
   }
 }
 </script>
@@ -128,6 +215,10 @@ svg {
   animation: shadow-pulse 1s infinite;
   border-radius: 100%;
   transform-origin: top top;
+}
+
+.HideEl {
+  display: none;
 }
 
 @keyframes shadow-pulse {

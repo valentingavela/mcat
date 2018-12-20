@@ -1,5 +1,13 @@
 <template>
-  <b-modal id="mod" size="m" centered v-model="show">
+  <b-modal 
+  id="mod" 
+  size="m" 
+  hide-footer="true"
+  no-close-on-backdrop
+  no-close-on-esc  
+  centered
+  modal-class="coco"
+  v-model="show">
     <div class="header text-left">
       <h1>Tenés</h1>
       <h1>3 segundos</h1>

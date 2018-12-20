@@ -78,6 +78,8 @@ h6 {
   visibility: hidden;
 }
 
+// Modal modifications
+//
 .modal-content { 
   // background: url(~@/assets/modal/Macricat_grabar.jpg);
   background: url(~@/assets/macricat_modal.jpg);
@@ -88,6 +90,16 @@ h6 {
 .modal-dialog {
     // max-width: 50vw;
     max-width: 588px!important;
+}
+button.close  {
+  background-color: wheat;
+  color: green;
+}
+.modal-header {
+  border-bottom: none;
+}
+.modal-footer {
+  border-top: none;
 }
 
 /* MOBILE */
