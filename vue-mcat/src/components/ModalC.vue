@@ -41,6 +41,7 @@ export default class ModalC extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
+
 .header {
   height: 25rem;
   margin-bottom: -1.5rem;
@@ -71,4 +72,14 @@ export default class ModalC extends Vue {
     top: 1.2rem;
     left: 0.1rem;
 }
+
+// Mobile
+@media screen and (max-width: 360px) , screen and (max-height: 640px) {
+ .header {
+   h1:first-child {
+     padding-top: 0rem;
+   }
+ }
+}
+
 </style>

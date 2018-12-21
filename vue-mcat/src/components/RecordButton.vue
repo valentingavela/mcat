@@ -16,8 +16,8 @@
       id="Capa_1"
       x="0px"
       y="0px"
-      width="0px"
-      height="0px"
+      width="100px"
+      height="100px"
       viewBox="0 0 700 700"
       enable-background="new 0 0 700 700"
       xml:space="preserve"
@@ -171,7 +171,6 @@ import { take } from "rxjs/operators";
 @Component
 export default class RecordButton extends Vue {
   state: number;
-  // gumStream: any;
   recordingAnimation: boolean;
   hideRecBtn: boolean;
   audioUrl: any;
@@ -183,24 +182,29 @@ export default class RecordButton extends Vue {
     this.state = 0;
     this.recordingAnimation = false;
     this.hideRecBtn = false;
+    this.recorder.checkUserMedia();
+  }
+
+  created() {
+    this.recorder.getGeneralStatus().subscribe(res => {
+      console.log(res);
+      if (res.result === "recording") {
+        console.log("xxx");
+        this.recordingAnimation = true;
+      }
+      if (res.result === "playing") {
+        this.recordingAnimation = false;
+        this.hideRecBtn = true;
+      }
+      if (res.result === "finish") {
+        this.hideRecBtn = false;
+      }
+    });
   }
 
   recordAndPlaySound() {
-    this.recorder
-      .playRecording()
-      .pipe(take(2))
-      .subscribe(state => {
-        if (state === "play") {
-          this.recordingAnimation = false;
-          this.hideRecBtn = true;
-        }
-        if (state === "finish") {
-          this.hideRecBtn = false;
-        }
-      });
-
+    this.recorder.playRecording();
     this.recorder.recordVoice(3000);
-    this.recordingAnimation = true;
   }
 }
 </script>
