@@ -6,3 +6,4 @@ assets/web_psds_y_jpg
 assets/botones_tipo_fondo
 assets/__MACOSX
 backend/rootkey.csv
+backend/keyfile.js
