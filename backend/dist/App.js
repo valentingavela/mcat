@@ -1,19 +1,25 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
+const file_upload_1 = require("./services/file_upload");
 class App {
     constructor() {
         this.express = express();
         this.mountRoutes();
+        this.singleUpload = file_upload_1.upload.single('image');
     }
     mountRoutes() {
-        const router = express.Router();
-        router.get('/', (req, res) => {
-            res.json({
-                message: 'Hello World!'
+        this.express.get('/', (req, res) => {
+            return res.json({ 'response': 'hello' });
+        });
+        this.express.post('/image-upload', (req, res) => {
+            this.singleUpload(req, res, (err) => {
+                if (err) {
+                    return res.status(422).send({ errors: [{ title: 'Image Upload Error', detail: err.message }] });
+                }
+                return res.json({ 'imageUrl': req.file });
             });
         });
-        this.express.use('/', router);
     }
 }
 exports.default = new App().express;

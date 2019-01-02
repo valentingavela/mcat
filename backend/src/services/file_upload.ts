@@ -3,6 +3,8 @@ import * as multerS3 from 'multer-s3';
 import * as aws from 'aws-sdk';
 import * as cfg from '../awsConfig';
 
+// https://medium.freecodecamp.org/how-to-set-up-simple-image-upload-with-node-and-aws-s3-84e609248792
+
 aws.config.update({
     // Setup Env Variable, e.g: process.env.SECRET_ACCESS_KEY
     secretAccessKey: cfg.awsConfig.SecretKey,
