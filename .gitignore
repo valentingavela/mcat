@@ -7,3 +7,6 @@ assets/botones_tipo_fondo
 assets/__MACOSX
 backend/rootkey.csv
 backend/keyfile.js
+backend/dist/
+backend/dist/keyfile.js
+backend/src/awsConfig.ts
