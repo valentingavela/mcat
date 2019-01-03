@@ -16,12 +16,12 @@ class App {
             return res.json({ 'response': 'hello' });
         })
 
-        this.express.post('/image-upload', (req, res) => {
+        this.express.post('/upload', (req, res) => {
             this.singleUpload(req, res, (err) => {
                 if (err) {
                     return res.status(422).send({ errors: [{ title: 'Image Upload Error', detail: err.message }] });
                 }
-                return res.json({ 'imageUrl': req.file });
+                return res.json({ 'image': req.file.location });
             });
         })
     }
