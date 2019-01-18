@@ -1,7 +1,6 @@
 <template>
   <div class="text-center">
-    <!-- <ModalC v-bind:show="modalShow"/> -->
-    <ModalC ref="modal"/>
+    <Modal3SecondsToRecord ref="modal"/>
     <div class="divimg btnimg" @click="toogleModal">
       <!-- Button SUMA TU MIAU-->
       <svg
@@ -968,17 +967,15 @@ fCkA+MD+7/vpv/ZlAAAAAP5U/78AAwA5ArnyAHt0NwAAAABJRU5ErkJggg=="
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-// import RecordButton from "./RecordButton.vue";
-import ModalC from "./ModalC.vue";
+import Modal3SecondsToRecord from "./Modal3SecondsToRecord.vue";
 declare var MediaRecorder: any;
 
 @Component({
   components: { 
-    // RecordButton,
-    ModalC
+    Modal3SecondsToRecord
     }
 })
-export default class ButtonMiau extends Vue {
+export default class ButtonSumaTuMiau extends Vue {
   toogleModal() {
     this.$emit('toogle');
   }

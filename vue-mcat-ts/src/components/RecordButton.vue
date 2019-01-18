@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <button @click="onClick">Click!</button> -->
     <!-- RECORD BUTTON -->
     <svg
       @click="recordAndPlaySound"
@@ -78,49 +77,6 @@
         ></path>
       </g>
     </svg>
-    <!-- STOP BUTTON -->
-    <!-- <svg
-      @click="stopRecording"
-      v-bind:class="{ Rec: status === 1, HideEl: status === 2}"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      version="1.1"
-      id="Capa_1"
-      x="0px"
-      y="0px"
-      viewBox="0 0 420 420"
-      style="enable-background:new 0 0 420 420;"
-      xml:space="preserve"
-      width="512px"
-      height="512px"
-    >
-      <g>
-        <path
-          d="M210,21c104.216,0,189,84.784,189,189s-84.784,189-189,189S21,314.216,21,210S105.784,21,210,21 M210,0   C94.031,0,0,94.024,0,210s94.031,210,210,210s210-94.024,210-210S325.969,0,210,0L210,0z"
-          fill="#FFFFFF"
-        ></path>
-        <path
-          d="M276.066,108.941H143.941c-19.25,0-35,15.75-35,35v132.125c0,19.25,15.75,35,35,35h132.125c19.25,0,35-15.75,35-35V143.941   C311.066,124.691,295.316,108.941,276.066,108.941z M290.066,269.066c0,11.55-9.45,21-21,21H150.941c-11.55,0-21-9.45-21-21   V150.941c0-11.55,9.45-21,21-21h118.125c11.55,0,21,9.45,21,21V269.066z"
-          fill="#FFFFFF"
-        ></path>
-      </g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-      <g></g>
-    </svg>-->
-    <!-- PLAY BUTTON -->
     <svg
       v-bind:class="{ Rec: recordingAnimation, HideEl: !hideRecBtn}"
       version="1.1"
@@ -160,6 +116,12 @@
       <g></g>
       <g></g>
     </svg>
+    <ModalUploadOrRetry
+      v-show="showModalUoR"
+      v-on:recordAgain="recordAgain()"
+      v-on:upload="uploadAudio()"
+      ref="modal"
+    />
   </div>
 </template>
 
@@ -167,37 +129,48 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import VoiceRecorder from "./VoiceRecorder";
 import { take } from "rxjs/operators";
+import ModalUploadOrRetry from "./ModalUploadOrRetry.vue";
+import AwsWrapper from "./aws_wrapper";
+import { EventBus } from './EventBus';
 
-@Component
+@Component({
+  components: {
+    ModalUploadOrRetry,
+  }
+})
 export default class RecordButton extends Vue {
-  state: number;
   recordingAnimation: boolean;
   hideRecBtn: boolean;
   audioUrl: any;
-
+  showModalUoR: boolean;
   recorder = new VoiceRecorder();
-
+  awsWrapper = new AwsWrapper();
+  
   constructor() {
     super();
-    this.state = 0;
     this.recordingAnimation = false;
     this.hideRecBtn = false;
     this.recorder.checkUserMedia();
+    this.showModalUoR = false;
   }
 
   created() {
     this.recorder.getGeneralStatus().subscribe(res => {
-      console.log(res);
-      if (res.result === "recording") {
-        console.log("xxx");
-        this.recordingAnimation = true;
-      }
-      if (res.result === "playing") {
-        this.recordingAnimation = false;
-        this.hideRecBtn = true;
-      }
-      if (res.result === "finish") {
-        this.hideRecBtn = false;
+      switch (res.result) {
+        case "recording": {
+          this.recordingAnimation = true;
+          break;
+        }
+        case "playing": {
+          this.recordingAnimation = false;
+          this.hideRecBtn = true;
+          break;
+        }
+        case "finish": {
+          this.hideRecBtn = false;
+          this.showModalUploadOrRetry();
+          break;
+        }
       }
     });
   }
@@ -206,6 +179,36 @@ export default class RecordButton extends Vue {
     this.recorder.playRecording();
     this.recorder.recordVoice(3000);
   }
+
+  recordAgain() {
+    console.log("rec again");
+    this.hideModalUploadOrRetry();
+    this.recordAndPlaySound();
+  }
+
+  uploadAudio() {
+    console.log("uploading audio");
+    const audio = this.recorder.getAudio();
+
+    this.awsWrapper
+      .uploadObject(audio)
+      .then(res => {
+        this.hideModalUploadOrRetry();
+        this.$emit('hideParent');
+        EventBus.$emit('show-thanks');
+      })
+      .catch(err => console.log(err));
+  }
+
+  showModalUploadOrRetry() {
+    this.showModalUoR = true;
+  }
+
+  hideModalUploadOrRetry() {
+    this.showModalUoR = false;
+  }
+
+
 }
 </script>
 

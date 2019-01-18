@@ -1,19 +1,11 @@
-<template>
-  <b-modal 
-  id="mod" 
-  size="m" 
-  hide-footer="true"
-  no-close-on-backdrop
-  no-close-on-esc  
-  centered
-  modal-class="coco"
-  v-model="show">
+<template >
+  <b-modal size="m" hide-footer no-close-on-backdrop no-close-on-esc centered v-model="show">
     <div class="header text-left">
       <h1>Tenés</h1>
       <h1>3 segundos</h1>
       <h1>para grabar</h1>
     </div>
-    <RecordButton class="record-btn"/>
+    <RecordButton v-on:hideParent="toogleModal()" class="record-btn"/>
   </b-modal>
 </template>
 
@@ -26,7 +18,7 @@ import RecordButton from "./RecordButton.vue";
     RecordButton
   }
 })
-export default class ModalC extends Vue {
+export default class Modal3SecondsToRecord extends Vue {
   created() {
     this.$parent.$on("toogle", () => {
       this.toogleModal();
@@ -41,7 +33,6 @@ export default class ModalC extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-
 .header {
   height: 25rem;
   margin-bottom: -1.5rem;
@@ -64,22 +55,21 @@ export default class ModalC extends Vue {
 }
 
 .record-btn {
-    margin-left: auto;
-    margin-right: auto;
-    max-height: 8rem;
-    width: 50%;
-    position: relative;
-    top: 1.2rem;
-    left: 0.1rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 8rem;
+  width: 50%;
+  position: relative;
+  top: 1.2rem;
+  left: 0.1rem;
 }
 
 // Mobile
-@media screen and (max-width: 360px) , screen and (max-height: 640px) {
- .header {
-   h1:first-child {
-     padding-top: 0rem;
-   }
- }
+@media screen and (max-width: 360px), screen and (max-height: 640px) {
+  .header {
+    h1:first-child {
+      padding-top: 0rem;
+    }
+  }
 }
-
 </style>

@@ -1,4 +1,4 @@
-import { Subject, Observable, of, fromEvent } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 declare var MediaRecorder: any;
@@ -7,7 +7,7 @@ export default class VoiceRecorder {
     audio: any;
     audio$: Subject<any> = new Subject();
     generalStatus$: Subject<any> = new Subject();
-
+    audioBlob: any;
     checkUserMedia() {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             this.generalStatus$.next({ result: 'getUserMedia supported' });
@@ -35,9 +35,10 @@ export default class VoiceRecorder {
                     }
 
                     this.mediaRecorder.addEventListener("stop", () => {
-                        const audioBlob = new Blob(audioChunks);
-                        const audioUrl = URL.createObjectURL(audioBlob);
+                        this.audioBlob = new Blob(audioChunks);
+                        const audioUrl = URL.createObjectURL(this.audioBlob);
                         this.audio$.next(new Audio(audioUrl));
+                        this.audio = this.audioBlob;
                     });
                 }
             ).catch(() => {
@@ -62,5 +63,9 @@ export default class VoiceRecorder {
 
     getGeneralStatus(): Observable<any> {
         return this.generalStatus$;
+    }
+
+    getAudio() {
+        return this.audioBlob;
     }
 }

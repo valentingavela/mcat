@@ -2,11 +2,15 @@
   <div id="app">
     <div class="container">
       <header class="page-head text-center">
-        <img class="gif img-fluid select-none non-visible" src="~@/assets/macricat_animation_OK.gif">
+        <img
+          class="gif img-fluid select-none non-visible"
+          src="~@/assets/macricat_animation_OK.gif"
+        >
       </header>
       <Banner id="banner" class="non-visible"/>
-      <ButtonMiau id="buttonMiau"/>
+      <ButtonSumaTuMiau id="buttonMiau"/>
       <ButtonsFooter/>
+      <ModalThanks v-show="thanks" v-on:close="hideThanks()" ref="modal"/>
     </div>
   </div>
 </template>
@@ -14,23 +18,38 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Banner from "./components/Banner.vue";
-import ButtonMiau from "./components/ButtonMiau.vue";
+import ButtonSumaTuMiau from "./components/ButtonSumaTuMiau.vue";
 import ButtonsFooter from "./components/ButtonsFooter.vue";
+import ModalThanks from "./components/ModalThanks.vue";
+import { EventBus } from "./components/EventBus";
 
-// BOOTSTRAP
-// import BootstrapVue from "bootstrap-vue";
-// Vue.use(BootstrapVue);
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
 @Component({
   components: {
     Banner,
-    ButtonMiau,
-    ButtonsFooter
+    ButtonSumaTuMiau,
+    ButtonsFooter,
+    ModalThanks
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  created() {
+    EventBus.$on("show-thanks", () => {
+      this.showThanks();
+    });
+  }
+  thanks = false;
+
+  showThanks() {
+    this.thanks = true;
+  }
+
+  hideThanks() {
+    this.thanks = false;
+  }
+}
 </script>
 
 <style lang="less">
@@ -52,15 +71,15 @@ h6 {
   height: 100%;
 }
 .page-head {
-    max-height: 9.625rem;
+  max-height: 9.625rem;
 }
 #banner {
   // height: 154px;
   max-height: 9.625rem;
 }
 .gif {
-    max-width: 41%;
-    padding-top: 3%;
+  max-width: 41%;
+  padding-top: 3%;
 }
 
 #buttonMiau {
@@ -79,8 +98,7 @@ h6 {
 }
 
 // Modal modifications
-//
-.modal-content { 
+.modal-content {
   // background: url(~@/assets/modal/Macricat_grabar.jpg);
   background: url(~@/assets/macricat_modal.jpg);
   background-repeat: no-repeat;
@@ -88,10 +106,10 @@ h6 {
   max-height: 700px;
 }
 .modal-dialog {
-    // max-width: 50vw;
-    max-width: 588px!important;
+  // max-width: 50vw;
+  max-width: 588px !important;
 }
-button.close  {
+button.close {
   background-color: wheat;
   color: green;
 }
@@ -106,5 +124,4 @@ button.close  {
 @media only screen and (max-width: 700px) {
   //TODO: change background to smaller background
 }
-
 </style>

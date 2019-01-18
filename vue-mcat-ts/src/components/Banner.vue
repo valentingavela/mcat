@@ -17,27 +17,20 @@ export default class Banner extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
     .title {
-        // margin-top: 3px;
-        margin-top: 0.2%;
-        // margin-left: -4px;
-        // height: 107.83px;
-        /* TODO: put white */
-        color: white;
-        font-size: 5.2rem;
-        font-weight: 800;
-        letter-spacing: -0.3rem;
-        // letter-spacing: -4.5px;
+      margin-top: 0.2%;
+      /* TODO: put white */
+      color: white;
+      font-size: 5.2rem;
+      font-weight: 800;
+      letter-spacing: -0.3rem;
     }
     .subtitle {
-    // height: 46px;
-    // margin-top: -19px;
-    margin-top: -1.8%;
-    // margin-left: -8px;
-    color: white;
-    /* color: white; */
-    font-weight: bold;
-    letter-spacing: -0.21875rem;
-    font-size: 2.375rem;
+      margin-top: -1.8%;
+      color: white;
+      /* color: white; */
+      font-weight: bold;
+      letter-spacing: -0.21875rem;
+      font-size: 2.375rem;
     }
 
 </style>
