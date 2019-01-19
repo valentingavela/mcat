@@ -11,9 +11,9 @@ backend/dist/*
 backend/src/awsConfig.ts
 backend/dist/App.js
 backend/dist/App.js.map
-
 backend/dist/App.js
 backend/dist/App.js.map
 backend/src/mytest.js
 vue-mcat-ts/node_modules
 mcat-js/package-lock.json
+vue-mcat/*
