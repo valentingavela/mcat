@@ -10,7 +10,7 @@
       <Banner id="banner" class="non-visible"/>
       <ButtonSumaTuMiau id="buttonMiau"/>
       <ButtonsFooter/>
-      <ModalThanks v-show="thanks" v-on:close="hideThanks()" ref="modal"/>
+      <MessageModal v-show="thanks" v-on:close="hideThanks()" msg="Gracias!" ref="modal"/>
     </div>
   </div>
 </template>
@@ -20,7 +20,7 @@ import { Component, Vue } from "vue-property-decorator";
 import Banner from "./components/Banner.vue";
 import ButtonSumaTuMiau from "./components/ButtonSumaTuMiau.vue";
 import ButtonsFooter from "./components/ButtonsFooter.vue";
-import ModalThanks from "./components/ModalThanks.vue";
+import MessageModal from "./components/MessageModal.vue";
 import { EventBus } from "./components/EventBus";
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -31,7 +31,7 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
     Banner,
     ButtonSumaTuMiau,
     ButtonsFooter,
-    ModalThanks
+    MessageModal
   }
 })
 export default class App extends Vue {

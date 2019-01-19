@@ -122,6 +122,12 @@
       v-on:upload="uploadAudio()"
       ref="modal"
     />
+    <MessageModal
+      v-show="alertForAudioRequest"
+      v-on:close="hideModalForAudioRequest()"
+      msg="Permita el audio!"
+      ref="modal"
+    />
   </div>
 </template>
 
@@ -132,10 +138,12 @@ import { take } from "rxjs/operators";
 import ModalUploadOrRetry from "./ModalUploadOrRetry.vue";
 import AwsWrapper from "./aws_wrapper";
 import { EventBus } from "./EventBus";
+import MessageModal from "./MessageModal.vue";
 
 @Component({
   components: {
-    ModalUploadOrRetry
+    ModalUploadOrRetry,
+    MessageModal
   }
 })
 export default class RecordButton extends Vue {
@@ -145,12 +153,14 @@ export default class RecordButton extends Vue {
   showModalUoR: boolean;
   recorder = new VoiceRecorder();
   awsWrapper = new AwsWrapper();
+  alertForAudioRequest: boolean;
 
   constructor() {
     super();
     this.recordingAnimation = false;
     this.hideRecBtn = false;
     this.showModalUoR = false;
+    this.alertForAudioRequest = false;
   }
 
   created() {
@@ -158,6 +168,7 @@ export default class RecordButton extends Vue {
       switch (res.result) {
         case "recording": {
           this.recordingAnimation = true;
+          this.hideModalForAudioRequest();
           break;
         }
         case "playing": {
@@ -172,19 +183,15 @@ export default class RecordButton extends Vue {
         }
         case "media rejected": {
           this.hideRecBtn = false;
-          alert('no es posible grabar');
+          alert("no es posible grabar");
           break;
         }
       }
     });
   }
 
-  emitEventForAudioRequest() {
-    this.$emit('eventForAudioRequest');
-  }
-
   recordAndPlaySound() {
-    this.emitEventForAudioRequest();
+    this.showModalForAudioRequest();
     this.recorder.playRecording();
     this.recorder.recordVoice(3000);
   }
@@ -215,6 +222,14 @@ export default class RecordButton extends Vue {
 
   hideModalUploadOrRetry() {
     this.showModalUoR = false;
+  }
+
+  showModalForAudioRequest() {
+    this.alertForAudioRequest = true;
+  }
+
+  hideModalForAudioRequest() {
+    this.alertForAudioRequest = false;
   }
 }
 </script>

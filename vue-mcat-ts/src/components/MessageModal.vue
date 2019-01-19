@@ -4,7 +4,7 @@
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-header">
-            <slot name="header">GRACIAS!</slot>
+            <slot name="header">{{msg}}</slot>
           </div>
           <div class="modal-footer">
             <slot name="footer">
@@ -18,10 +18,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component
-export default class ModalThanks extends Vue {
+export default class MessageModal extends Vue {
+    @Prop() private msg!: string;
 }
 </script>
 

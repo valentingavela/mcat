@@ -15,7 +15,7 @@ import RecordButton from "./RecordButton.vue";
 
 @Component({
   components: {
-    RecordButton
+    RecordButton,
   }
 })
 export default class Modal3SecondsToRecord extends Vue {
@@ -29,9 +29,7 @@ export default class Modal3SecondsToRecord extends Vue {
     this.show = !this.show;
   }
 
-  showModalForAudioRequest(){
-    console.log('permite el audio!');
-  }
+
 }
 </script>
 
