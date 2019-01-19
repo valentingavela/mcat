@@ -17,3 +17,7 @@ backend/src/mytest.js
 vue-mcat-ts/node_modules
 mcat-js/package-lock.json
 vue-mcat/*
+test-audio/server.key
+test-audio/server.cert
+vue-mcat-ts/package.json
+vue-mcat-ts/package-lock.json

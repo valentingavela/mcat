@@ -8,12 +8,15 @@ export default class VoiceRecorder {
     audio$: Subject<any> = new Subject();
     generalStatus$: Subject<any> = new Subject();
     audioBlob: any;
+
     checkUserMedia() {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             this.generalStatus$.next({ result: 'getUserMedia supported' });
+        } else {
+            this.generalStatus$.next({ result: 'mediaDenied' });
         }
     }
-
+    
     recordVoice(timeout = 0) {
         navigator.mediaDevices.getUserMedia({ audio: true })
             .then(

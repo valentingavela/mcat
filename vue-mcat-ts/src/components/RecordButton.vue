@@ -131,11 +131,11 @@ import VoiceRecorder from "./VoiceRecorder";
 import { take } from "rxjs/operators";
 import ModalUploadOrRetry from "./ModalUploadOrRetry.vue";
 import AwsWrapper from "./aws_wrapper";
-import { EventBus } from './EventBus';
+import { EventBus } from "./EventBus";
 
 @Component({
   components: {
-    ModalUploadOrRetry,
+    ModalUploadOrRetry
   }
 })
 export default class RecordButton extends Vue {
@@ -145,12 +145,11 @@ export default class RecordButton extends Vue {
   showModalUoR: boolean;
   recorder = new VoiceRecorder();
   awsWrapper = new AwsWrapper();
-  
+
   constructor() {
     super();
     this.recordingAnimation = false;
     this.hideRecBtn = false;
-    this.recorder.checkUserMedia();
     this.showModalUoR = false;
   }
 
@@ -171,11 +170,21 @@ export default class RecordButton extends Vue {
           this.showModalUploadOrRetry();
           break;
         }
+        case "media rejected": {
+          this.hideRecBtn = false;
+          alert('no es posible grabar');
+          break;
+        }
       }
     });
   }
 
+  emitEventForAudioRequest() {
+    this.$emit('eventForAudioRequest');
+  }
+
   recordAndPlaySound() {
+    this.emitEventForAudioRequest();
     this.recorder.playRecording();
     this.recorder.recordVoice(3000);
   }
@@ -194,8 +203,8 @@ export default class RecordButton extends Vue {
       .uploadObject(audio)
       .then(res => {
         this.hideModalUploadOrRetry();
-        this.$emit('hideParent');
-        EventBus.$emit('show-thanks');
+        this.$emit("hideParent");
+        EventBus.$emit("show-thanks");
       })
       .catch(err => console.log(err));
   }
@@ -207,8 +216,6 @@ export default class RecordButton extends Vue {
   hideModalUploadOrRetry() {
     this.showModalUoR = false;
   }
-
-
 }
 </script>
 
