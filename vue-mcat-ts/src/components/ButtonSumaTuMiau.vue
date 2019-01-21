@@ -1,6 +1,5 @@
 <template>
   <div class="text-center">
-    <Modal3SecondsToRecord ref="modal"/>
     <div class="divimg btnimg" @click="toogleModal">
       <!-- Button SUMA TU MIAU-->
       <svg
@@ -957,28 +956,33 @@ fCkA+MD+7/vpv/ZlAAAAAP5U/78AAwA5ArnyAHt0NwAAAABJRU5ErkJggg=="
           transform="matrix(0.6077 0 0 0.6077 0 0)"
         ></image>
       </svg>
-      <div class="suma-tu pointer select-none non-visible">
+      <div class="suma-tu pointer select-none">
         <h1>SUMÁ TU</h1>
         <h2>MIAU</h2>
       </div>
     </div>
+    <Modal3SecondsToRecord2 v-on:close="toogleModal()" v-show="showModal" ref="modal"/>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import Modal3SecondsToRecord from "./Modal3SecondsToRecord.vue";
+import Modal3SecondsToRecord2 from "./Modal3SecondsToRecord2.vue";
 declare var MediaRecorder: any;
 
 @Component({
-  components: { 
-    Modal3SecondsToRecord
-    }
+  components: {
+    Modal3SecondsToRecord2,
+  }
 })
 export default class ButtonSumaTuMiau extends Vue {
+  showModal = false;
+
   toogleModal() {
-    this.$emit('toogle');
+    this.showModal = !this.showModal;
   }
+
+
 }
 </script>
 
@@ -986,19 +990,13 @@ export default class ButtonSumaTuMiau extends Vue {
 <style scoped lang="less">
 .divimg {
   margin: auto;
-  // padding-top: 20px;
   padding-top: 2%;
-  // padding-bottom: 50px;
   padding-bottom: 4%;
-  // height: 309px;
   height: 19.3125rem;
-  // width: 260px;
   width: 16.25rem;
 }
 .divimg svg {
-  // width: 266px;
   width: 16.625rem;
-  // margin-top: 10px;
   margin-top: 0.625rem;
 }
 
@@ -1006,8 +1004,6 @@ export default class ButtonSumaTuMiau extends Vue {
   left: 50%;
   position: relative;
   top: -55%;
-  /* right: 392px; */
-  /* background-color: black; */
   color: #ffd500;
   padding-left: 17px;
   padding-right: 20px;

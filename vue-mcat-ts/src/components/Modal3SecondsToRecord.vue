@@ -24,7 +24,7 @@ export default class Modal3SecondsToRecord extends Vue {
       this.toogleModal();
     });
   }
-  show = true;
+  show = false;
   toogleModal() {
     this.show = !this.show;
   }

@@ -3,11 +3,11 @@
     <div class="container">
       <header class="page-head text-center">
         <img
-          class="gif img-fluid select-none non-visible"
+          class="gif img-fluid select-none"
           src="~@/assets/macricat_animation_OK.gif"
         >
       </header>
-      <Banner id="banner" class="non-visible"/>
+      <Banner id="banner"/>
       <ButtonSumaTuMiau id="buttonMiau"/>
       <ButtonsFooter/>
       <MessageModal v-show="thanks" v-on:close="hideThanks()" msg="Gracias!" ref="modal"/>
@@ -24,7 +24,7 @@ import MessageModal from "./components/MessageModal.vue";
 import { EventBus } from "./components/EventBus";
 
 import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
+// import "bootstrap-vue/dist/bootstrap-vue.css";
 
 @Component({
   components: {
@@ -98,27 +98,27 @@ h6 {
 }
 
 // Modal modifications
-.modal-content {
-  // background: url(~@/assets/modal/Macricat_grabar.jpg);
-  background: url(~@/assets/macricat_modal.jpg);
-  background-repeat: no-repeat;
-  height: 88vh;
-  max-height: 700px;
-}
-.modal-dialog {
-  // max-width: 50vw;
-  max-width: 588px !important;
-}
-button.close {
-  background-color: wheat;
-  color: green;
-}
-.modal-header {
-  border-bottom: none;
-}
-.modal-footer {
-  border-top: none;
-}
+// .modal-content {
+//   // background: url(~@/assets/modal/Macricat_grabar.jpg);
+//   background: url(~@/assets/macricat_modal.jpg);
+//   background-repeat: no-repeat;
+//   height: 88vh;
+//   max-height: 700px;
+// }
+// .modal-dialog {
+//   // max-width: 50vw;
+//   max-width: 588px !important;
+// }
+// button.close {
+//   background-color: wheat;
+//   color: green;
+// }
+// .modal-header {
+//   border-bottom: none;
+// }
+// .modal-footer {
+//   border-top: none;
+// }
 
 /* MOBILE */
 @media only screen and (max-width: 700px) {

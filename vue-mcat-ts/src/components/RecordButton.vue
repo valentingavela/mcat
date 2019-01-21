@@ -2,6 +2,7 @@
   <div>
     <!-- RECORD BUTTON -->
     <svg
+      class="pointer"
       @click="recordAndPlaySound"
       v-bind:class="{ Rec: recordingAnimation, HideEl: hideRecBtn}"
       xmlns:dc="http://purl.org/dc/elements/1.1/"
