@@ -991,43 +991,43 @@ export default class ButtonSumaTuMiau extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 .divimg {
-  margin: auto;
-  padding-top: 2%;
-  padding-bottom: 4%;
-  height: 19.3125rem;
-  width: 16.25rem;
+  // margin: auto;
+  // padding-top: 2%;
+  // padding-bottom: 4%;
+  // height: 19.3125rem;
+  // width: 16.25rem;
 }
 .divimg svg {
-  width: 16.625rem;
-  margin-top: 0.625rem;
+  // width: 16.625rem;
+  // margin-top: 0.625rem;
 }
 
 .suma-tu {
-  left: 50%;
-  position: relative;
-  top: -55%;
-  color: #ffd500;
-  padding-left: 17px;
-  padding-right: 20px;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  width: 219px;
+  // left: 50%;
+  // position: relative;
+  // top: -55%;
+  // color: #ffd500;
+  // padding-left: 17px;
+  // padding-right: 20px;
+  // -webkit-transform: translate(-50%, -50%);
+  // transform: translate(-50%, -50%);
+  // width: 219px;
 }
 
 .suma-tu h1 {
-  font-size: 41px;
-  font-weight: 800;
-  letter-spacing: -2px;
-  padding-left: 5px;
-  padding-top: 3px;
+  // font-size: 41px;
+  // font-weight: 800;
+  // letter-spacing: -2px;
+  // padding-left: 5px;
+  // padding-top: 3px;
 }
 
 .suma-tu h2 {
-  font-size: 72px;
-  line-height: 37px;
-  font-weight: bolder;
-  padding-left: 2px;
-  letter-spacing: -3px;
+  // font-size: 72px;
+  // line-height: 37px;
+  // font-weight: bolder;
+  // padding-left: 2px;
+  // letter-spacing: -3px;
 }
 
 .btnimg {

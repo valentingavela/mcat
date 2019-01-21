@@ -71,11 +71,11 @@ h6 {
   height: 100%;
 }
 .page-head {
-  max-height: 9.625rem;
+  // max-height: 9.625rem;
 }
 #banner {
   // height: 154px;
-  max-height: 9.625rem;
+  // max-height: 9.625rem;
 }
 .gif {
   max-width: 41%;
