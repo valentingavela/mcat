@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center">
+  <div class="parent">
     <div class="divimg btnimg" @click="toogleModal">
       <!-- Button SUMA TU MIAU-->
       <svg
@@ -988,98 +988,57 @@ export default class ButtonSumaTuMiau extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-.divimg {
-  margin: auto;
-  padding-top: 2%;
-  padding-bottom: 4%;
-  height: 19.3125rem;
-  width: 16.25rem;
-}
-.divimg svg {
-  width: 16.625rem;
-  margin-top: 0.625rem;
+.parent {
+  position: relative;
+  text-align: center;
 }
 
 .suma-tu {
+  position: absolute;
+  top: 50%;
   left: 50%;
-  position: relative;
-  top: -55%;
-  color: #ffd500;
-  padding-left: 17px;
-  padding-right: 20px;
-  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  // width: 219px207px;
 }
 
-.suma-tu h1 {
-  font-size: 41px;
-  font-weight: 800;
-  letter-spacing: -2px;
-  // padding-left: 5px;
-  // padding-top: 3px;
-}
-
-.suma-tu h2 {
-  font-size: 72px;
-  // line-height: 37px;
-  font-weight: bolder;
-  padding-left: 2px;
-  letter-spacing: -3px;
-}
-
-.btnimg {
-  transition: 0.3s;
-}
-
-.btnimg:hover {
-  -webkit-filter: drop-shadow(5px 5px 5px #222);
-  filter: drop-shadow(5px 5px 5px #fff);
-}
-
-.btnimg:active {
-  transform: translateY(4px) translateX(4px);
-}
-
-.filter-transparency {
-  filter: opacity(50%);
-}
-
-@media only screen and (max-width: 500px) {
+@media only screen and (min-width: 500px) {
   .divimg {
     margin: auto;
     padding-top: 2%;
     padding-bottom: 4%;
-    height: auto;
-    width: auto;
+    height: 19.3125rem;
+    width: 16.25rem;
   }
   .divimg svg {
-    width: 54%;
+    width: 16.625rem;
+    margin-top: 0.625rem;
   }
 
   .suma-tu {
     left: 50%;
-    top: -55%;
-    width: 219px;
-    color: #ffd500;
     position: relative;
-    padding-left: 0px;
-    padding-right: 0px;
-    transform: translate(-50%, -150%);
-    padding-left: 0px;
-    padding-top: 0px;
+    top: -55%;
+    color: #ffd500;
+    padding-left: 17px;
+    padding-right: 20px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    // width: 219px207px;
   }
 
   .suma-tu h1 {
-    font-size: 212%;
+    font-size: 41px;
     font-weight: 800;
-    margin: 0 auto;
+    letter-spacing: -2px;
+    // padding-left: 5px;
+    // padding-top: 3px;
   }
 
   .suma-tu h2 {
+    font-size: 72px;
+    // line-height: 37px;
+    font-weight: bolder;
+    padding-left: 2px;
     letter-spacing: -3px;
-    font-size: 298%;
-    font-weight: 800;
   }
 
   .btnimg {
@@ -1098,5 +1057,48 @@ export default class ButtonSumaTuMiau extends Vue {
   .filter-transparency {
     filter: opacity(50%);
   }
+}
+
+@media only screen and (max-width: 500px) {
+  .divimg {
+    margin: auto;
+    height: auto;
+    width: auto;
+    margin-top: 4vh;
+  }
+  .divimg svg {
+    width: 54%;
+  }
+
+  .suma-tu {
+    color: #ffd500;
+    h1 {
+      font-size: 212%;
+      font-weight: 800;
+      margin: 0 auto;
+    }
+    h2 {
+      letter-spacing: -3px;
+      font-size: 298%;
+      font-weight: 800;
+    }
+  }
+
+  // .btnimg {
+  //   transition: 0.3s;
+  // }
+
+  // .btnimg:hover {
+  //   -webkit-filter: drop-shadow(5px 5px 5px #222);
+  //   filter: drop-shadow(5px 5px 5px #fff);
+  // }
+
+  // .btnimg:active {
+  //   transform: translateY(4px) translateX(4px);
+  // }
+
+  // .filter-transparency {
+  //   filter: opacity(50%);
+  // }
 }
 </style>

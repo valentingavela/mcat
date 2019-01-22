@@ -3,7 +3,7 @@
     <div class="container">
       <header class="page-head text-center">
         <img
-          class="gif img-fluid select-none"
+          class="gif img-fluid select-none non-visible"
           src="~@/assets/macricat_animation_OK.gif"
         >
       </header>
@@ -21,7 +21,7 @@ import Banner from "./components/Banner.vue";
 import ButtonSumaTuMiau from "./components/ButtonSumaTuMiau.vue";
 import ButtonsFooter from "./components/ButtonsFooter.vue";
 import MessageModal from "./components/MessageModal.vue";
-import { EventBus } from "./components/EventBus";
+// import { EventBus } from "./components/EventBus";
 
 import "bootstrap/dist/css/bootstrap.css";
 // import "bootstrap-vue/dist/bootstrap-vue.css";
@@ -35,20 +35,20 @@ import "bootstrap/dist/css/bootstrap.css";
   }
 })
 export default class App extends Vue {
-  created() {
-    EventBus.$on("show-thanks", () => {
-      this.showThanks();
-    });
-  }
-  thanks = false;
+  // created() {
+  //   EventBus.$on("show-thanks", () => {
+  //     this.showThanks();
+  //   });
+  // }
+  // thanks = false;
 
-  showThanks() {
-    this.thanks = true;
-  }
+  // showThanks() {
+  //   this.thanks = true;
+  // }
 
-  hideThanks() {
-    this.thanks = false;
-  }
+  // hideThanks() {
+  //   this.thanks = false;
+  // }
 }
 </script>
 
@@ -63,29 +63,6 @@ h5,
 h6 {
   font-family: "Open Sans";
 }
-#app {
-  background: url("assets/1200_fondo_gif.gif");
-  // background-repeat: no-repeat;
-  background-position: top center;
-  // height: 750px;
-  height: 100%;
-}
-.page-head {
-  max-height: 9.625rem;
-}
-#banner {
-  // height: 154px;
-  // max-height: 9.625rem;
-}
-.gif {
-  max-width: 41%;
-  padding-top: 3%;
-}
-
-#buttonMiau {
-  // height: 309px;
-  // max-height: 309px;
-}
 
 .pointer {
   cursor: pointer;
@@ -97,37 +74,64 @@ h6 {
   visibility: hidden;
 }
 
-// Modal modifications
-// .modal-content {
-//   // background: url(~@/assets/modal/Macricat_grabar.jpg);
-//   background: url(~@/assets/macricat_modal.jpg);
-//   background-repeat: no-repeat;
-//   height: 88vh;
-//   max-height: 700px;
-// }
-// .modal-dialog {
-//   // max-width: 50vw;
-//   max-width: 588px !important;
-// }
-// button.close {
-//   background-color: wheat;
-//   color: green;
-// }
-// .modal-header {
-//   border-bottom: none;
-// }
-// .modal-footer {
-//   border-top: none;
-// }
-
-/* MOBILE */
-@media only screen and (max-width: 500px) {
-  //TODO: change background to smaller background
+// PC ONLY
+@media only screen and (min-width: 500px) {
+  body {
+    background: url("assets/1200_fondo_gif.gif");
+    // background-repeat: no-repeat;
+    background-position: top center;
+    // height: 750px;
+    height: 100%;
+  }
+  .page-head {
+    max-height: 9.625rem;
+  }
   #banner {
     // height: 154px;
     // max-height: 9.625rem;
   }
+  .gif {
+    max-width: 41%;
+    padding-top: 3%;
+  }
 
+  #buttonMiau {
+    // height: 309px;
+    // max-height: 309px;
+  }
+
+  // Modal modifications
+  // .modal-content {
+  //   // background: url(~@/assets/modal/Macricat_grabar.jpg);
+  //   background: url(~@/assets/macricat_modal.jpg);
+  //   background-repeat: no-repeat;
+  //   height: 88vh;
+  //   max-height: 700px;
+  // }
+  // .modal-dialog {
+  //   // max-width: 50vw;
+  //   max-width: 588px !important;
+  // }
+  // button.close {
+  //   background-color: wheat;
+  //   color: green;
+  // }
+  // .modal-header {
+  //   border-bottom: none;
+  // }
+  // .modal-footer {
+  //   border-top: none;
+  // }
+}
+
+//   MOBILE 
+@media only screen and (max-width: 500px) {
+  body {
+    background: url("assets/macri_web_576_fondo.jpg");
+    // background-repeat: no-repeat;
+    background-position: top center;
+    height: 100%;
+  }
   .gif {
     max-width: 83%;
     padding-top: 3%;

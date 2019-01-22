@@ -236,11 +236,21 @@ export default class RecordButton extends Vue {
 </script>
 
 <style lang="less" scoped>
+@keyframes shadow-pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(247, 182, 182, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 35px rgba(247, 182, 182, 0.2);
+  }
+}
+
 svg {
   width: inherit;
   height: inherit;
   fill: white;
 }
+
 .Rec {
   animation: shadow-pulse 1s infinite;
   border-radius: 100%;
@@ -251,12 +261,9 @@ svg {
   display: none;
 }
 
-@keyframes shadow-pulse {
-  0% {
-    box-shadow: 0 0 0 0px rgba(247, 182, 182, 0.2);
-  }
-  100% {
-    box-shadow: 0 0 0 35px rgba(247, 182, 182, 0.2);
-  }
+@media only screen and (min-width: 500px) {
+}
+
+@media only screen and (max-width: 500px) {
 }
 </style>

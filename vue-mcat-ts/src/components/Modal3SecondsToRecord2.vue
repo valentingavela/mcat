@@ -2,20 +2,20 @@
   <transition name="modal">
     <div class="modal-mask">
       <div class="modal-wrapper">
-        <div class="modal-container">
+        <div class="modal-container bordered-box">
           <div class="modal-header-r">
             <button class="semi-transparent-button is-blue pointer" @click="$emit('close')">X</button>
           </div>
           <div class="modal-body text-left select-none">
             <div v-if="recordMode">
-              <h1>ipsum 
+              <h1>ipsum
                 <br>3 dolorems
-                <br>quia dorlor 
+                <br>quia dorlor
               </h1>
               <!-- <h1>Tenés
                 <br>3 segundos
                 <br>para grabar
-              </h1> -->
+              </h1>-->
             </div>
             <div v-else>
               <h1>consectetur,
@@ -23,10 +23,10 @@
               </h1>
               <!-- <h1>Compartí,
                 <br>no seas gato
-              </h1> -->
+              </h1>-->
             </div>
           </div>
-          <div class="modal-footer-r">
+          <div class="modal-footer-r" v-bind:class="{ socialGrp: !recordMode }">
             <div v-if="recordMode">
               <RecordButton
                 v-on:eventForAudioRequest="showModalForAudioRequest()"
@@ -53,6 +53,7 @@
                     </svg>
                   </div>
                 </div>
+                <!-- FACEBOOK -->
                 <!-- INSTAGRAM -->
                 <div class="col">
                   <div class="circle">
@@ -71,6 +72,7 @@
                     </svg>
                   </div>
                 </div>
+                <!-- INSTAGRAM -->
                 <!-- TWITTER -->
                 <div class="col">
                   <div class="circle circle-right">
@@ -87,6 +89,7 @@
                     </svg>
                   </div>
                 </div>
+                <!-- TWITTER -->
               </div>
             </div>
           </div>
@@ -99,6 +102,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import RecordButton from "./RecordButton.vue";
+import { EventBus } from "./EventBus";
 
 @Component({
   components: {
@@ -107,140 +111,28 @@ import RecordButton from "./RecordButton.vue";
 })
 export default class Modal3SecondsToRecord2 extends Vue {
   @Prop() private msg!: string;
-  recordMode = false;
+  recordMode = true;
+
+  created() {
+    EventBus.$on("show-thanks", () => {
+      this.hideRecordMode();
+    });
+  }
+
+  showRecordMode() {
+    this.recordMode = true;
+  }
+
+  hideRecordMode() {
+    this.recordMode = false;
+  }
+
+
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-svg {
-  fill: #151249;
-  width: 56%;
-  height: auto;
-}
-.circle {
-  background: white;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin: auto;
-  position: relative;
-}
-.circle-left {
-  left: 5.5vw;
-}
-
-.circle-right {
-  right: 5.5vw;
-}
-
-.vertical-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.modal-mask {
-  position: fixed;
-  z-index: 9000;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: table;
-  transition: opacity 0.3s ease;
-}
-
-.modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-.modal-container {
-  background: url(~@/assets/macricat_modal.jpg);
-  // background-repeat: no-repeat;
-  height: 42.1vw;
-  width: 41.5vw;
-  margin: 0px auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-  transition: all 0.3s ease;
-  font-family: Helvetica, Arial, sans-serif;
-  border-radius: 8px;
-}
-
-.modal-header h3 {
-  margin-top: 0;
-}
-
-.modal-header-r {
-  margin-top: 0;
-}
-
-.modal-body {
-  padding-top: 99px;
-  h1 {
-    color: white;
-    font-size: 2rem;
-    font-weight: 800;
-    letter-spacing: -0.2rem;
-    font-size: 5.7vw;
-    padding-left: 3.3rem;
-    // line-height: 79px;
-    padding-top: 2.2rem;
-  }
-}
-
-// .modal-default-button {
-//   float: right;
-// }
-.semi-transparent-button {
-  display: block;
-  box-sizing: border-box;
-  margin: 0 auto;
-  padding: 8px;
-  width: 10%;
-  max-width: 200px;
-  background: #fff; /* fallback color for old browsers */
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 8px;
-  color: #fff;
-  text-align: center;
-  text-decoration: none;
-  letter-spacing: 1px;
-  transition: all 0.3s ease-out;
-  float: right;
-  position: relative;
-  z-index: 100;
-}
-.semi-transparent-button:hover,
-.semi-transparent-button:focus,
-.semi-transparent-button:active {
-  background: #fff;
-  color: #000;
-  transition: all 0.5s ease-in;
-}
-.semi-transparent:focus {
-  outline: none;
-}
-
-.is-blue {
-  background: #1e348e; /* fallback color for old browsers */
-  background: rgba(30, 52, 142, 0.5);
-}
-.is-blue:hover,
-.is-blue:focus,
-.is-blue:active {
-  background: #1e348e; /* fallback color for old browsers */
-  background: rgb(30, 52, 142);
-  color: #fff;
-}
-
-.with-border {
-  border: 1px solid #fff;
-}
-
 /*
  * The following styles are auto-applied to elements with
  * transition="modal" when their visibility is toggled
@@ -264,13 +156,282 @@ svg {
   transform: scale(1.1);
 }
 
-.record-btn {
-  margin-left: auto;
-  margin-right: auto;
-  max-height: 8rem;
-  width: 50%;
-  position: relative;
-  top: 1.2rem;
-  left: 0.1rem;
+.modal-mask {
+  position: fixed;
+  z-index: 9000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  transition: opacity 0.3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+@media only screen and (min-width: 500px) {
+  svg {
+    fill: #151249;
+    width: 56%;
+    height: auto;
+  }
+  .circle {
+    background: white;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: auto;
+    position: relative;
+  }
+  .circle-left {
+    left: 5.5vw;
+  }
+
+  .circle-right {
+    right: 5.5vw;
+  }
+
+  .vertical-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .modal-container {
+    background: url(~@/assets/modal/estrellitas.jpg);
+    height: 83%;
+    width: 45%;
+    margin: 0px auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+    transition: all 0.3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+    border-radius: 8px;
+  }
+
+  .modal-header h3 {
+    margin-top: 0;
+  }
+
+  .modal-header-r {
+    margin-top: 0;
+  }
+
+  .modal-body {
+    padding-top: 99px;
+    h1 {
+      color: white;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.2rem;
+      font-size: 5.7vw;
+      padding-left: 3.3rem;
+      // line-height: 79px;
+      padding-top: 2.2rem;
+    }
+
+  }
+
+  // .modal-default-button {
+  //   float: right;
+  // }
+  .semi-transparent-button {
+    display: block;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 8px;
+    width: 10%;
+    max-width: 200px;
+    background: #fff; /* fallback color for old browsers */
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-out;
+    float: right;
+    position: relative;
+    z-index: 100;
+  }
+  .semi-transparent-button:hover,
+  .semi-transparent-button:focus,
+  .semi-transparent-button:active {
+    background: #fff;
+    color: #000;
+    transition: all 0.5s ease-in;
+  }
+  .semi-transparent:focus {
+    outline: none;
+  }
+
+  .is-blue {
+    background: #1e348e; /* fallback color for old browsers */
+    background: rgba(30, 52, 142, 0.5);
+  }
+  .is-blue:hover,
+  .is-blue:focus,
+  .is-blue:active {
+    background: #1e348e; /* fallback color for old browsers */
+    background: rgb(30, 52, 142);
+    color: #fff;
+  }
+
+  .with-border {
+    border: 1px solid #fff;
+  }
+
+  .record-btn {
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 8rem;
+    width: 50%;
+    position: relative;
+    top: 1.2rem;
+    left: 0.1rem;
+  }
+
+  .bordered-box {
+    border: 20px solid pink;
+    border-image-source: url(~@/assets/modal/mcatBorder.png);
+    border-image-slice: 92 130;
+    border-image-repeat: repeat;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .modal-container {
+    background: url(~@/assets/modal/estrellitas.jpg);
+    height: 61%;
+    width: 95%;
+    max-width: 95%;
+    margin: 0px auto;
+    -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+    border-radius: 8px;
+  }
+
+  .bordered-box {
+    border: 20px solid pink;
+    border-image-source: url(~@/assets/modal/mcatBorder.png);
+    border-image-slice: 131 135;
+    border-image-repeat: repeat;
+  }
+
+  svg {
+    fill: #151249;
+    width: 56%;
+    height: auto;
+  }
+  .circle {
+    background: white;
+    height: 22vw;
+    border-radius: 50%;
+    margin: auto;
+    position: relative;
+  }
+  .circle-left {
+    left: 5.5vw;
+  }
+
+  .circle-right {
+    right: 5.5vw;
+  }
+
+  .vertical-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .modal-header h3 {
+    margin-top: 0;
+  }
+
+  .modal-header-r {
+    margin-top: 0;
+  }
+
+  .modal-body {
+    // padding-top: 99px;
+    h1 {
+      color: white;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.2rem;
+      font-size: 246%;
+      // padding-left: 10%;
+      padding-top: 8%;
+      line-height: 108%;
+    }
+  }
+
+  // .modal-default-button {
+  //   float: right;
+  // }
+  .semi-transparent-button {
+    display: block;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 8px;
+    width: 10%;
+    max-width: 200px;
+    background: #fff; /* fallback color for old browsers */
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-out;
+    float: right;
+    position: relative;
+    z-index: 100;
+  }
+  .semi-transparent-button:hover,
+  .semi-transparent-button:focus,
+  .semi-transparent-button:active {
+    background: #fff;
+    color: #000;
+    transition: all 0.5s ease-in;
+  }
+  .semi-transparent:focus {
+    outline: none;
+  }
+
+  .is-blue {
+    background: #1e348e; /* fallback color for old browsers */
+    background: rgba(30, 52, 142, 0.5);
+  }
+
+  .with-border {
+    border: 1px solid #fff;
+  }
+
+  .record-btn {
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 8rem;
+    width: 64%;
+    position: relative;
+    top: 1.2rem;
+    left: 0.1rem;
+  }
+
+  .modal-footer-r {
+    padding-bottom: 20%;
+  }
+
+  .socialGrp {
+    padding-top: 11%;
+  }
 }
 </style>

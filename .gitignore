@@ -21,3 +21,5 @@ test-audio/server.key
 test-audio/server.cert
 vue-mcat-ts/package.json
 vue-mcat-ts/package-lock.json
+mcat-js/node_modules
+vue-mcat-ts-redesign

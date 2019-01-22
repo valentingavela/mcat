@@ -1,7 +1,7 @@
 <template>
   <!-- https://developers.facebook.com/docs/plugins/share-button/ -->
   <footer class="row">
-    <div class="col-xl-6 d-none d-sm-block border">
+    <div class="col-xl-6 d-none d-sm-block">
       <svg
         class="sound-btn pointer"
         version="1.1"
@@ -45,6 +45,9 @@
       </svg>
     </div>
     <div class="col-xl-6 social-buttons-grp">
+      <div class="float-right">
+        
+      </div>
       <!-- Facebook -->
       <svg
         class="social-btn facebook pointer"
@@ -166,41 +169,40 @@ export default class ButtonsFooter extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-// .social-buttons-grp {
-//   // padding-top: 21px;
-//   // padding-right: 83px;
-// }
+@media only screen and (min-width: 500px) {
+  .social-buttons-grp {
+    text-align: right !important;
+  }
 
-.social-btn {
-  /* fill: rgba(255, 255, 255, 0.664); */
-  fill: rgba(176, 176, 194, 0.664);
-  width: 51px;
-  height: auto;
-  margin-left: 6px;
-  margin-right: 6px;
-  position: relative;
-  top: -7px;
-  left: -7px;
+  .social-btn {
+    position: relative;
+    fill: rgba(176, 176, 194, 0.664);
+    width: 15%;
+    height: auto;
+    margin-left: 6px;
+    margin-right: 6px;
+    top: -7px;
+    left: -7px;
+  }
+
+  .sound-btn {
+    position: relative;
+    fill: rgba(176, 176, 194, 0.664);
+    width: 15%;
+    height: auto;
+    margin-left: 6px;
+    margin-right: 6px;
+    left: 68px;
+  }
+
+  .sound-off {
+    fill: rgba(255, 255, 255, 0.664);
+    width: 15%;
+    height: auto;
+    margin-left: -49px;
+    padding-top: 7px;
+  }
 }
-
-// .sound-btn {
-//   fill: rgba(176, 176, 194, 0.664);
-//   width: 15%;
-//   height: auto;
-//   /* margin-left: 69px; */
-//   /* margin-top: -7px; */
-//   /* margin-right: -24px; */
-//   position: relative;
-//   left: 68px;
-// }
-
-// .sound-off {
-//   fill: rgba(255, 255, 255, 0.664);
-//   width: 15%;
-//   height: auto;
-//   margin-left: -49px;
-//   padding-top: 7px;
-// }
 
 @media only screen and (max-width: 500px) {
   footer {
