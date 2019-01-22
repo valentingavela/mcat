@@ -958,7 +958,7 @@ fCkA+MD+7/vpv/ZlAAAAAP5U/78AAwA5ArnyAHt0NwAAAABJRU5ErkJggg=="
       </svg>
       <div class="suma-tu pointer select-none">
         <!-- <h1>SUMÁ TU</h1>
-        <h2>MIAU</h2> -->
+        <h2>MIAU</h2>-->
         <h1>AIRD RE</h1>
         <h2>IUMA</h2>
       </div>
@@ -974,7 +974,7 @@ declare var MediaRecorder: any;
 
 @Component({
   components: {
-    Modal3SecondsToRecord2,
+    Modal3SecondsToRecord2
   }
 })
 export default class ButtonSumaTuMiau extends Vue {
@@ -983,8 +983,6 @@ export default class ButtonSumaTuMiau extends Vue {
   toogleModal() {
     this.showModal = !this.showModal;
   }
-
-
 }
 </script>
 
@@ -1011,20 +1009,20 @@ export default class ButtonSumaTuMiau extends Vue {
   padding-right: 20px;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  width: 219px;
+  // width: 219px207px;
 }
 
 .suma-tu h1 {
   font-size: 41px;
   font-weight: 800;
   letter-spacing: -2px;
-  padding-left: 5px;
-  padding-top: 3px;
+  // padding-left: 5px;
+  // padding-top: 3px;
 }
 
 .suma-tu h2 {
   font-size: 72px;
-  line-height: 37px;
+  // line-height: 37px;
   font-weight: bolder;
   padding-left: 2px;
   letter-spacing: -3px;
@@ -1045,5 +1043,60 @@ export default class ButtonSumaTuMiau extends Vue {
 
 .filter-transparency {
   filter: opacity(50%);
+}
+
+@media only screen and (max-width: 500px) {
+  .divimg {
+    margin: auto;
+    padding-top: 2%;
+    padding-bottom: 4%;
+    height: auto;
+    width: auto;
+  }
+  .divimg svg {
+    width: 54%;
+  }
+
+  .suma-tu {
+    left: 50%;
+    top: -55%;
+    width: 219px;
+    color: #ffd500;
+    position: relative;
+    padding-left: 0px;
+    padding-right: 0px;
+    transform: translate(-50%, -150%);
+    padding-left: 0px;
+    padding-top: 0px;
+  }
+
+  .suma-tu h1 {
+    font-size: 212%;
+    font-weight: 800;
+    margin: 0 auto;
+  }
+
+  .suma-tu h2 {
+    letter-spacing: -3px;
+    font-size: 298%;
+    font-weight: 800;
+  }
+
+  .btnimg {
+    transition: 0.3s;
+  }
+
+  .btnimg:hover {
+    -webkit-filter: drop-shadow(5px 5px 5px #222);
+    filter: drop-shadow(5px 5px 5px #fff);
+  }
+
+  .btnimg:active {
+    transform: translateY(4px) translateX(4px);
+  }
+
+  .filter-transparency {
+    filter: opacity(50%);
+  }
 }
 </style>

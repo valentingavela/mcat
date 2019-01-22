@@ -187,7 +187,7 @@ svg {
     letter-spacing: -0.2rem;
     font-size: 5.7vw;
     padding-left: 3.3rem;
-    line-height: 79px;
+    // line-height: 79px;
     padding-top: 2.2rem;
   }
 }

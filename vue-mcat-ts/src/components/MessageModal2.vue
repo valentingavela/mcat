@@ -75,7 +75,7 @@ export default class MessageModal2 extends Vue {
     letter-spacing: -0.2rem;
     font-size: 5.7vw;
     padding-left: 3.3rem;
-    line-height: 65px;
+    // line-height: 65px;
     padding-top: 6.8rem;
   }
   h1:first-child {

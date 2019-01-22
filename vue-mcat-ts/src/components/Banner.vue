@@ -1,9 +1,16 @@
 <template>
   <div class="text-center">
-    <h1 class="title"><strong class="select-none">ipsum 123.123 "dolor"</strong></h1>
-    <h2 class="subtitle"><strong class="select-none">amet sit ipsums Neque ai ogiased an al arosade</strong></h2>
+    <h1 class="title">
+      <strong class="select-none">
+        IPSUM 123.123
+        <span>"DOLOR"</span>
+      </strong>
+    </h1>
+    <h2 class="subtitle">
+      <strong class="select-none">AMET SIT IPSUMS NEQUE AI OGIASED AN AN a</strong>
+    </h2>
     <!-- <h1 class="title"><strong class="select-none">FALTAN 500.000 "MIAUS"</strong></h1>
-    <h2 class="subtitle"><strong class="select-none">PARA QUE HAGAMOS SONAR UN MIAUAZO EN LA ROSADA</strong></h2> -->
+    <h2 class="subtitle"><strong class="select-none">PARA QUE HAGAMOS SONAR UN MIAUAZO EN LA ROSADA</strong></h2>-->
   </div>
 </template>
 
@@ -18,21 +25,48 @@ export default class Banner extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-    .title {
+.title {
+  margin-top: 0.2%;
+  /* TODO: put white */
+  color: white;
+  font-size: 5.2rem;
+  font-weight: 800;
+  letter-spacing: -0.3rem;
+}
+.subtitle {
+  margin-top: -1.8%;
+  color: white;
+  /* color: white; */
+  font-weight: bold;
+  letter-spacing: -0.21875rem;
+  font-size: 2.375rem;
+}
+
+/* MOBILE */
+@media only screen and (max-width: 500px) {
+  //TODO: change background to smaller background
+  .title {
+    margin-top: 0.2%;
+    color: white;
+    font-size: 5.2rem;
+    font-weight: 800;
+    letter-spacing: -0.3rem;
+    line-height: 89%;
+    span {
       margin-top: 0.2%;
-      /* TODO: put white */
       color: white;
-      font-size: 5.2rem;
+      font-size: 88%;
       font-weight: 800;
       letter-spacing: -0.3rem;
+      line-height: 89%;
     }
-    .subtitle {
-      margin-top: -1.8%;
-      color: white;
-      /* color: white; */
-      font-weight: bold;
-      letter-spacing: -0.21875rem;
-      font-size: 2.375rem;
-    }
-
+  }
+  .subtitle {
+    margin-top: -1.8%;
+    color: white;
+    font-weight: bold;
+    letter-spacing: -0.21875rem;
+    font-size: 191%;
+  }
+}
 </style>

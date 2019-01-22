@@ -1,5 +1,5 @@
 <template>
-<!-- https://developers.facebook.com/docs/plugins/share-button/ -->
+  <!-- https://developers.facebook.com/docs/plugins/share-button/ -->
   <footer class="row">
     <div class="col-xl-6 d-none d-sm-block border">
       <svg
@@ -21,31 +21,30 @@
                                                                         M166.488,217.84h58.24c6.153-0.021,12.025-2.573,16.24-7.056l111.048-78.12v294.672l-111.048-78.12
                                                                         c-4.214-4.482-10.087-7.034-16.24-7.056h-58.24V217.84z"
         ></path>
-              <!-- SOUND OFF -->
-      <svg
-        class="sound-off"
-        version="1.1"
-        id="Capa_1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="100px"
-        y="0px"
-        viewBox="57.105 0 575.971 549.081"
-        enable-background="new 57.105 0 575.971 549.081"
-        xml:space="preserve"
-      >
-        <path
-          d="M571.76,200.76c-8.742-8.752-22.926-8.76-31.678-0.018c-0.006,0.006-0.012,0.012-0.018,0.018l-47.545,47.544L445.2,200.76
+        <!-- SOUND OFF -->
+        <svg
+          class="sound-off"
+          version="1.1"
+          id="Capa_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="100px"
+          y="0px"
+          viewBox="57.105 0 575.971 549.081"
+          enable-background="new 57.105 0 575.971 549.081"
+          xml:space="preserve"
+        >
+          <path
+            d="M571.76,200.76c-8.742-8.752-22.926-8.76-31.678-0.018c-0.006,0.006-0.012,0.012-0.018,0.018l-47.545,47.544L445.2,200.76
                                                                                                                             c-8.753-8.752-22.943-8.752-31.696,0c-8.753,8.753-8.753,22.943,0,31.696L460.88,280l-47.544,47.544
                                                                                                                             c-8.753,8.799-8.715,23.027,0.084,31.78c8.799,8.752,23.027,8.715,31.78-0.084l47.544-47.544l47.544,47.544
                                                                                                                             c8.753,8.752,22.943,8.752,31.696,0c8.752-8.753,8.752-22.944,0-31.696L524.216,280l47.544-47.544
                                                                                                                             c8.753-8.743,8.761-22.926,0.018-31.678C571.771,200.771,571.766,200.766,571.76,200.76z"
-        ></path>
+          ></path>
+        </svg>
       </svg>
-      </svg>
-
     </div>
-    <div class="col-xl-6 text-right social-buttons-grp">
+    <div class="col-xl-6 social-buttons-grp">
       <!-- Facebook -->
       <svg
         class="social-btn facebook pointer"
@@ -167,39 +166,73 @@ export default class ButtonsFooter extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-.social-buttons-grp {
-    padding-top: 21px;
-    padding-right: 83px;
-}
+// .social-buttons-grp {
+//   // padding-top: 21px;
+//   // padding-right: 83px;
+// }
 
 .social-btn {
+  /* fill: rgba(255, 255, 255, 0.664); */
+  fill: rgba(176, 176, 194, 0.664);
+  width: 51px;
+  height: auto;
+  margin-left: 6px;
+  margin-right: 6px;
+  position: relative;
+  top: -7px;
+  left: -7px;
+}
+
+// .sound-btn {
+//   fill: rgba(176, 176, 194, 0.664);
+//   width: 15%;
+//   height: auto;
+//   /* margin-left: 69px; */
+//   /* margin-top: -7px; */
+//   /* margin-right: -24px; */
+//   position: relative;
+//   left: 68px;
+// }
+
+// .sound-off {
+//   fill: rgba(255, 255, 255, 0.664);
+//   width: 15%;
+//   height: auto;
+//   margin-left: -49px;
+//   padding-top: 7px;
+// }
+
+@media only screen and (max-width: 500px) {
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+  }
+
+  .social-buttons-grp {
+    // padding-top: 21px;
+    // padding-right: 83px;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+  }
+
+  .social-btn {
     /* fill: rgba(255, 255, 255, 0.664); */
     fill: rgba(176, 176, 194, 0.664);
-    width: 51px;
+    width: 13%;
     height: auto;
-    margin-left: 13px;
+    margin-left: 6px;
+    margin-right: 6px;
     position: relative;
     top: -7px;
     left: -7px;
+  }
 }
-
-.sound-btn {
-    fill: rgba(176, 176, 194, 0.664);
-    width: 15%;
-    height: auto;
-    /* margin-left: 69px; */
-    /* margin-top: -7px; */
-    /* margin-right: -24px; */
-    position: relative;
-    left: 68px;
-}
-
-.sound-off {
-    fill: rgba(255, 255, 255, 0.664);
-    width: 15%;
-    height: auto;
-    margin-left: -49px;
-    padding-top: 7px;
-}
-
 </style>

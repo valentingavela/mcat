@@ -3,7 +3,7 @@
     <div class="container">
       <header class="page-head text-center">
         <img
-          class="gif img-fluid select-none non-visible"
+          class="gif img-fluid select-none"
           src="~@/assets/macricat_animation_OK.gif"
         >
       </header>
@@ -75,7 +75,7 @@ h6 {
 }
 #banner {
   // height: 154px;
-  max-height: 9.625rem;
+  // max-height: 9.625rem;
 }
 .gif {
   max-width: 41%;
@@ -121,7 +121,16 @@ h6 {
 // }
 
 /* MOBILE */
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 500px) {
   //TODO: change background to smaller background
+  #banner {
+    // height: 154px;
+    // max-height: 9.625rem;
+  }
+
+  .gif {
+    max-width: 83%;
+    padding-top: 3%;
+  }
 }
 </style>
