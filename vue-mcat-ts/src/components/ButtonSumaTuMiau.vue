@@ -957,10 +957,10 @@ fCkA+MD+7/vpv/ZlAAAAAP5U/78AAwA5ArnyAHt0NwAAAABJRU5ErkJggg=="
         ></image>
       </svg>
       <div class="suma-tu pointer select-none">
-        <!-- <h1>SUMÁ TU</h1>
-        <h2>MIAU</h2>-->
-        <h1>AIRD RE</h1>
-        <h2>IUMA</h2>
+        <h1>SUMÁ TU</h1>
+        <h2>MIAU</h2>
+        <!-- <h1>AIRD RE</h1>
+        <h2>IUMA</h2>-->
       </div>
     </div>
     <Modal3SecondsToRecord2 v-on:close="toogleModal()" v-show="showModal" ref="modal"/>
@@ -1020,9 +1020,8 @@ export default class ButtonSumaTuMiau extends Vue {
     color: #ffd500;
     padding-left: 17px;
     padding-right: 20px;
-    -webkit-transform: translate(-50%, -50%);
+    margin: 6% auto -9px auto;
     transform: translate(-50%, -50%);
-    // width: 219px207px;
   }
 
   .suma-tu h1 {
@@ -1075,7 +1074,8 @@ export default class ButtonSumaTuMiau extends Vue {
     h1 {
       font-size: 212%;
       font-weight: 800;
-      margin: 0 auto;
+      // margin: 0 auto;
+      margin: 6% auto -9px auto;
     }
     h2 {
       letter-spacing: -3px;

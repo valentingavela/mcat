@@ -45,9 +45,7 @@
       </svg>
     </div>
     <div class="col-xl-6 social-buttons-grp">
-      <div class="float-right">
-        
-      </div>
+      <div class="float-right"></div>
       <!-- Facebook -->
       <svg
         class="social-btn facebook pointer"
@@ -177,7 +175,8 @@ export default class ButtonsFooter extends Vue {
   .social-btn {
     position: relative;
     fill: rgba(176, 176, 194, 0.664);
-    width: 15%;
+    // width: 15%;
+    width: 12%;
     height: auto;
     margin-left: 6px;
     margin-right: 6px;
@@ -188,7 +187,7 @@ export default class ButtonsFooter extends Vue {
   .sound-btn {
     position: relative;
     fill: rgba(176, 176, 194, 0.664);
-    width: 15%;
+    width: 12%;
     height: auto;
     margin-left: 6px;
     margin-right: 6px;
@@ -196,8 +195,8 @@ export default class ButtonsFooter extends Vue {
   }
 
   .sound-off {
-    fill: rgba(255, 255, 255, 0.664);
-    width: 15%;
+    // fill: rgba(255, 255, 255, 0.664);
+    width: 12%;
     height: auto;
     margin-left: -49px;
     padding-top: 7px;

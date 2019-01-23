@@ -8,22 +8,22 @@
           </div>
           <div class="modal-body text-left select-none">
             <div v-if="recordMode">
-              <h1>ipsum
+              <!-- <h1>ipsum
                 <br>3 dolorems
                 <br>quia dorlor
-              </h1>
-              <!-- <h1>Tenés
+              </h1> -->
+              <h1>Tenés
                 <br>3 segundos
                 <br>para grabar
-              </h1>-->
+              </h1>
             </div>
             <div v-else>
-              <h1>consectetur,
+              <!-- <h1>consectetur,
                 <br>on usil etag
-              </h1>
-              <!-- <h1>Compartí,
+              </h1> -->
+              <h1>Compartí,
                 <br>no seas gato
-              </h1>-->
+              </h1>
             </div>
           </div>
           <div class="modal-footer-r" v-bind:class="{ socialGrp: !recordMode }">
@@ -222,7 +222,7 @@ export default class Modal3SecondsToRecord2 extends Vue {
   }
 
   .modal-body {
-    padding-top: 99px;
+    // padding-top: 99px;
     h1 {
       color: white;
       font-size: 2rem;
@@ -231,7 +231,7 @@ export default class Modal3SecondsToRecord2 extends Vue {
       font-size: 5.7vw;
       padding-left: 3.3rem;
       // line-height: 79px;
-      padding-top: 2.2rem;
+      // padding-top: 2.2rem;
     }
 
   }

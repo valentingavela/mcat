@@ -3,7 +3,7 @@
     <div class="container">
       <header class="page-head text-center">
         <img
-          class="gif img-fluid select-none non-visible"
+          class="gif img-fluid select-none"
           src="~@/assets/macricat_animation_OK.gif"
         >
       </header>
