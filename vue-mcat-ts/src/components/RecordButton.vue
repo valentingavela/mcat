@@ -3,8 +3,8 @@
     <!-- RECORD BUTTON -->
     <svg
       class="pointer"
-      @click="recordAndPlaySound"
-      v-bind:class="{ Rec: recordingAnimation, HideEl: hideRecBtn}"
+      v-hammer:press="recordAndPlaySound"
+      v-bind:class="{ Rec: recordingAnimation, HideEl: hideRecBtn }"
       xmlns:dc="http://purl.org/dc/elements/1.1/"
       xmlns:cc="http://creativecommons.org/ns#"
       xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"

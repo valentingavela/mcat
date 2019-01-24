@@ -5,7 +5,11 @@
       <h1>3 segundos</h1>
       <h1>para grabar</h1>
     </div>
-    <RecordButton v-on:eventForAudioRequest="showModalForAudioRequest()"  v-on:hideParent="toogleModal()" class="record-btn"/>
+    <RecordButton
+      v-on:eventForAudioRequest="showModalForAudioRequest()"
+      v-on:hideParent="toogleModal()"
+      class="record-btn"
+    />
   </b-modal>
 </template>
 
@@ -15,21 +19,20 @@ import RecordButton from "./RecordButton.vue";
 
 @Component({
   components: {
-    RecordButton,
+    RecordButton
   }
 })
 export default class Modal3SecondsToRecord extends Vue {
-  created() {
-    this.$parent.$on("toogle", () => {
-      this.toogleModal();
-    });
-  }
   show = false;
   toogleModal() {
     this.show = !this.show;
   }
 
-
+  created() {
+    this.$parent.$on("toogle", () => {
+      this.toogleModal();
+    });
+  }
 }
 </script>
 

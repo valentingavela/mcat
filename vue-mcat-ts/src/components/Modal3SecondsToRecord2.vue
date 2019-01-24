@@ -11,7 +11,7 @@
               <!-- <h1>ipsum
                 <br>3 dolorems
                 <br>quia dorlor
-              </h1> -->
+              </h1>-->
               <h1>Tenés
                 <br>3 segundos
                 <br>para grabar
@@ -20,7 +20,7 @@
             <div v-else>
               <!-- <h1>consectetur,
                 <br>on usil etag
-              </h1> -->
+              </h1>-->
               <h1>Compartí,
                 <br>no seas gato
               </h1>
@@ -28,11 +28,7 @@
           </div>
           <div class="modal-footer-r" v-bind:class="{ socialGrp: !recordMode }">
             <div v-if="recordMode">
-              <RecordButton
-                v-on:eventForAudioRequest="showModalForAudioRequest()"
-                v-on:hideParent="toogleModal()"
-                class="record-btn"
-              />
+              <RecordButton class="record-btn"/>
             </div>
             <div v-else>
               <!-- BUTTONS -->
@@ -110,12 +106,15 @@ import { EventBus } from "./EventBus";
   }
 })
 export default class Modal3SecondsToRecord2 extends Vue {
-  @Prop() private msg!: string;
   recordMode = true;
 
   created() {
     EventBus.$on("show-thanks", () => {
       this.hideRecordMode();
+    });
+
+    this.$on('close', () => {
+      this.showRecordMode();
     });
   }
 
@@ -126,8 +125,6 @@ export default class Modal3SecondsToRecord2 extends Vue {
   hideRecordMode() {
     this.recordMode = false;
   }
-
-
 }
 </script>
 
@@ -233,7 +230,6 @@ export default class Modal3SecondsToRecord2 extends Vue {
       // line-height: 79px;
       // padding-top: 2.2rem;
     }
-
   }
 
   // .modal-default-button {

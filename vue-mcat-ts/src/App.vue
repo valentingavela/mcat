@@ -10,7 +10,6 @@
       <Banner id="banner"/>
       <ButtonSumaTuMiau id="buttonMiau"/>
       <ButtonsFooter/>
-      <MessageModal v-show="thanks" v-on:close="hideThanks()" msg="Gracias!" ref="modal"/>
     </div>
   </div>
 </template>
@@ -21,7 +20,6 @@ import Banner from "./components/Banner.vue";
 import ButtonSumaTuMiau from "./components/ButtonSumaTuMiau.vue";
 import ButtonsFooter from "./components/ButtonsFooter.vue";
 import MessageModal from "./components/MessageModal.vue";
-// import { EventBus } from "./components/EventBus";
 
 import "bootstrap/dist/css/bootstrap.css";
 // import "bootstrap-vue/dist/bootstrap-vue.css";
@@ -35,20 +33,6 @@ import "bootstrap/dist/css/bootstrap.css";
   }
 })
 export default class App extends Vue {
-  // created() {
-  //   EventBus.$on("show-thanks", () => {
-  //     this.showThanks();
-  //   });
-  // }
-  // thanks = false;
-
-  // showThanks() {
-  //   this.thanks = true;
-  // }
-
-  // hideThanks() {
-  //   this.thanks = false;
-  // }
 }
 </script>
 
@@ -80,24 +64,14 @@ h6 {
     background: url("assets/1200_fondo_gif.gif");
     // background-repeat: no-repeat;
     background-position: top center;
-    // height: 750px;
     height: 100%;
   }
   .page-head {
     max-height: 9.625rem;
   }
-  #banner {
-    // height: 154px;
-    // max-height: 9.625rem;
-  }
   .gif {
     max-width: 41%;
     padding-top: 3%;
-  }
-
-  #buttonMiau {
-    // height: 309px;
-    // max-height: 309px;
   }
 
   // Modal modifications

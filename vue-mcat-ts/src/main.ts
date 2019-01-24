@@ -1,11 +1,12 @@
 import Vue from "vue";
-import VueRx from "vue-rx";
 import App from "./App.vue";
-// import store from "./store";
 import BootstrapVue from "bootstrap-vue";
+import { VueHammer } from 'vue2-hammer';
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
+Vue.use(VueHammer)
+
 // Vue.use(VueRx);
 new Vue({
   // store,
