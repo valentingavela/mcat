@@ -4,7 +4,7 @@
     <div v-if="mobileDetection">
       <svg
         class="pointer"
-        v-hammer:press="recordAndPlaySound"
+        v-hammer:press="firstTimeRecord"
         v-bind:class="{ Rec: recordingAnimation, HideEl: hideRecBtn }"
         xmlns:dc="http://purl.org/dc/elements/1.1/"
         xmlns:cc="http://creativecommons.org/ns#"
@@ -83,7 +83,7 @@
     <div v-else>
       <svg
         class="pointer"
-        @click="recordAndPlaySound"
+        @click="firstTimeRecord"
         v-bind:class="{ Rec: recordingAnimation, HideEl: hideRecBtn }"
         xmlns:dc="http://purl.org/dc/elements/1.1/"
         xmlns:cc="http://creativecommons.org/ns#"
@@ -278,19 +278,23 @@ export default class RecordButton extends Vue {
   }
 
   recordAndPlaySound() {
-    this.showModalForAudioRequest();
     this.recorder.playRecording();
     this.recorder.recordVoice(3000);
   }
 
+  firstTimeRecord() {
+    this.showModalForAudioRequest();
+    setTimeout(() => {
+      this.recordAndPlaySound();
+    }, 1500);
+  }
+
   recordAgain() {
-    console.log("rec again");
     this.hideModalUploadOrRetry();
     this.recordAndPlaySound();
   }
 
   uploadAudio() {
-    console.log("uploading audio");
     const audio = this.recorder.getAudio();
 
     this.awsWrapper
