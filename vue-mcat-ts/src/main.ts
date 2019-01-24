@@ -5,9 +5,8 @@ import { VueHammer } from 'vue2-hammer';
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
-Vue.use(VueHammer)
+Vue.use(VueHammer);
 
-// Vue.use(VueRx);
 new Vue({
   // store,
   render: h => h(App)

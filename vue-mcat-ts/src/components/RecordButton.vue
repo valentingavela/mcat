@@ -1,83 +1,166 @@
 <template>
   <div>
     <!-- RECORD BUTTON -->
-    <svg
-      class="pointer"
-      v-hammer:press="recordAndPlaySound"
-      v-bind:class="{ Rec: recordingAnimation, HideEl: hideRecBtn }"
-      xmlns:dc="http://purl.org/dc/elements/1.1/"
-      xmlns:cc="http://creativecommons.org/ns#"
-      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-      xmlns:svg="http://www.w3.org/2000/svg"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-      xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-      version="1.1"
-      id="Capa_1"
-      x="0px"
-      y="0px"
-      width="100px"
-      height="100px"
-      viewBox="0 0 700 700"
-      enable-background="new 0 0 700 700"
-      xml:space="preserve"
-      sodipodi:docname="Microfono.svg"
-      inkscape:version="0.92.3 (2405546, 2018-03-11)"
-    >
-      <metadata id="metadata3795">
-        <rdf:RDF>
-          <cc:Work rdf:about>
-            <dc:format>image/svg+xml</dc:format>
-            <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"></dc:type>
-          </cc:Work>
-        </rdf:RDF>
-      </metadata>
-      <defs id="defs3793"></defs>
-      <sodipodi:namedview
-        pagecolor="#ffffff"
-        borderColor="#666666"
-        borderopacity="1"
-        objecttolerance="10"
-        gridtolerance="10"
-        guidetolerance="10"
-        inkscape:pageopacity="0"
-        inkscape:pageshadow="2"
-        inkscape:window-width="1600"
-        inkscape:window-height="837"
-        id="namedview3791"
-        showgrid="false"
-        inkscape:zoom="0.47857143"
-        inkscape:cx="248.33243"
-        inkscape:cy="259.96073"
-        inkscape:window-x="-8"
-        inkscape:window-y="-8"
-        inkscape:window-maximized="1"
-        inkscape:current-layer="Capa_1"
-      ></sodipodi:namedview>
-      <g id="g3788" transform="matrix(1.3772802,0,0,1.3772802,-131.00332,-33.728026)">
-        <path
-          d="M 350,52.08 C 224,52.08 122.08,154 122.08,280 122.08,406 224,507.92 350,507.92 476,507.92 577.92,405.44 577.92,280 577.92,154.56 476,52.08 350,52.08 Z M 296.8,156.8 c 0,-29.12 23.521,-53.2 53.2,-53.2 29.679,0 53.2,23.52 53.2,53.2 v 152.32 c 0,29.12 -23.521,53.2 -53.2,53.2 -29.679,0 -53.2,-23.521 -53.2,-53.2 z m 133.28,152.88 c 0,40.88 -31.36,74.48 -71.12,78.96 v 49.84 h 62.16 c 5.04,0 8.96,3.92 8.96,8.96 0,5.04 -3.92,8.96 -8.96,8.96 H 278.88 c -5.04,0 -8.96,-3.92 -8.96,-8.96 0,-5.04 3.92,-8.96 8.96,-8.96 h 62.16 v -49.84 c -39.76,-4.48 -71.12,-38.08 -71.12,-78.96 v -76.72 c 0,-5.04 3.92,-8.96 8.96,-8.96 5.04,0 8.96,3.92 8.96,8.96 v 76.16 c 0,34.16 28,62.159 62.16,62.159 34.16,0 62.16,-28 62.16,-62.159 v -76.16 c 0,-5.04 3.92,-8.96 8.96,-8.96 5.04,0 8.96,3.92 8.96,8.96 z"
-          id="path3780"
-          inkscape:connector-curvature="0"
-          style="fill:none"
-        ></path>
-        <path
-          d="M 350,28 C 211.12,28 98,141.12 98,280 98,418.88 211.12,532 350,532 488.88,532 602,418.88 602,280 602,141.12 488.88,28 350,28 Z m 0,479.92 C 224,507.92 122.08,406 122.08,280 122.08,154 224,52.08 350,52.08 476,52.08 577.92,154.56 577.92,280 577.92,405.44 476,507.92 350,507.92 Z"
-          id="path3782"
-          inkscape:connector-curvature="0"
-        ></path>
-        <path
-          d="m 350,362.32 c 29.12,0 53.2,-23.521 53.2,-53.2 V 156.8 c 0,-29.12 -23.521,-53.2 -53.2,-53.2 -29.679,0 -53.2,23.52 -53.2,53.2 v 152.32 c 0,29.68 24.08,53.2 53.2,53.2 z"
-          id="path3784"
-          inkscape:connector-curvature="0"
-        ></path>
-        <path
-          d="m 421.12,224 c -5.04,0 -8.96,3.92 -8.96,8.96 v 76.16 c 0,34.16 -28,62.159 -62.16,62.159 -34.16,0 -62.16,-28 -62.16,-62.159 v -76.16 c 0,-5.04 -3.92,-8.96 -8.96,-8.96 -5.04,0 -8.96,3.92 -8.96,8.96 v 76.16 c 0,40.88 31.36,74.479 71.12,78.96 v 49.84 h -62.16 c -5.04,0 -8.96,3.92 -8.96,8.96 0,5.04 3.92,8.96 8.96,8.96 h 141.68 c 5.04,0 8.96,-3.92 8.96,-8.96 0,-5.04 -3.92,-8.96 -8.96,-8.96 h -61.6 v -49.84 c 39.76,-4.48 71.12,-38.08 71.12,-78.96 v -76.16 c 0,-4.48 -3.92,-8.96 -8.96,-8.96 z"
-          id="path3786"
-          inkscape:connector-curvature="0"
-        ></path>
-      </g>
-    </svg>
+    <div v-if="mobileDetection">
+      <svg
+        class="pointer"
+        v-hammer:press="recordAndPlaySound"
+        v-bind:class="{ Rec: recordingAnimation, HideEl: hideRecBtn }"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:cc="http://creativecommons.org/ns#"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+        xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+        version="1.1"
+        id="Capa_1"
+        x="0px"
+        y="0px"
+        width="100px"
+        height="100px"
+        viewBox="0 0 700 700"
+        enable-background="new 0 0 700 700"
+        xml:space="preserve"
+        sodipodi:docname="Microfono.svg"
+        inkscape:version="0.92.3 (2405546, 2018-03-11)"
+      >
+        <metadata id="metadata3795">
+          <rdf:RDF>
+            <cc:Work rdf:about>
+              <dc:format>image/svg+xml</dc:format>
+              <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"></dc:type>
+            </cc:Work>
+          </rdf:RDF>
+        </metadata>
+        <defs id="defs3793"></defs>
+        <sodipodi:namedview
+          pagecolor="#ffffff"
+          borderColor="#666666"
+          borderopacity="1"
+          objecttolerance="10"
+          gridtolerance="10"
+          guidetolerance="10"
+          inkscape:pageopacity="0"
+          inkscape:pageshadow="2"
+          inkscape:window-width="1600"
+          inkscape:window-height="837"
+          id="namedview3791"
+          showgrid="false"
+          inkscape:zoom="0.47857143"
+          inkscape:cx="248.33243"
+          inkscape:cy="259.96073"
+          inkscape:window-x="-8"
+          inkscape:window-y="-8"
+          inkscape:window-maximized="1"
+          inkscape:current-layer="Capa_1"
+        ></sodipodi:namedview>
+        <g id="g3788" transform="matrix(1.3772802,0,0,1.3772802,-131.00332,-33.728026)">
+          <path
+            d="M 350,52.08 C 224,52.08 122.08,154 122.08,280 122.08,406 224,507.92 350,507.92 476,507.92 577.92,405.44 577.92,280 577.92,154.56 476,52.08 350,52.08 Z M 296.8,156.8 c 0,-29.12 23.521,-53.2 53.2,-53.2 29.679,0 53.2,23.52 53.2,53.2 v 152.32 c 0,29.12 -23.521,53.2 -53.2,53.2 -29.679,0 -53.2,-23.521 -53.2,-53.2 z m 133.28,152.88 c 0,40.88 -31.36,74.48 -71.12,78.96 v 49.84 h 62.16 c 5.04,0 8.96,3.92 8.96,8.96 0,5.04 -3.92,8.96 -8.96,8.96 H 278.88 c -5.04,0 -8.96,-3.92 -8.96,-8.96 0,-5.04 3.92,-8.96 8.96,-8.96 h 62.16 v -49.84 c -39.76,-4.48 -71.12,-38.08 -71.12,-78.96 v -76.72 c 0,-5.04 3.92,-8.96 8.96,-8.96 5.04,0 8.96,3.92 8.96,8.96 v 76.16 c 0,34.16 28,62.159 62.16,62.159 34.16,0 62.16,-28 62.16,-62.159 v -76.16 c 0,-5.04 3.92,-8.96 8.96,-8.96 5.04,0 8.96,3.92 8.96,8.96 z"
+            id="path3780"
+            inkscape:connector-curvature="0"
+            style="fill:none"
+          ></path>
+          <path
+            d="M 350,28 C 211.12,28 98,141.12 98,280 98,418.88 211.12,532 350,532 488.88,532 602,418.88 602,280 602,141.12 488.88,28 350,28 Z m 0,479.92 C 224,507.92 122.08,406 122.08,280 122.08,154 224,52.08 350,52.08 476,52.08 577.92,154.56 577.92,280 577.92,405.44 476,507.92 350,507.92 Z"
+            id="path3782"
+            inkscape:connector-curvature="0"
+          ></path>
+          <path
+            d="m 350,362.32 c 29.12,0 53.2,-23.521 53.2,-53.2 V 156.8 c 0,-29.12 -23.521,-53.2 -53.2,-53.2 -29.679,0 -53.2,23.52 -53.2,53.2 v 152.32 c 0,29.68 24.08,53.2 53.2,53.2 z"
+            id="path3784"
+            inkscape:connector-curvature="0"
+          ></path>
+          <path
+            d="m 421.12,224 c -5.04,0 -8.96,3.92 -8.96,8.96 v 76.16 c 0,34.16 -28,62.159 -62.16,62.159 -34.16,0 -62.16,-28 -62.16,-62.159 v -76.16 c 0,-5.04 -3.92,-8.96 -8.96,-8.96 -5.04,0 -8.96,3.92 -8.96,8.96 v 76.16 c 0,40.88 31.36,74.479 71.12,78.96 v 49.84 h -62.16 c -5.04,0 -8.96,3.92 -8.96,8.96 0,5.04 3.92,8.96 8.96,8.96 h 141.68 c 5.04,0 8.96,-3.92 8.96,-8.96 0,-5.04 -3.92,-8.96 -8.96,-8.96 h -61.6 v -49.84 c 39.76,-4.48 71.12,-38.08 71.12,-78.96 v -76.16 c 0,-4.48 -3.92,-8.96 -8.96,-8.96 z"
+            id="path3786"
+            inkscape:connector-curvature="0"
+          ></path>
+        </g>
+      </svg>
+    </div>
+    <div v-else>
+      <svg
+        class="pointer"
+        @click="recordAndPlaySound"
+        v-bind:class="{ Rec: recordingAnimation, HideEl: hideRecBtn }"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:cc="http://creativecommons.org/ns#"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+        xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+        version="1.1"
+        id="Capa_1"
+        x="0px"
+        y="0px"
+        width="100px"
+        height="100px"
+        viewBox="0 0 700 700"
+        enable-background="new 0 0 700 700"
+        xml:space="preserve"
+        sodipodi:docname="Microfono.svg"
+        inkscape:version="0.92.3 (2405546, 2018-03-11)"
+      >
+        <metadata id="metadata3795">
+          <rdf:RDF>
+            <cc:Work rdf:about>
+              <dc:format>image/svg+xml</dc:format>
+              <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"></dc:type>
+            </cc:Work>
+          </rdf:RDF>
+        </metadata>
+        <defs id="defs3793"></defs>
+        <sodipodi:namedview
+          pagecolor="#ffffff"
+          borderColor="#666666"
+          borderopacity="1"
+          objecttolerance="10"
+          gridtolerance="10"
+          guidetolerance="10"
+          inkscape:pageopacity="0"
+          inkscape:pageshadow="2"
+          inkscape:window-width="1600"
+          inkscape:window-height="837"
+          id="namedview3791"
+          showgrid="false"
+          inkscape:zoom="0.47857143"
+          inkscape:cx="248.33243"
+          inkscape:cy="259.96073"
+          inkscape:window-x="-8"
+          inkscape:window-y="-8"
+          inkscape:window-maximized="1"
+          inkscape:current-layer="Capa_1"
+        ></sodipodi:namedview>
+        <g id="g3788" transform="matrix(1.3772802,0,0,1.3772802,-131.00332,-33.728026)">
+          <path
+            d="M 350,52.08 C 224,52.08 122.08,154 122.08,280 122.08,406 224,507.92 350,507.92 476,507.92 577.92,405.44 577.92,280 577.92,154.56 476,52.08 350,52.08 Z M 296.8,156.8 c 0,-29.12 23.521,-53.2 53.2,-53.2 29.679,0 53.2,23.52 53.2,53.2 v 152.32 c 0,29.12 -23.521,53.2 -53.2,53.2 -29.679,0 -53.2,-23.521 -53.2,-53.2 z m 133.28,152.88 c 0,40.88 -31.36,74.48 -71.12,78.96 v 49.84 h 62.16 c 5.04,0 8.96,3.92 8.96,8.96 0,5.04 -3.92,8.96 -8.96,8.96 H 278.88 c -5.04,0 -8.96,-3.92 -8.96,-8.96 0,-5.04 3.92,-8.96 8.96,-8.96 h 62.16 v -49.84 c -39.76,-4.48 -71.12,-38.08 -71.12,-78.96 v -76.72 c 0,-5.04 3.92,-8.96 8.96,-8.96 5.04,0 8.96,3.92 8.96,8.96 v 76.16 c 0,34.16 28,62.159 62.16,62.159 34.16,0 62.16,-28 62.16,-62.159 v -76.16 c 0,-5.04 3.92,-8.96 8.96,-8.96 5.04,0 8.96,3.92 8.96,8.96 z"
+            id="path3780"
+            inkscape:connector-curvature="0"
+            style="fill:none"
+          ></path>
+          <path
+            d="M 350,28 C 211.12,28 98,141.12 98,280 98,418.88 211.12,532 350,532 488.88,532 602,418.88 602,280 602,141.12 488.88,28 350,28 Z m 0,479.92 C 224,507.92 122.08,406 122.08,280 122.08,154 224,52.08 350,52.08 476,52.08 577.92,154.56 577.92,280 577.92,405.44 476,507.92 350,507.92 Z"
+            id="path3782"
+            inkscape:connector-curvature="0"
+          ></path>
+          <path
+            d="m 350,362.32 c 29.12,0 53.2,-23.521 53.2,-53.2 V 156.8 c 0,-29.12 -23.521,-53.2 -53.2,-53.2 -29.679,0 -53.2,23.52 -53.2,53.2 v 152.32 c 0,29.68 24.08,53.2 53.2,53.2 z"
+            id="path3784"
+            inkscape:connector-curvature="0"
+          ></path>
+          <path
+            d="m 421.12,224 c -5.04,0 -8.96,3.92 -8.96,8.96 v 76.16 c 0,34.16 -28,62.159 -62.16,62.159 -34.16,0 -62.16,-28 -62.16,-62.159 v -76.16 c 0,-5.04 -3.92,-8.96 -8.96,-8.96 -5.04,0 -8.96,3.92 -8.96,8.96 v 76.16 c 0,40.88 31.36,74.479 71.12,78.96 v 49.84 h -62.16 c -5.04,0 -8.96,3.92 -8.96,8.96 0,5.04 3.92,8.96 8.96,8.96 h 141.68 c 5.04,0 8.96,-3.92 8.96,-8.96 0,-5.04 -3.92,-8.96 -8.96,-8.96 h -61.6 v -49.84 c 39.76,-4.48 71.12,-38.08 71.12,-78.96 v -76.16 c 0,-4.48 -3.92,-8.96 -8.96,-8.96 z"
+            id="path3786"
+            inkscape:connector-curvature="0"
+          ></path>
+        </g>
+      </svg>
+    </div>
+
+    <!-- PLAY BUTTON -->
     <svg
       v-bind:class="{ Rec: recordingAnimation, HideEl: !hideRecBtn}"
       version="1.1"
@@ -140,6 +223,7 @@ import ModalUploadOrRetry from "./ModalUploadOrRetry.vue";
 import AwsWrapper from "./aws_wrapper";
 import { EventBus } from "./EventBus";
 import MessageModal from "./MessageModal.vue";
+import { mobileDetection } from "../mobileDetection";
 
 @Component({
   components: {
@@ -155,9 +239,11 @@ export default class RecordButton extends Vue {
   recorder = new VoiceRecorder();
   awsWrapper = new AwsWrapper();
   alertForAudioRequest: boolean;
+  mobileDetection: boolean;
 
   constructor() {
     super();
+    this.mobileDetection = mobileDetection();
     this.recordingAnimation = false;
     this.hideRecBtn = false;
     this.showModalUoR = false;
