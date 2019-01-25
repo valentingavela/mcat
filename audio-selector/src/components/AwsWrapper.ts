@@ -22,15 +22,15 @@ export default class AwsWrapper {
         return this.s3.putObject(params, (err: any, res: any) => { });
     }
 
-    public getObjects() {
-        const params = {
-            Bucket: 'audios-bucket123',
-            MaxKeys: 2,
-        };
-        this.s3.listObjectsV2(params, (err: any, data: any) => {
-            if (err) console.log(err, err.stack); // an error occurred
-            else console.log(data);           // successful response
-        });
+    public async getKeys(params: any, keys: any) {
+        const response = await this.s3.listObjectsV2(params).promise();
+        response.Contents.forEach((obj: any) => keys.push(obj.Key));
+
+        if (response.IsTruncated) {
+            const newParams = Object.assign({}, params);
+            newParams.ContinuationToken = response.NextContinuationToken;
+            await this.getKeys(newParams, keys); // RECURSIVE CALL
+        }
     }
 
     private uuidv4() {
