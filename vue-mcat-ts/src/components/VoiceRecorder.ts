@@ -8,19 +8,27 @@ export default class VoiceRecorder {
     audio$: Subject<any> = new Subject();
     generalStatus$: Subject<any> = new Subject();
     audioBlob: any;
+    userMedia: any;
 
-    checkUserMedia() {
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            this.generalStatus$.next({ result: 'getUserMedia supported' });
-        } else {
-            this.generalStatus$.next({ result: 'mediaDenied' });
-        }
+    requestUserMedia() {
+        this.userMedia = navigator.mediaDevices.getUserMedia({ audio: true })
+            // .then(() => {
+            //     this.generalStatus$.next({ result: 'mic allowed' });
+            // })
+            .catch(() => {
+                this.generalStatus$.next({ result: 'media rejected' });
+            });
+        // if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        //     this.generalStatus$.next({ result: 'getUserMedia supported' });
+        // } else {
+        //     this.generalStatus$.next({ result: 'mediaDenied' });
+        // }
     }
-    
+
     recordVoice(timeout = 0) {
-        navigator.mediaDevices.getUserMedia({ audio: true })
+        this.userMedia
             .then(
-                stream => {
+                (stream: any) => {
                     this.mediaRecorder = new MediaRecorder(stream);
                     this.mediaRecorder.start();
 
@@ -44,9 +52,7 @@ export default class VoiceRecorder {
                         this.audio = this.audioBlob;
                     });
                 }
-            ).catch(() => {
-                this.generalStatus$.next({ result: 'media rejected' });
-            });
+            );
     }
 
     stopRecording() {

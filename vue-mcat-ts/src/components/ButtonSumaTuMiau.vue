@@ -970,6 +970,8 @@ fCkA+MD+7/vpv/ZlAAAAAP5U/78AAwA5ArnyAHt0NwAAAABJRU5ErkJggg=="
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import Modal3SecondsToRecord2 from "./Modal3SecondsToRecord2.vue";
+import { EventBus } from "./EventBus";
+
 declare var MediaRecorder: any;
 
 @Component({
@@ -981,6 +983,7 @@ export default class ButtonSumaTuMiau extends Vue {
   showModal = false;
 
   toogleModal() {
+    EventBus.$emit('OnButtonMiauClicked');
     this.showModal = !this.showModal;
   }
 }

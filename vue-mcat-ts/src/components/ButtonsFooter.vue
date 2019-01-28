@@ -46,8 +46,10 @@
     </div>
     <div class="col-xl-6 social-buttons-grp">
       <div class="float-right"></div>
+      <div class="fb-share-button" data-layout="button_count"></div>
       <!-- Facebook -->
       <svg
+        @click="faceShare"
         class="social-btn facebook pointer"
         version="1.1"
         id="Layer_1"
@@ -93,21 +95,22 @@
         </g>
       </svg>
       <!-- Twitter -->
-      <svg
-        class="social-btn twitter pointer"
-        version="1.1"
-        id="Layer_1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="0px"
-        y="0px"
-        viewBox="0 0 132.435 132.435"
-        enable-background="new 0 0 132.435 132.435"
-        xml:space="preserve"
-      >
-        <g>
-          <path
-            d="M94.36,53.284c0.031,0.579,0.044,1.162,0.044,1.748c0,17.863-13.597,38.458-38.46,38.458
+      <a href="https://twitter.com/intent/tweet?text=Suma%20tu%20MIAU&url=https://macri.cat">
+        <svg
+          class="social-btn twitter pointer"
+          version="1.1"
+          id="Layer_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 132.435 132.435"
+          enable-background="new 0 0 132.435 132.435"
+          xml:space="preserve"
+        >
+          <g>
+            <path
+              d="M94.36,53.284c0.031,0.579,0.044,1.162,0.044,1.748c0,17.863-13.597,38.458-38.46,38.458
                                                                 c-7.633,0-14.738-2.236-20.724-6.071c1.053,0.116,2.134,0.19,3.224,0.19c6.335,0,12.162-2.164,16.791-5.791
                                                                 c-5.922-0.105-10.91-4.019-12.632-9.388c0.825,0.158,1.673,0.246,2.537,0.246c1.237,0,2.432-0.168,3.563-0.476
                                                                 c-6.185-1.248-10.846-6.704-10.846-13.26c0-0.058,0-0.112,0-0.169c1.823,1.011,3.909,1.618,6.124,1.687
@@ -115,17 +118,18 @@
                                                                 c-0.233-0.985-0.347-2.022-0.347-3.082c0-7.458,6.051-13.51,13.513-13.51c3.89,0,7.404,1.641,9.87,4.263
                                                                 c3.075-0.603,5.971-1.728,8.583-3.277c-1.012,3.154-3.156,5.803-5.942,7.476c2.731-0.323,5.332-1.049,7.76-2.13
                                                                 C99.293,48.999,97.004,51.378,94.36,53.284z"
-          ></path>
-        </g>
-        <g transform="translate(0,-952.36218)">
-          <path
-            d="M32.162,952.362C14.442,952.362,0,966.805,0,984.525v68.109c0,17.721,14.442,32.163,32.162,32.163h68.109
+            ></path>
+          </g>
+          <g transform="translate(0,-952.36218)">
+            <path
+              d="M32.162,952.362C14.442,952.362,0,966.805,0,984.525v68.109c0,17.721,14.442,32.163,32.162,32.163h68.109
                                                                 c17.721,0,32.163-14.442,32.163-32.163v-68.109c0-17.72-14.442-32.163-32.163-32.163H32.162z M32.162,963.714h68.109
                                                                 c11.628,0,20.812,9.184,20.812,20.811v68.109c0,11.628-9.184,20.812-20.812,20.812H32.162c-11.627,0-20.811-9.184-20.811-20.812
                                                                 v-68.109C11.352,972.897,20.535,963.714,32.162,963.714z"
-          ></path>
-        </g>
-      </svg>
+            ></path>
+          </g>
+        </svg>
+      </a>
       <!-- Instagram -->
       <svg
         class="social-btn pointer"
@@ -162,6 +166,14 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class ButtonsFooter extends Vue {
   // @Prop() private msg!: string;
+  url = "https://www.macri.cat";
+  faceShare() {
+    window.open(
+      "https://www.facebook.com/sharer/sharer.php?u=" + this.url,
+      "facebook-share-dialog",
+      "width=626, height=436"
+    );
+  }
 }
 </script>
 

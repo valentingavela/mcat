@@ -4,7 +4,7 @@
     <div v-if="mobileDetection">
       <svg
         class="pointer"
-        v-hammer:press="firstTimeRecord"
+        v-hammer:press="recordAgain"
         v-bind:class="{ Rec: recordingAnimation, HideEl: hideRecBtn }"
         xmlns:dc="http://purl.org/dc/elements/1.1/"
         xmlns:cc="http://creativecommons.org/ns#"
@@ -83,7 +83,7 @@
     <div v-else>
       <svg
         class="pointer"
-        @click="firstTimeRecord"
+        @click="recordAgain"
         v-bind:class="{ Rec: recordingAnimation, HideEl: hideRecBtn }"
         xmlns:dc="http://purl.org/dc/elements/1.1/"
         xmlns:cc="http://creativecommons.org/ns#"
@@ -209,7 +209,7 @@
     <MessageModal
       v-show="alertForAudioRequest"
       v-on:close="hideModalForAudioRequest()"
-      msg="Permita el audio!"
+      v-bind:msg="alertModalMsg"
       ref="modal"
     />
   </div>
@@ -240,6 +240,7 @@ export default class RecordButton extends Vue {
   awsWrapper = new AwsWrapper();
   alertForAudioRequest: boolean;
   mobileDetection: boolean;
+  alertModalMsg: string;
 
   constructor() {
     super();
@@ -248,12 +249,20 @@ export default class RecordButton extends Vue {
     this.hideRecBtn = false;
     this.showModalUoR = false;
     this.alertForAudioRequest = false;
+    this.alertModalMsg = "Permití el micrófono para grabar :)";
   }
 
   created() {
+    EventBus.$on("OnButtonMiauClicked", () => {
+      const micStatus = localStorage.getItem('microphone') === 'allowed';
+      this.recorder.requestUserMedia();
+      if (!micStatus) { this.showModalForAudioRequest(); }
+    });
+
     this.recorder.getGeneralStatus().subscribe(res => {
       switch (res.result) {
         case "recording": {
+          localStorage.setItem("microphone", "allowed");
           this.recordingAnimation = true;
           this.hideModalForAudioRequest();
           break;
@@ -270,7 +279,9 @@ export default class RecordButton extends Vue {
         }
         case "media rejected": {
           this.hideRecBtn = false;
-          alert("no es posible grabar");
+          localStorage.setItem("microphone", "denied");
+          this.alertModalMsg = "No es posible grabar";
+          this.showModalForAudioRequest();
           break;
         }
       }
