@@ -1,6 +1,11 @@
 <template>
   <div class="hello">
     <button @click="getAllKeys">CLICK</button>
+    <li v-for="item in audioList">
+      <audio controls="controls">Your browser does not support the &lt;audio&gt; tag.
+        <source v-bind:src="item">
+      </audio>
+    </li>
   </div>
 </template>
 
@@ -12,14 +17,16 @@ import { AwsWrapper } from "./AwsWrapper";
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
   aws = new AwsWrapper();
-  allKeys: any = [];
+  allKeys: string[] = [];
+  audioList: any[] = [];
 
   getAllKeys() {
-    this.aws
-      .getKeys({ Bucket: "audios-bucket123" }, this.allKeys)
-      .then(() => console.log(this.allKeys));
+    this.aws.getKeys({ Bucket: "audios-bucket123" }, this.allKeys).then(() => {
+      this.audioList = this.allKeys.map(item => {
+        return "https://s3.amazonaws.com/audios-bucket123/" + item;
+      });
+    });
   }
-
 }
 </script>
 
