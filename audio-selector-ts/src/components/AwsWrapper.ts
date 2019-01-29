@@ -8,11 +8,17 @@ AWS.config.update({
 });
 
 export class AwsWrapper {
+    public bucket: string;
     private s3 = new AWS.S3();
+
+
+    constructor(bucket: string) {
+        this.bucket = bucket;
+    }
 
     public async uploadObject(file: any) {
         const params = {
-            Bucket: 'audios-bucket123',
+            Bucket: this.bucket,
             Key: this.uuidv4(),
             ContentType: file.type,
             Body: file,
@@ -26,11 +32,19 @@ export class AwsWrapper {
         const response = await this.s3.listObjectsV2(params).promise();
         response.Contents.forEach((obj: any) => keys.push(obj));
 
-        // if (response.IsTruncated) {
-        //     const newParams = Object.assign({}, params);
-        //     newParams.ContinuationToken = response.NextContinuationToken;
-        //     await this.getKeys(newParams, keys); // RECURSIVE CALL
-        // }
+        if (response.IsTruncated) {
+            const newParams = Object.assign({}, params);
+            newParams.ContinuationToken = response.NextContinuationToken;
+            await this.getKeys(newParams, keys); // RECURSIVE CALL
+        }
+    }
+
+    public async deleteObject(objKey: string) {
+        const params = {
+            Bucket: this.bucket,
+            Key: objKey,
+        };
+        await this.s3.deleteObject(params).promise();
     }
 
     private uuidv4() {
