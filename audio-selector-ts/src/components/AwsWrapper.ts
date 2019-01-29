@@ -24,13 +24,13 @@ export class AwsWrapper {
 
     public async getKeys(params: any, keys: any) {
         const response = await this.s3.listObjectsV2(params).promise();
-        response.Contents.forEach((obj: any) => keys.push(obj.Key));
+        response.Contents.forEach((obj: any) => keys.push(obj));
 
-        if (response.IsTruncated) {
-            const newParams = Object.assign({}, params);
-            newParams.ContinuationToken = response.NextContinuationToken;
-            await this.getKeys(newParams, keys); // RECURSIVE CALL
-        }
+        // if (response.IsTruncated) {
+        //     const newParams = Object.assign({}, params);
+        //     newParams.ContinuationToken = response.NextContinuationToken;
+        //     await this.getKeys(newParams, keys); // RECURSIVE CALL
+        // }
     }
 
     private uuidv4() {
