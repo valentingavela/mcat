@@ -16,7 +16,7 @@ export default class AudioParser extends Vue {
 
   playing = false;
 
-  playSound(sound) {
+  private playSound(sound: any) {
     if (sound) {
       var audio = new Howl({
         src: [sound],

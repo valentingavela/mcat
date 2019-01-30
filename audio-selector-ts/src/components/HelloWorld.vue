@@ -58,13 +58,15 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { AwsWrapper } from "./AwsWrapper";
-import AudioParser from "./AudioParser.vue";
+// import AudioParser from "./AudioParser.vue";
+import moment from "moment";
 
-import * as moment from "moment";
+
+// import * as moment from "moment";
 
 @Component({
   components: {
-    AudioParser
+    AudioParser: () => import("./AudioParser.vue"),
   }
 })
 export default class HelloWorld extends Vue {
@@ -74,40 +76,40 @@ export default class HelloWorld extends Vue {
   audioList: any[] = [];
   dialog = false;
   showAlert = false;
-  currentObject: string;
+  currentObject: string = '';
 
-  created() {
+  public showDialog(item: any) {
+    this.dialog = true;
+    this.showAlert = false;
+
+    this.currentObject = item.objectKey;
+  }
+
+  private created() {
     this.getAllKeys();
   }
 
-  getAllKeys() {
-    this.aws.getKeys({ Bucket: "audios-bucket123" }, this.allKeys).then(() => {
+  private getAllKeys() {
+    this.aws.getKeys({ Bucket: 'audios-bucket123' }, this.allKeys).then(() => {
       this.audioList = this.allKeys.map((item: any) => {
         moment.locale();
-        const mod = moment(item.LastModified).format("DD MMMM HH:MM");
+        const mod = moment(item.LastModified).format('DD MMMM HH:MM');
         return {
-          url: "https://s3.amazonaws.com/audios-bucket123/" + item.Key,
+          url: 'https://s3.amazonaws.com/audios-bucket123/' + item.Key,
           LastModified: mod,
-          objectKey: item.Key
+          objectKey: item.Key,
         };
       });
     });
   }
 
-  deleteObject(objKey: string) {
-    this.aws.deleteObject(objKey).then(x => {
+  private deleteObject(objKey: string) {
+    this.aws.deleteObject(objKey).then( (x) => {
       this.showAlert = true;
-      this.audioList = this.audioList.filter(el => {
+      this.audioList = this.audioList.filter( (el) => {
         return el.objectKey !== objKey;
       });
     });
-  }
-
-  showDialog(item) {
-    this.dialog = true;
-    this.showAlert = false;
-
-    this.currentObject = item.objectKey;
   }
 }
 </script>

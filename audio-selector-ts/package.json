@@ -5,9 +5,11 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy": "aws s3 sync .\\dist\\ s3://bucket-web-mcat-audio-selector/"
   },
   "dependencies": {
+    "@types/howler": "^2.0.5",
     "howler": "^2.1.1",
     "moment": "^2.24.0",
     "vue": "^2.5.21",
