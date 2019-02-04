@@ -201,13 +201,13 @@
       <g></g>
     </svg>
     <ModalUploadOrRetry
-      v-show="showModalUoR"
+      v-if="showModalUoR"
       v-on:recordAgain="recordAgain()"
       v-on:upload="uploadAudio()"
       ref="modal"
     />
     <MessageModal
-      v-show="alertForAudioRequest"
+      v-if="alertForAudioRequest"
       v-on:close="hideModalForAudioRequest()"
       v-bind:msg="alertModalMsg"
       ref="modal"
@@ -254,9 +254,11 @@ export default class RecordButton extends Vue {
 
   created() {
     EventBus.$on("OnButtonMiauClicked", () => {
-      const micStatus = localStorage.getItem('microphone') === 'allowed';
       this.recorder.requestUserMedia();
-      if (!micStatus) { this.showModalForAudioRequest(); }
+      const micStatus = localStorage.getItem("microphone") === "allowed";
+      if (!micStatus) {
+        this.showModalForAudioRequest();
+      }
     });
 
     this.recorder.getGeneralStatus().subscribe(res => {
@@ -309,7 +311,7 @@ export default class RecordButton extends Vue {
     const audio = this.recorder.getAudio();
 
     this.awsWrapper
-      .uploadObject(audio)
+      .uploadObject(audio, 'audio/wav')
       .then(res => {
         this.hideModalUploadOrRetry();
         this.$emit("hideParent");

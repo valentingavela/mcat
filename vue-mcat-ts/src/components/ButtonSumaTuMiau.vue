@@ -1,6 +1,6 @@
 <template>
   <div class="parent">
-    <div class="divimg btnimg" @click="toogleModal">
+    <div class="divimg btnimg fade" @click="toogleModal">
       <!-- Button SUMA TU MIAU-->
       <svg
         class="pointer select-none"
@@ -983,14 +983,36 @@ export default class ButtonSumaTuMiau extends Vue {
   showModal = false;
 
   toogleModal() {
-    EventBus.$emit('OnButtonMiauClicked');
     this.showModal = !this.showModal;
+    EventBus.$emit("OnButtonMiauClicked");
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
+@keyframes fade {
+  0% {
+    opacity: 0.25;
+  }
+  10% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.25;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade {
+  animation: 5s fade infinite;
+}
+
 .parent {
   position: relative;
   text-align: center;

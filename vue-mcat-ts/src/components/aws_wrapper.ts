@@ -17,15 +17,15 @@ export default class AwsWrapper {
         });
     }
 
-    async uploadObject(file:any) {
+    async uploadObject(file:any, fileType: string = '') {
         const params = {
             Bucket: 'audios-bucket123',
-            Key: this.uuidv4(),
-            ContentType: file.type,
+            Key: `${this.uuidv4()}`,
+            ContentType: file.type || fileType,
             Body: file,
             ACL: 'public-read'
         };
 
-        return this.s3.putObject(params, (err:any, res:any) => {});
+        await this.s3.putObject(params).promise();
     }
 }
