@@ -2,10 +2,7 @@
   <div id="app">
     <div class="container">
       <header class="page-head text-center">
-        <img
-          class="gif img-fluid select-none"
-          src="~@/assets/macricat_animation_OK.gif"
-        >
+        <img class="gif img-fluid select-none" src="~@/assets/macricat_animation_OK.gif">
       </header>
       <Banner id="banner"/>
       <ButtonSumaTuMiau id="buttonMiau"/>
@@ -32,8 +29,7 @@ import "bootstrap/dist/css/bootstrap.css";
     MessageModal
   }
 })
-export default class App extends Vue {
-}
+export default class App extends Vue {}
 </script>
 
 <style lang="less">
@@ -56,6 +52,11 @@ h6 {
 }
 .non-visible {
   visibility: hidden;
+}
+
+.btnShadow {
+  transition: 0.3s;
+  filter: drop-shadow(5px 5px 5px #fff);
 }
 
 // PC ONLY
@@ -98,7 +99,7 @@ h6 {
   // }
 }
 
-//   MOBILE 
+//   MOBILE
 @media only screen and (max-width: 500px) {
   body {
     background: url("assets/macri_web_576_fondo.jpg");

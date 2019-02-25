@@ -1,6 +1,6 @@
 <template>
   <div class="parent">
-    <div class="divimg btnimg fade" @click="toogleModal">
+    <div class="divimg btnShadow" @click="toogleModal">
       <!-- Button SUMA TU MIAU-->
       <svg
         class="pointer select-none"
@@ -1065,16 +1065,7 @@ export default class ButtonSumaTuMiau extends Vue {
     letter-spacing: -3px;
   }
 
-  .btnimg {
-    transition: 0.3s;
-  }
-
-  .btnimg:hover {
-    -webkit-filter: drop-shadow(5px 5px 5px #222);
-    filter: drop-shadow(5px 5px 5px #fff);
-  }
-
-  .btnimg:active {
+  .btnShadow:active {
     transform: translateY(4px) translateX(4px);
   }
 
@@ -1109,16 +1100,16 @@ export default class ButtonSumaTuMiau extends Vue {
     }
   }
 
-  // .btnimg {
+  // .btnShadow {
   //   transition: 0.3s;
   // }
 
-  // .btnimg:hover {
+  // .btnShadow:hover {
   //   -webkit-filter: drop-shadow(5px 5px 5px #222);
   //   filter: drop-shadow(5px 5px 5px #fff);
   // }
 
-  // .btnimg:active {
+  // .btnShadow:active {
   //   transform: translateY(4px) translateX(4px);
   // }
 

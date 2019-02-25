@@ -5,13 +5,13 @@
         <div class="modal-container">
           <div class="modal-header">
             <slot name="header">
-              <h4>Deseas subir tu miau?</h4>
+              <h4>Querés subir tu miau?</h4>
             </slot>
           </div>
           <div class="modal-footer">
             <slot name="footer">
               <button class="semi-transparent-button is-blue" @click="$emit('upload')">
-                <strong>SUBIR</strong>
+                <strong>Subir</strong>
               </button>
               <button
                 class="semi-transparent-button is-blue"

@@ -5,7 +5,7 @@
       <svg
         class="pointer"
         v-hammer:press="recordAgain"
-        v-bind:class="{ Rec: recordingAnimation, HideEl: hideRecBtn }"
+        v-bind:class="{ Rec: recordingAnimation, disablePointerEvents: recordingAnimation, HideEl: hideRecBtn, btnShadow: !recordingAnimation }"
         xmlns:dc="http://purl.org/dc/elements/1.1/"
         xmlns:cc="http://creativecommons.org/ns#"
         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -84,7 +84,7 @@
       <svg
         class="pointer"
         @click="recordAgain"
-        v-bind:class="{ Rec: recordingAnimation, HideEl: hideRecBtn }"
+        v-bind:class="{ Rec: recordingAnimation, disablePointerEvents: recordingAnimation, HideEl: hideRecBtn, btnShadow: !recordingAnimation }"
         xmlns:dc="http://purl.org/dc/elements/1.1/"
         xmlns:cc="http://creativecommons.org/ns#"
         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -162,7 +162,7 @@
 
     <!-- PLAY BUTTON -->
     <svg
-      v-bind:class="{ Rec: recordingAnimation, HideEl: !hideRecBtn}"
+      v-bind:class="{ Rec: recordingAnimation, disablePointerEvents: recordingAnimation, HideEl: !hideRecBtn, btnShadow: !recordingAnimation}"
       version="1.1"
       id="Capa_1"
       xmlns="http://www.w3.org/2000/svg"
@@ -358,11 +358,17 @@ svg {
   animation: shadow-pulse 1s infinite;
   border-radius: 100%;
   transform-origin: top top;
+  fill: red;
 }
 
 .HideEl {
   display: none;
 }
+
+disablePointerEvents {
+  pointer-events: none;
+}
+
 
 @media only screen and (min-width: 500px) {
 }
