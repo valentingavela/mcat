@@ -17,7 +17,7 @@
                 <br>para grabar
               </h1>
             </div>
-            <div v-else>
+            <div class="dont-be-cat" v-else>
               <!-- <h1>consectetur,
                 <br>on usil etag
               </h1>-->
@@ -35,7 +35,8 @@
               <div class="row">
                 <!-- FACEBOOK -->
                 <div class="col">
-                  <div class="circle circle-left">
+                  <!-- <div class="circle circle-left"> -->
+                  <div class="circle">
                     <svg
                       class="vertical-center"
                       xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +72,8 @@
                 <!-- INSTAGRAM -->
                 <!-- TWITTER -->
                 <div class="col">
-                  <div class="circle circle-right">
+                  <!-- <div class="circle circle-right"> -->
+                  <div class="circle">
                     <svg
                       class="vertical-center"
                       xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +115,7 @@ export default class Modal3SecondsToRecord2 extends Vue {
       this.hideRecordMode();
     });
 
-    this.$on('close', () => {
+    this.$on("close", () => {
       this.showRecordMode();
     });
   }
@@ -168,6 +170,10 @@ export default class Modal3SecondsToRecord2 extends Vue {
 .modal-wrapper {
   display: table-cell;
   vertical-align: middle;
+}
+
+.socialGrp {
+  padding-top: 5vh;
 }
 
 @media only screen and (min-width: 500px) {
@@ -226,7 +232,9 @@ export default class Modal3SecondsToRecord2 extends Vue {
       font-weight: 800;
       letter-spacing: -0.2rem;
       font-size: 5.7vw;
-      padding-left: 3.3rem;
+      padding-left: 0.3rem;
+      padding-top: 3rem;
+      // padding-left: 3.3rem;
       // line-height: 79px;
       // padding-top: 2.2rem;
     }
@@ -299,7 +307,8 @@ export default class Modal3SecondsToRecord2 extends Vue {
   }
 }
 
-@media only screen and (max-width: 500px) {
+// Mobile
+@media only screen and (max-width: 500px) and (orientation: portrait) {
   .modal-container {
     background: url(~@/assets/modal/estrellitas.jpg);
     height: 61%;
@@ -326,9 +335,21 @@ export default class Modal3SecondsToRecord2 extends Vue {
     width: 56%;
     height: auto;
   }
+  // .circle {
+  //   background: white;
+  //   height: 22vw;
+  //   border-radius: 50%;
+  //   margin: auto;
+  //   position: relative;
+  // }
+  .dont-be-cat {
+    padding-top: 20%;
+    font-size: 137%;
+  }
   .circle {
     background: white;
-    height: 22vw;
+    height: 4rem;
+    width: 4rem;
     border-radius: 50%;
     margin: auto;
     position: relative;
@@ -428,6 +449,22 @@ export default class Modal3SecondsToRecord2 extends Vue {
 
   .socialGrp {
     padding-top: 11%;
+  }
+}
+
+// XS Mobile
+@media only screen and (max-width: 400px) and (orientation: portrait) {
+  .circle {
+    background: white;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    margin: auto;
+    position: relative;
+  }
+  .dont-be-cat {
+    padding-top: 14%;
+    font-size: 99%;
   }
 }
 </style>
