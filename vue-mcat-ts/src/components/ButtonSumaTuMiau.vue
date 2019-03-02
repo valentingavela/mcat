@@ -1041,11 +1041,11 @@ export default class ButtonSumaTuMiau extends Vue {
   .suma-tu {
     left: 50%;
     position: relative;
-    top: -55%;
+    top: -53%;
     color: #ffd500;
-    padding-left: 17px;
-    padding-right: 20px;
-    margin: 6% auto -9px auto;
+    padding-left: 1.2rem;
+    padding-right: 0.7rem;
+    padding-top: 2.1rem;
     transform: translate(-50%, -50%);
   }
 
@@ -1060,9 +1060,10 @@ export default class ButtonSumaTuMiau extends Vue {
   .suma-tu h2 {
     font-size: 72px;
     // line-height: 37px;
-    font-weight: bolder;
+    font-weight: 800;
     padding-left: 2px;
     letter-spacing: -3px;
+    margin-top: -1rem;
   }
 
   .btnShadow:active {
@@ -1079,7 +1080,8 @@ export default class ButtonSumaTuMiau extends Vue {
     margin: auto;
     height: auto;
     width: auto;
-    margin-top: 4vh;
+    // margin-top: 4vh;
+    margin-top: 1vh;
   }
   .divimg svg {
     width: 54%;
@@ -1088,7 +1090,8 @@ export default class ButtonSumaTuMiau extends Vue {
   .suma-tu {
     color: #ffd500;
     h1 {
-      font-size: 212%;
+      // font-size: 212%;
+      font-size: 1.8rem;
       font-weight: 800;
       // margin: 0 auto;
       margin: 6% auto -9px auto;

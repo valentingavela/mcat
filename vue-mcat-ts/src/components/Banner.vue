@@ -29,22 +29,29 @@ export default class Banner extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
+  @fontSizeTitle: 300%;
+  @letterSpacingTitle: -0.1rem;
+  @letterSpacingSubtitle: 0.01875rem;
+  @subtitleLineHeight: 1.8rem;
+
 @media only screen and (min-width: 500px) {
   .title {
     margin-top: 0.2%;
     /* TODO: put white */
     color: white;
     font-size: 5.2rem;
+    // font-size: @fontSizeTitle;
     font-weight: 800;
-    letter-spacing: -0.3rem;
+    letter-spacing: @letterSpacingTitle;
   }
   .subtitle {
     margin-top: 0.2%;
     color: white;
     /* color: white; */
     font-weight: bold;
-    letter-spacing: -0.21875rem;
+    letter-spacing: @letterSpacingSubtitle;
     font-size: 2.375rem;
+    // line-height: @subtitleLineHeight;
   }
 }
 
@@ -54,9 +61,10 @@ export default class Banner extends Vue {
   .title {
     margin-top: 0.2%;
     color: white;
-    font-size: 5.2rem;
+    // font-size: 5.2rem;
+    font-size: @fontSizeTitle;
     font-weight: 800;
-    letter-spacing: -0.3rem;
+    letter-spacing: @letterSpacingTitle;
     line-height: 89%;
     span {
       margin-top: 0.2%;
@@ -71,16 +79,18 @@ export default class Banner extends Vue {
     margin-top: -1.8%;
     color: white;
     font-weight: bold;
-    letter-spacing: -0.21875rem;
+    letter-spacing: @letterSpacingSubtitle;
     font-size: 191%;
+    // line-height: @subtitleLineHeight;
   }
 }
 
 // Mobile with old screen
 @media only screen and (max-height: 700px) and (orientation: portrait){
   .title {
-    font-size: 306%;
-    letter-spacing: -0.3rem;
+    // font-size: 306%;
+    font-size: @fontSizeTitle;
+    letter-spacing: @letterSpacingTitle;
     line-height: 89%;
     span {
       margin-top: 0.2%;
@@ -95,8 +105,9 @@ export default class Banner extends Vue {
     margin-top: -1.8%;
     color: white;
     font-weight: bold;
-    letter-spacing: -0.21875rem;
+    letter-spacing: @letterSpacingSubtitle;
     font-size: 191%;
+    line-height: @subtitleLineHeight;
   }
 }
 </style>
