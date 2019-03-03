@@ -162,14 +162,15 @@
 
     <!-- PLAY BUTTON -->
     <svg
+      class="play-btn"
       v-bind:class="{ Rec: recordingAnimation, disablePointerEvents: recordingAnimation, HideEl: !hideRecBtn, btnShadow: !recordingAnimation}"
       version="1.1"
       id="Capa_1"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
-      x="0px"
-      y="0px"
-      viewBox="0 0 60 60"
+      x="100px"
+      y="100px"
+      viewBox="0 0 75 75"
       style="enable-background:new 0 0 60 60;"
       xml:space="preserve"
     >
@@ -350,8 +351,13 @@ export default class RecordButton extends Vue {
 
 svg {
   width: inherit;
+  max-width: inherit;
   height: inherit;
+  max-height: inherit;
   fill: white;
+  &.play-btn {
+    padding-left: 1.5rem;
+  }
 }
 
 .Rec {

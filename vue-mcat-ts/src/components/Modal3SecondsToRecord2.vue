@@ -198,16 +198,11 @@ export default class Modal3SecondsToRecord2 extends Vue {
     right: 5.5vw;
   }
 
-  .vertical-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
   .modal-container {
     background: url(~@/assets/modal/estrellitas.jpg);
     height: 83%;
+    // max-height: 35rem;
+    max-height: 45rem;
     width: 45%;
     margin: 0px auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
@@ -228,10 +223,11 @@ export default class Modal3SecondsToRecord2 extends Vue {
     // padding-top: 99px;
     h1 {
       color: white;
-      font-size: 2rem;
+      // font-size: 2rem;
+      font-size: 443.3%;
       font-weight: 800;
       letter-spacing: -0.2rem;
-      font-size: 5.7vw;
+      // font-size: 5.7vw;
       padding-left: 0.3rem;
       padding-top: 3rem;
       // padding-left: 3.3rem;
@@ -362,12 +358,6 @@ export default class Modal3SecondsToRecord2 extends Vue {
     right: 5.5vw;
   }
 
-  .vertical-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
 
   .modal-header h3 {
     margin-top: 0;
@@ -437,7 +427,8 @@ export default class Modal3SecondsToRecord2 extends Vue {
     margin-left: auto;
     margin-right: auto;
     max-height: 8rem;
-    width: 64%;
+    // width: 64%;
+    width: 57%;
     position: relative;
     top: 1.2rem;
     left: 0.1rem;

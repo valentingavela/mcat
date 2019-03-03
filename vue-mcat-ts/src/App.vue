@@ -8,6 +8,9 @@
       <ButtonSumaTuMiau id="buttonMiau"/>
       <ButtonsFooter/>
     </div>
+    <div v-if="preload" class="preload">
+      <img class="vertical-center" src="~@/assets/preload.gif">
+    </div>
   </div>
 </template>
 
@@ -19,7 +22,6 @@ import ButtonsFooter from "./components/ButtonsFooter.vue";
 import MessageModal from "./components/MessageModal.vue";
 
 import "bootstrap/dist/css/bootstrap.css";
-// import "bootstrap-vue/dist/bootstrap-vue.css";
 
 @Component({
   components: {
@@ -29,7 +31,15 @@ import "bootstrap/dist/css/bootstrap.css";
     MessageModal
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  preload = true;
+
+  mounted() {
+    setTimeout(() => {
+      this.preload = !this.preload;
+    }, 2500);
+  }
+}
 </script>
 
 <style lang="less">
@@ -59,6 +69,32 @@ h6 {
   filter: drop-shadow(5px 5px 5px #fff);
 }
 
+.preload {
+  // opacity: 0.5;
+  background: #0f1e49;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  position: fixed;
+
+  animation: signup-response 0.5s 1;
+  animation-fill-mode: forwards;
+  animation-delay: 2s;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.vertical-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 // PC ONLY
 @media only screen and (min-width: 500px) {
   body {
@@ -73,6 +109,15 @@ h6 {
   .gif {
     max-width: 41%;
     padding-top: 3%;
+  }
+
+  @keyframes signup-response {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
   }
 
   // Modal modifications
