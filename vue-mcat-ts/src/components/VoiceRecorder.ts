@@ -1,7 +1,13 @@
 import { Subject, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { isApple } from '@/mobileDetection';
 
 declare var MediaRecorder: any;
+
+if (isApple()){
+    (<any>window).MediaRecorder = require('audio-recorder-polyfill');
+}
+
 export default class VoiceRecorder {
     mediaRecorder: any
     audio: any;
@@ -10,19 +16,12 @@ export default class VoiceRecorder {
     audioBlob: any;
     userMedia: any;
 
+    
     requestUserMedia() {
         this.userMedia = navigator.mediaDevices.getUserMedia({ audio: true })
-            // .then(() => {
-            //     this.generalStatus$.next({ result: 'mic allowed' });
-            // })
             .catch(() => {
                 this.generalStatus$.next({ result: 'media rejected' });
             });
-        // if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        //     this.generalStatus$.next({ result: 'getUserMedia supported' });
-        // } else {
-        //     this.generalStatus$.next({ result: 'mediaDenied' });
-        // }
     }
 
     recordVoice(timeout = 0) {

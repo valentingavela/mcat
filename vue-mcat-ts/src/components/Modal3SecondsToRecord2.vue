@@ -107,7 +107,7 @@ import { Component, Vue } from "vue-property-decorator";
 // import Component from "vue-class-component";
 import Sharing from "./Sharing.vue";
 import RecordButton from "./RecordButton.vue";
-import { EventBus } from "./EventBus";
+import { EventBus } from "../services/EventBus";
 
 @Component({
   components: {

@@ -222,9 +222,9 @@ import VoiceRecorder from "./VoiceRecorder";
 import { take } from "rxjs/operators";
 import ModalUploadOrRetry from "./ModalUploadOrRetry.vue";
 import AwsWrapper from "./aws_wrapper";
-import { EventBus } from "./EventBus";
 import MessageModal from "./MessageModal.vue";
 import { mobileDetection } from "../mobileDetection";
+import { EventBus } from "../services/EventBus";
 
 @Component({
   components: {
