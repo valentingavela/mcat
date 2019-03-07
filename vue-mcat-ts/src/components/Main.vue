@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <header class="page-head text-center">
-      <img class="gif img-fluid select-none" src="../assets/macricat_animation_OK.gif">
+      <img class="gif img-fluid select-none" src="~@/assets/macricat_animation_OK.gif">
     </header>
     <Banner id="banner"/>
     <ButtonSumaTuMiau id="buttonMiau"/>
@@ -67,7 +67,7 @@ h6 {
 // PC ONLY
 @media only screen and (min-width: 500px) {
   body {
-    background: url("../assets/1200_fondo_gif.gif");
+    background: url("~@/assets/1200_fondo_gif.gif");
     // background-repeat: no-repeat;
     background-position: top center;
     height: 100%;
@@ -93,7 +93,7 @@ h6 {
 //   MOBILE
 @media only screen and (max-width: 500px) {
   body {
-    background: url("../assets/macri_web_576_fondo.jpg");
+    background: url("~@/assets/macri_web_576_fondo.jpg");
     // background-repeat: no-repeat;
     background-position: top center;
     height: 100%;
