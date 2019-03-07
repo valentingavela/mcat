@@ -1,13 +1,13 @@
 import Vue from "vue";
 import App from "./App.vue";
-import BootstrapVue from "bootstrap-vue";
 import { VueHammer } from 'vue2-hammer';
+import Router from './Router';
 
 Vue.config.productionTip = false;
 // Vue.use(BootstrapVue);
 Vue.use(VueHammer);
 
 new Vue({
-  // store,
+  router: Router,
   render: h => h(App)
 }).$mount("#app");

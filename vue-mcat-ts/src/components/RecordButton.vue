@@ -3,9 +3,10 @@
     <!-- RECORD BUTTON -->
     <div v-if="mobileDetection">
       <svg
+        v-show="showRecBtn"
         class="pointer"
         v-hammer:press="recordAgain"
-        v-bind:class="{ Rec: recordingAnimation, disablePointerEvents: recordingAnimation, HideEl: hideRecBtn, btnShadow: !recordingAnimation }"
+        v-bind:class="{ Rec: recordingAnimation, disablePointerEvents: recordingAnimation, btnShadow: !recordingAnimation }"
         xmlns:dc="http://purl.org/dc/elements/1.1/"
         xmlns:cc="http://creativecommons.org/ns#"
         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -82,9 +83,10 @@
     </div>
     <div v-else>
       <svg
+        v-show="showRecBtn"
         class="pointer"
         @click="recordAgain"
-        v-bind:class="{ Rec: recordingAnimation, disablePointerEvents: recordingAnimation, HideEl: hideRecBtn, btnShadow: !recordingAnimation }"
+        v-bind:class="{ Rec: recordingAnimation, disablePointerEvents: recordingAnimation, btnShadow: !recordingAnimation }"
         xmlns:dc="http://purl.org/dc/elements/1.1/"
         xmlns:cc="http://creativecommons.org/ns#"
         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -162,8 +164,9 @@
 
     <!-- PLAY BUTTON -->
     <svg
+      v-show="!showRecBtn"
       class="play-btn"
-      v-bind:class="{ Rec: recordingAnimation, disablePointerEvents: recordingAnimation, HideEl: !hideRecBtn, btnShadow: !recordingAnimation}"
+      v-bind:class="{ Rec: recordingAnimation, disablePointerEvents: recordingAnimation, btnShadow: !recordingAnimation}"
       version="1.1"
       id="Capa_1"
       xmlns="http://www.w3.org/2000/svg"
@@ -234,7 +237,7 @@ import { EventBus } from "../services/EventBus";
 })
 export default class RecordButton extends Vue {
   recordingAnimation: boolean;
-  hideRecBtn: boolean;
+  showRecBtn: boolean;
   audioUrl: any;
   showModalUoR: boolean;
   recorder = new VoiceRecorder();
@@ -247,7 +250,7 @@ export default class RecordButton extends Vue {
     super();
     this.mobileDetection = mobileDetection();
     this.recordingAnimation = false;
-    this.hideRecBtn = false;
+    this.showRecBtn = true;
     this.showModalUoR = false;
     this.alertForAudioRequest = false;
     this.alertModalMsg = "Permití el micrófono para grabar :)";
@@ -272,16 +275,16 @@ export default class RecordButton extends Vue {
         }
         case "playing": {
           this.recordingAnimation = false;
-          this.hideRecBtn = true;
+          this.showRecBtn = false;
           break;
         }
         case "finish": {
-          this.hideRecBtn = false;
+          this.showRecBtn = true;
           this.showModalUploadOrRetry();
           break;
         }
         case "media rejected": {
-          this.hideRecBtn = false;
+          this.showRecBtn = true;
           localStorage.setItem("microphone", "denied");
           this.alertModalMsg = "No es posible grabar";
           this.showModalForAudioRequest();
@@ -317,6 +320,7 @@ export default class RecordButton extends Vue {
         this.hideModalUploadOrRetry();
         this.$emit("hideParent");
         EventBus.$emit("show-thanks");
+        EventBus.$emit("file-uploaded");
       })
       .catch(err => console.log(err));
   }
@@ -367,9 +371,9 @@ svg {
   fill: red;
 }
 
-.HideEl {
-  display: none;
-}
+// .HideEl {
+//   display: none;
+// }
 
 disablePointerEvents {
   pointer-events: none;

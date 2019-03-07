@@ -11,12 +11,13 @@
   },
   "dependencies": {
     "audio-recorder-polyfill": "^0.1.5",
-    "axios": "^0.18.0",
     "bootstrap-vue": "^2.0.0-rc.11",
     "rxjs": "^6.3.3",
     "vue": "^2.5.21",
     "vue-class-component": "^6.0.0",
     "vue-property-decorator": "^7.0.0",
+    "vue-resource": "^1.5.1",
+    "vue-router": "^3.0.2",
     "vue-rx": "^6.0.1",
     "vue2-hammer": "^2.1.2",
     "vuex": "^3.0.1"
