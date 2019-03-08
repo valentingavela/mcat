@@ -7,7 +7,6 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
         <span class="mr-2">Latest Release</span>
-      </v-btn>
     </v-toolbar>
 
     <v-content>
