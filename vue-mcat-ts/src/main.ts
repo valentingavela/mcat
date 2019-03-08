@@ -4,7 +4,6 @@ import { VueHammer } from 'vue2-hammer';
 import Router from './Router';
 
 Vue.config.productionTip = false;
-// Vue.use(BootstrapVue);
 Vue.use(VueHammer);
 
 new Vue({

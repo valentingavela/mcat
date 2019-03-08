@@ -19,6 +19,7 @@ import MessageModal from "./MessageModal.vue";
 import "bootstrap/dist/css/bootstrap.css";
 
 @Component({
+  name: 'Main',
   components: {
     Banner,
     ButtonSumaTuMiau,
@@ -27,7 +28,6 @@ import "bootstrap/dist/css/bootstrap.css";
   }
 })
 export default class Main extends Vue {
-  preload = true;
 }
 </script>
 
