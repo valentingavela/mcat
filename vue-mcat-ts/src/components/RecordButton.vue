@@ -212,7 +212,7 @@
     />
     <MessageModal
       v-if="alertForAudioRequest"
-      v-on:close="hideModalForAudioRequest()"
+      v-on:close="hideAlertModal()"
       v-bind:msg="alertModalMsg"
       ref="modal"
     />
@@ -258,11 +258,14 @@ export default class RecordButton extends Vue {
 
   created() {
     EventBus.$on("OnButtonMiauClicked", () => {
-      this.recorder.requestUserMedia();
       const micStatus = localStorage.getItem("microphone") === "allowed";
       if (!micStatus) {
-        this.showModalForAudioRequest();
+        this.showAlertModal();
+      } else {
+        this.recorder.requestUserMedia();
       }
+
+      
     });
 
     this.recorder.getGeneralStatus().subscribe(res => {
@@ -270,7 +273,7 @@ export default class RecordButton extends Vue {
         case "recording": {
           localStorage.setItem("microphone", "allowed");
           this.recordingAnimation = true;
-          this.hideModalForAudioRequest();
+          this.hideAlertModal();
           break;
         }
         case "playing": {
@@ -287,7 +290,7 @@ export default class RecordButton extends Vue {
           this.showRecBtn = true;
           localStorage.setItem("microphone", "denied");
           this.alertModalMsg = "No es posible grabar";
-          this.showModalForAudioRequest();
+          this.showAlertModal();
           break;
         }
       }
@@ -300,7 +303,7 @@ export default class RecordButton extends Vue {
   }
 
   firstTimeRecord() {
-    this.showModalForAudioRequest();
+    this.showAlertModal();
     setTimeout(() => {
       this.recordAndPlaySound();
     }, 1500);
@@ -333,12 +336,13 @@ export default class RecordButton extends Vue {
     this.showModalUoR = false;
   }
 
-  showModalForAudioRequest() {
+  showAlertModal() {
     this.alertForAudioRequest = true;
   }
 
-  hideModalForAudioRequest() {
+  hideAlertModal() {
     this.alertForAudioRequest = false;
+    this.recorder.requestUserMedia();
   }
 }
 </script>

@@ -1,14 +1,5 @@
 <template>
   <div class="text-center">
-    <!-- <h1 class="title">
-      <strong class="select-none">
-        IPSUM 123.123
-        <span>"DOLOR"</span>
-      </strong>
-    </h1>
-    <h2 class="subtitle">
-      <strong class="select-none">AMET SIT IPSUMS NEQUE AI OGIASED AN AN a</strong>
-    </h2>-->
     <h1 class="title">
       <strong class="select-none">FALTAN {{ getCountDown }} "MIAUS"</strong>
     </h1>
