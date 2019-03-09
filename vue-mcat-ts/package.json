@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
-    "deploy": "aws s3 sync .\\dist\\ s3://bucketweb123/"
+    "deploy-win": "aws s3 sync .\\dist\\ s3://bucketweb123/",
+    "deploy-linux": "aws s3 sync ./dist/ s3://bucketweb123/"
   },
   "dependencies": {
     "audio-recorder-polyfill": "^0.1.5",

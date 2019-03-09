@@ -193,17 +193,6 @@ import Sharing from "./Sharing.vue";
 
 @Component
 export default class ButtonsFooter extends Sharing {
-  // @Prop() private msg!: string;
-  // url = "https://www.macri.cat";
-  // encodedWhatsapp = "https://wa.me?text=Sum%C3%A1%20tu%20miau%20para%20que%20hagamos%20un%20%22miauazo%22%20en%20la%20Rosada!%0Ahttps%3A%2F%2Fwww.macri.cat"
-  // faceShare() {
-  //   window.open(
-  //     "https://www.facebook.com/sharer/sharer.php?u=" + this.url,
-  //     "facebook-share-dialog",
-  //     "width=626, height=436"
-  //   );
-  // }
-
 }
 </script>
 
