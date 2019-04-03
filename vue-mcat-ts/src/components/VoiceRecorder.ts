@@ -16,6 +16,7 @@ export default class VoiceRecorder {
     audioBlob: any;
     userMedia: any;
     newAudio: any;
+    audioUrl: string;
     
     requestUserMedia() {
         this.userMedia = navigator.mediaDevices.getUserMedia({ audio: true })
@@ -46,8 +47,8 @@ export default class VoiceRecorder {
 
                     this.mediaRecorder.addEventListener("stop", () => {
                         this.audioBlob = new Blob(audioChunks);
-                        const audioUrl = URL.createObjectURL(this.audioBlob);
-                        this.newAudio = new Audio(audioUrl);
+                        this.audioUrl = URL.createObjectURL(this.audioBlob);
+                        this.newAudio = new Audio(this.audioUrl);
                         this.audio$.next(this.newAudio);
                         this.audio = this.audioBlob;
                     });
@@ -79,6 +80,6 @@ export default class VoiceRecorder {
     }
 
     getNewAudio() {
-        return this.newAudio; 
+        return this.audioUrl; 
     }
 }

@@ -30,10 +30,10 @@ export default class AwsWrapper {
         await this.s3.putObject(params).promise();
     }
 
-    public async getKeys(keys: any) {
+    public async getKeys(keys: any, MaxKeys = 10) {
         const params = {
             Bucket: this.bucket,
-            MaxKeys: 20 
+            MaxKeys: MaxKeys
         }
         const response = await this.s3.listObjectsV2(params).promise();
         response.Contents.forEach((obj: any) => keys.push(`https://s3.amazonaws.com/audios-bucket123/${obj.Key}`));

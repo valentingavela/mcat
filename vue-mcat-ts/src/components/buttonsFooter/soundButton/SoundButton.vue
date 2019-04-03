@@ -54,10 +54,11 @@ import { EventBus } from "../../../services/EventBus";
 export default class SoundButton extends Vue {
   awsWrapper = new AwsWrapper();
   music: any = {};
+  iAudiosList: any[] = [];
   audiosList: any[] = [];
   soundsHandler: Howl[] = [];
-
   btnStatus = true;
+
   toogleButton() {
     this.btnStatus = !this.btnStatus;
     if (!this.music) return;
@@ -68,13 +69,14 @@ export default class SoundButton extends Vue {
     }
   }
 
-  playSound(sound: any, loop = false): Howl {
+  playSound(sound: any, loop = false, ext?): Howl {
     const audio = new Howl({
       src: [sound],
       volume: 1,
       preload: true,
       html5: true,
       loop: loop,
+      format: [ext],
       onplay: () => {},
       onend: () => {}
     });
@@ -97,7 +99,7 @@ export default class SoundButton extends Vue {
   }
 
   fillAudioList(): Promise<any> {
-    return this.awsWrapper.getKeys(this.audiosList);
+    return this.awsWrapper.getKeys(this.iAudiosList, 3);
   }
 
   getRandomInt(min: number, max: number) {
@@ -117,17 +119,29 @@ export default class SoundButton extends Vue {
   playRandomAudio() {
     this.clearHowler();
 
-    const rand = this.getRandomInt(0, 19);
-    const audio = this.audiosList[rand];
+    const audio = this.getAudioFromList();
     console.log(audio);
     const soundHandler = this.playSound(audio);
     this.soundsHandler.push(soundHandler);
 
-    soundHandler.on('end', () => {
-        this.playRandomAudio()
-    })
+    soundHandler.on("end", () => {
+      this.playRandomAudio();
+    });
+
+    soundHandler.on("loaderror", () => {
+      setTimeout(() => {
+        this.playRandomAudio();
+      }, 1000);
+    });
 
     soundHandler.play();
+  }
+
+  getAudioFromList() {
+    this.audiosList = this.audiosList.length
+      ? [...this.audiosList]
+      : [...this.iAudiosList];
+    return this.audiosList.pop();
   }
 
   created() {
@@ -141,8 +155,9 @@ export default class SoundButton extends Vue {
     });
 
     EventBus.$on("ShowThanks", (audio: any) => {
-      this.audiosList.unshift(audio);
-      this.playSound(audio);
+      console.log(audio);
+      this.iAudiosList.unshift(audio);
+      this.playSound(audio, false, 'wav');
       setTimeout(() => {
         this.playMusic();
       }, 500);

@@ -1,5 +1,5 @@
 <template>
-  <div v-on:mouseover="firstEvent()" v-on:click="firstEvent()">
+  <div v-on:click="firstEvent()">
     <div v-if="preload" class="preload">
       <div>
         <img class="vertical-center" src="~@/assets/preload.gif">
@@ -28,8 +28,9 @@ export default class App extends Vue {
   firstEvent() {
     if (!this.firstTouch) {
       this.firstTouch = true;
-      EventBus.$emit("FirstTouch");
-      console.log("ff");
+      setTimeout(() => {
+        EventBus.$emit("FirstTouch");
+      }, 1000);
     }
   }
 
