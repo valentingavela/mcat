@@ -5,7 +5,7 @@
         <v-list two-line subheader>
           <v-subheader inset>Audios</v-subheader>
 
-          <v-list-tile v-for="item in audioList" :key="item.url" avatar @click>
+          <v-list-tile v-for="item in audioList" :key="item.url" avatar>
             <AudioParser v-bind:item="item"/>
 
             <v-list-tile-content>
@@ -28,6 +28,7 @@
           </v-list-tile>
         </v-list>
       </v-flex>
+
       <!-- DIALOG -->
       <v-dialog v-model="dialog" max-width="290">
         <v-card>
@@ -52,6 +53,11 @@
       </v-dialog>
       <!-- // DIALOG -->
     </v-layout>
+    <v-layout>
+      <v-flex xs12 sm6 offset-sm6>
+        <v-btn  @click="showMore()" flat icon color="indigo">SHOW MORE</v-btn>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
@@ -61,12 +67,9 @@ import { AwsWrapper } from "./AwsWrapper";
 // import AudioParser from "./AudioParser.vue";
 import moment from "moment";
 
-
-// import * as moment from "moment";
-
 @Component({
   components: {
-    AudioParser: () => import("./AudioParser.vue"),
+    AudioParser: () => import("./AudioParser.vue")
   }
 })
 export default class HelloWorld extends Vue {
@@ -76,7 +79,7 @@ export default class HelloWorld extends Vue {
   audioList: any[] = [];
   dialog = false;
   showAlert = false;
-  currentObject: string = '';
+  currentObject: string = "";
 
   public showDialog(item: any) {
     this.dialog = true;
@@ -90,23 +93,28 @@ export default class HelloWorld extends Vue {
   }
 
   private getAllKeys() {
-    this.aws.getKeys({ Bucket: 'audios-bucket123' }, this.allKeys).then(() => {
+    this.aws.getKeys({ Bucket: "audios-bucket123" }, this.allKeys).then(() => {
       this.audioList = this.allKeys.map((item: any) => {
         moment.locale();
-        const mod = moment(item.LastModified).format('DD MMMM HH:MM');
+        const mod = moment(item.LastModified).format("DD MMMM HH:MM");
         return {
-          url: 'https://s3.amazonaws.com/audios-bucket123/' + item.Key,
+          url: "https://s3.amazonaws.com/audios-bucket123/" + item.Key,
           LastModified: mod,
-          objectKey: item.Key,
+          objectKey: item.Key
         };
       });
+
     });
   }
 
+  showMore() {
+    this.aws.isTruncated.continuationToken
+  }
+
   private deleteObject(objKey: string) {
-    this.aws.deleteObject(objKey).then( (x) => {
+    this.aws.deleteObject(objKey).then(x => {
       this.showAlert = true;
-      this.audioList = this.audioList.filter( (el) => {
+      this.audioList = this.audioList.filter(el => {
         return el.objectKey !== objKey;
       });
     });

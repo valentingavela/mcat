@@ -13,7 +13,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import Banner from "./Banner.vue";
 import ButtonSumaTuMiau from "./ButtonSumaTuMiau.vue";
-import ButtonsFooter from "./ButtonsFooter.vue";
+import ButtonsFooter from "./buttonsFooter/ButtonsFooter.vue";
 import MessageModal from "./MessageModal.vue";
 
 import "bootstrap/dist/css/bootstrap.css";

@@ -211,7 +211,7 @@
       ref="modal"
     />
     <MessageModal
-      v-if="alertForAudioRequest"
+      v-if="alertModal"
       v-on:close="hideAlertModal()"
       v-bind:msg="alertModalMsg"
       ref="modal"
@@ -226,7 +226,7 @@ import { take } from "rxjs/operators";
 import ModalUploadOrRetry from "./ModalUploadOrRetry.vue";
 import AwsWrapper from "./aws_wrapper";
 import MessageModal from "./MessageModal.vue";
-import { mobileDetection } from "../mobileDetection";
+import { mobileDetection, isApple } from "../mobileDetection";
 import { EventBus } from "../services/EventBus";
 
 @Component({
@@ -242,9 +242,10 @@ export default class RecordButton extends Vue {
   showModalUoR: boolean;
   recorder = new VoiceRecorder();
   awsWrapper = new AwsWrapper();
-  alertForAudioRequest: boolean;
+  alertModal: boolean;
   mobileDetection: boolean;
   alertModalMsg: string;
+  showErrorCount = 0;
 
   constructor() {
     super();
@@ -252,7 +253,7 @@ export default class RecordButton extends Vue {
     this.recordingAnimation = false;
     this.showRecBtn = true;
     this.showModalUoR = false;
-    this.alertForAudioRequest = false;
+    this.alertModal = false;
     this.alertModalMsg = "Permití el micrófono para grabar :)";
   }
 
@@ -264,13 +265,12 @@ export default class RecordButton extends Vue {
       } else {
         this.recorder.requestUserMedia();
       }
-
-      
     });
 
     this.recorder.getGeneralStatus().subscribe(res => {
       switch (res.result) {
         case "recording": {
+          EventBus.$emit("StopMusic");
           localStorage.setItem("microphone", "allowed");
           this.recordingAnimation = true;
           this.hideAlertModal();
@@ -288,9 +288,15 @@ export default class RecordButton extends Vue {
         }
         case "media rejected": {
           this.showRecBtn = true;
-          localStorage.setItem("microphone", "denied");
-          this.alertModalMsg = "No es posible grabar";
-          this.showAlertModal();
+          if (!this.showErrorCount) {
+            localStorage.setItem("microphone", "denied");
+            this.alertModalMsg = this.failMsg();
+            this.showAlertModal();
+          }
+          if (!this.alertModal) {
+            EventBus.$emit("ShowThanks");
+          }
+          this.showErrorCount++;
           break;
         }
       }
@@ -318,11 +324,11 @@ export default class RecordButton extends Vue {
     const audio = this.recorder.getAudio();
 
     this.awsWrapper
-      .uploadObject(audio, 'audio/wav')
+      .uploadObject(audio, "audio/wav")
       .then(res => {
         this.hideModalUploadOrRetry();
         this.$emit("hideParent");
-        EventBus.$emit("show-thanks");
+        EventBus.$emit("ShowThanks", this.recorder.getNewAudio());
         EventBus.$emit("file-uploaded");
       })
       .catch(err => console.log(err));
@@ -337,12 +343,18 @@ export default class RecordButton extends Vue {
   }
 
   showAlertModal() {
-    this.alertForAudioRequest = true;
+    this.alertModal = true;
   }
 
   hideAlertModal() {
-    this.alertForAudioRequest = false;
+    this.alertModal = false;
     this.recorder.requestUserMedia();
+  }
+
+  failMsg() {
+    return isApple()
+      ? "El Iphone es de gato, no permite grabar. Mejor usá un Android o una PC."
+      : "Tu dispositivo tiene problemas para grabar. Probá con otro movil o con una PC.";
   }
 }
 </script>
@@ -382,7 +394,6 @@ svg {
 disablePointerEvents {
   pointer-events: none;
 }
-
 
 @media only screen and (min-width: 500px) {
 }

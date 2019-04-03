@@ -8,19 +8,12 @@
           </div>
           <div class="modal-body text-left select-none">
             <div v-if="recordMode">
-              <!-- <h1>ipsum
-                <br>3 dolorems
-                <br>quia dorlor
-              </h1>-->
               <h1>Tenés
                 <br>3 segundos
                 <br>para grabar
               </h1>
             </div>
             <div class="dont-be-cat" v-else>
-              <!-- <h1>consectetur,
-                <br>on usil etag
-              </h1>-->
               <h1>Compartí,
                 <br>no seas gato
               </h1>
@@ -119,7 +112,7 @@ export default class Modal3SecondsToRecord2 extends Sharing {
   recordMode = true;
 
   created() {
-    EventBus.$on("show-thanks", () => {
+    EventBus.$on("ShowThanks", () => {
       this.hideRecordMode();
     });
 

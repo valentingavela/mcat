@@ -10,11 +10,19 @@
           </div>
           <div class="modal-footer">
             <slot name="footer">
-              <button class="semi-transparent-button is-blue" @click="$emit('upload')">
+              <button
+                :disabled="!buttonEnabled"
+                v-bind:class="{ 
+                  isBlue: buttonEnabled,
+                  isGray: !buttonEnabled
+                 }"
+                class="semi-transparent-button"
+                @click="onUpload()"
+              >
                 <strong>Subir</strong>
               </button>
               <button
-                class="semi-transparent-button is-blue"
+                class="semi-transparent-button isBlue"
                 @click="$emit('recordAgain')"
               >Volver a grabar</button>
             </slot>
@@ -29,20 +37,17 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
-export default class ModalUploadOrRetry extends Vue {}
+export default class ModalUploadOrRetry extends Vue {
+  buttonEnabled = true;
+
+  onUpload() {
+    this.buttonEnabled = !this.buttonEnabled;
+    this.$emit("upload");
+  }
+}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
-
 .modal-enter {
   opacity: 0;
 }
@@ -105,42 +110,46 @@ export default class ModalUploadOrRetry extends Vue {}
   outline: none;
 }
 
-.is-blue {
+.isGray {
+  background: grey;
+}
+
+.isBlue {
   background: #1e348e; /* fallback color for old browsers */
   background: rgba(30, 52, 142, 0.5);
 }
-.is-blue:hover,
-.is-blue:focus,
-.is-blue:active {
+.isBlue:hover,
+.isBlue:focus,
+.isBlue:active {
   background: #1e348e; /* fallback color for old browsers */
   background: rgb(30, 52, 142);
   color: #fff;
 }
 
 // @media only screen and (min-width: 500px) {
-  .modal-container {
-    width: 300px;
-    margin: 0px auto;
-    padding: 20px 30px;
-    background-color: #fff;
-    border-radius: 2px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-    transition: all 0.3s ease;
-    font-family: Helvetica, Arial, sans-serif;
-  }
+.modal-container {
+  width: 300px;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  transition: all 0.3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
 
-  .modal-header h3 {
-    margin-top: 0;
-    color: #42b983;
-  }
+.modal-header h3 {
+  margin-top: 0;
+  color: #42b983;
+}
 
-  .modal-body {
-    margin: 20px 0;
-  }
+.modal-body {
+  margin: 20px 0;
+}
 
-  .modal-default-button {
-    float: right;
-  }
+.modal-default-button {
+  float: right;
+}
 // }
 
 // @media only screen and (max-width: 500px) {

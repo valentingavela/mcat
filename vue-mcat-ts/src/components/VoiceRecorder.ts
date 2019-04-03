@@ -15,7 +15,7 @@ export default class VoiceRecorder {
     generalStatus$: Subject<any> = new Subject();
     audioBlob: any;
     userMedia: any;
-
+    newAudio: any;
     
     requestUserMedia() {
         this.userMedia = navigator.mediaDevices.getUserMedia({ audio: true })
@@ -47,7 +47,8 @@ export default class VoiceRecorder {
                     this.mediaRecorder.addEventListener("stop", () => {
                         this.audioBlob = new Blob(audioChunks);
                         const audioUrl = URL.createObjectURL(this.audioBlob);
-                        this.audio$.next(new Audio(audioUrl));
+                        this.newAudio = new Audio(audioUrl);
+                        this.audio$.next(this.newAudio);
                         this.audio = this.audioBlob;
                     });
                 }
@@ -75,5 +76,9 @@ export default class VoiceRecorder {
 
     getAudio() {
         return this.audioBlob;
+    }
+
+    getNewAudio() {
+        return this.newAudio; 
     }
 }

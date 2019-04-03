@@ -11,8 +11,10 @@
     "deploy-linux": "aws s3 sync ./dist/ s3://bucketweb123/"
   },
   "dependencies": {
+    "@types/howler": "^2.1.0",
     "audio-recorder-polyfill": "^0.1.5",
     "bootstrap-vue": "^2.0.0-rc.11",
+    "howler": "^2.1.1",
     "npm": "^6.9.0",
     "rxjs": "^6.3.3",
     "vue": "^2.5.21",

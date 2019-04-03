@@ -3,6 +3,20 @@ export function mobileDetection(): boolean {
 };
 
 export function isApple(): boolean {
-    return (/iPad|iPhone|iPod/.test(navigator.userAgent) && !(<any>window).MSStream) ||
-        (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1)
+    const iDevices = [
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod'
+    ];
+
+    if (!!navigator.platform) {
+        while (iDevices.length) {
+            if (navigator.platform === iDevices.pop()) { return true; }
+        }
+    }
+
+    return false;
 };

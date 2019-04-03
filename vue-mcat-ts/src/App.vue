@@ -1,7 +1,12 @@
 <template>
-  <div>
+  <div v-on:mouseover="firstEvent()" v-on:click="firstEvent()">
     <div v-if="preload" class="preload">
-      <img class="vertical-center" src="~@/assets/preload.gif">
+      <div>
+        <img class="vertical-center" src="~@/assets/preload.gif">
+        <div>
+          <!-- <span class="vertical-center">Hacé click para comenzar</span> -->
+        </div>
+      </div>
     </div>
     <router-view></router-view>
   </div>
@@ -9,21 +14,30 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { EventBus } from "./services/EventBus";
+
 @Component
 export default class App extends Vue {
   preload = true;
+  firstTouch = false;
 
   tooglePreload() {
     this.preload = !this.preload;
   }
-  
+
+  firstEvent() {
+    if (!this.firstTouch) {
+      this.firstTouch = true;
+      EventBus.$emit("FirstTouch");
+      console.log("ff");
+    }
+  }
+
   mounted() {
     setTimeout(() => {
       this.tooglePreload();
     }, 3000);
   }
-
-
 }
 </script>
 

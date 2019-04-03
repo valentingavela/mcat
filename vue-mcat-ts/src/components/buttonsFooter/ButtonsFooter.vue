@@ -2,47 +2,9 @@
   <!-- https://developers.facebook.com/docs/plugins/share-button/ -->
   <footer class="row">
     <div class="col-xl-6 d-none d-sm-block">
-      <svg
-        class="sound-btn pointer"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="0px"
-        y="0px"
-        viewBox="57.105 0 575.971 549.081"
-        enable-background="new 57.105 0 575.971 549.081"
-        xml:space="preserve"
-      >
-        <path
-          d="M144.088,386.96h72.8l144.648,101.808c10.121,7.114,24.093,4.676,31.206-5.446c2.659-3.783,4.082-8.297,4.074-12.921V89.6
-                                                                        c-0.009-12.371-10.044-22.394-22.415-22.385c-4.605,0.003-9.098,1.425-12.865,4.073L216.72,173.04h-72.8
-                                                                        c-12.371,0-22.4,10.029-22.4,22.4l0,0v169.121c0,12.371,10.028,22.4,22.399,22.4C143.976,386.961,144.032,386.961,144.088,386.96z
-                                                                        M166.488,217.84h58.24c6.153-0.021,12.025-2.573,16.24-7.056l111.048-78.12v294.672l-111.048-78.12
-                                                                        c-4.214-4.482-10.087-7.034-16.24-7.056h-58.24V217.84z"
-        ></path>
-        <!-- SOUND OFF -->
-        <svg
-          class="sound-off"
-          version="1.1"
-          id="Capa_1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="100px"
-          y="0px"
-          viewBox="57.105 0 575.971 549.081"
-          enable-background="new 57.105 0 575.971 549.081"
-          xml:space="preserve"
-        >
-          <path
-            d="M571.76,200.76c-8.742-8.752-22.926-8.76-31.678-0.018c-0.006,0.006-0.012,0.012-0.018,0.018l-47.545,47.544L445.2,200.76
-                                                                                                                            c-8.753-8.752-22.943-8.752-31.696,0c-8.753,8.753-8.753,22.943,0,31.696L460.88,280l-47.544,47.544
-                                                                                                                            c-8.753,8.799-8.715,23.027,0.084,31.78c8.799,8.752,23.027,8.715,31.78-0.084l47.544-47.544l47.544,47.544
-                                                                                                                            c8.753,8.752,22.943,8.752,31.696,0c8.752-8.753,8.752-22.944,0-31.696L524.216,280l47.544-47.544
-                                                                                                                            c8.753-8.743,8.761-22.926,0.018-31.678C571.771,200.771,571.766,200.766,571.76,200.76z"
-          ></path>
-        </svg>
-      </svg>
+      <SoundButton/>
     </div>
+
     <div class="col-xl-6 social-buttons-grp">
       <div class="float-right"></div>
       <div class="fb-share-button" data-layout="button_count"></div>
@@ -129,39 +91,39 @@
       </a>
       <!-- Whatsapp -->
       <a :href="encodedWhatsapp">
-      <svg
-        class="social-btn"
-        version="1.1"
-        id="Layer_1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="0px"
-        y="0px"
-        width="132.435px"
-        height="132.435px"
-        viewBox="0 0 132.435 132.435"
-        enable-background="new 0 0 132.435 132.435"
-        xml:space="preserve"
-      >
-        <g transform="translate(0,-952.36218)">
-          <path
-            d="M32.162,952.362C14.442,952.362,0,966.805,0,984.525v68.109c0,17.721,14.442,32.163,32.162,32.163h68.109
+        <svg
+          class="social-btn"
+          version="1.1"
+          id="Layer_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          width="132.435px"
+          height="132.435px"
+          viewBox="0 0 132.435 132.435"
+          enable-background="new 0 0 132.435 132.435"
+          xml:space="preserve"
+        >
+          <g transform="translate(0,-952.36218)">
+            <path
+              d="M32.162,952.362C14.442,952.362,0,966.805,0,984.525v68.109c0,17.721,14.442,32.163,32.162,32.163h68.109
 		c17.721,0,32.163-14.442,32.163-32.163v-68.109c0-17.72-14.442-32.163-32.163-32.163H32.162z M32.162,963.714h68.109
 		c11.628,0,20.812,9.184,20.812,20.811v68.109c0,11.628-9.184,20.812-20.812,20.812H32.162c-11.627,0-20.811-9.184-20.811-20.812
 		v-68.109C11.352,972.897,20.535,963.714,32.162,963.714z"
-          ></path>
-        </g>
-        <g transform="translate(0,-952.36218)">
-          <path
-            d="M66.218,973.521c-23.191,0-42.059,18.867-42.059,42.058c0,7.622,2.078,15.08,6.025,21.671l-3.859,12.874
+            ></path>
+          </g>
+          <g transform="translate(0,-952.36218)">
+            <path
+              d="M66.218,973.521c-23.191,0-42.059,18.867-42.059,42.058c0,7.622,2.078,15.08,6.025,21.671l-3.859,12.874
 		c-0.403,1.344-0.258,2.766,0.409,4.001c0.666,1.234,1.772,2.136,3.122,2.54c1.046,0.312,2.177,0.289,3.215-0.068l12.557-4.334
 		c6.261,3.521,13.342,5.375,20.589,5.375c23.19,0,42.058-18.867,42.058-42.058C108.275,992.389,89.408,973.521,66.218,973.521z
 		 M66.218,1047.133c-6.117,0-12.038-1.744-17.122-5.043c-0.854-0.553-1.842-0.846-2.858-0.846c-0.586,0-1.165,0.097-1.714,0.288
 		l-5.194,1.792l1.607-5.364c0.456-1.523,0.204-3.15-0.692-4.465c-3.703-5.434-5.581-11.461-5.581-17.916
 		c0-17.398,14.155-31.552,31.553-31.552s31.554,14.154,31.554,31.552C97.771,1032.978,83.616,1047.133,66.218,1047.133z"
-          ></path>
-          <path
-            d="M87.279,1026.648l-11.517-7.224l-0.025-0.025c-0.057-0.038-0.115-0.071-0.177-0.101c-0.169-0.111-0.358-0.187-0.556-0.229
+            ></path>
+            <path
+              d="M87.279,1026.648l-11.517-7.224l-0.025-0.025c-0.057-0.038-0.115-0.071-0.177-0.101c-0.169-0.111-0.358-0.187-0.556-0.229
 		c-0.018,0-0.033,0-0.05,0c-0.042-0.009-0.084-0.018-0.127-0.025c-0.008,0-0.017,0-0.025,0c-0.269-0.015-0.539,0.038-0.783,0.152
 		c-0.088,0.043-0.174,0.094-0.252,0.152c-0.053,0.031-0.104,0.064-0.152,0.1c-0.018,0.025-0.035,0.051-0.051,0.077
 		c-0.063,0.054-0.123,0.113-0.177,0.177l-2.525,2.552c-4.58-2.306-8.101-6.17-11.265-11.392l2.324-2.299
@@ -178,9 +140,9 @@
 		c2.625-1.375,4.714-3.938,6.011-7.602C88.184,1027.835,87.911,1027.051,87.279,1026.648z M61.803,1027.474
 		c-0.126-0.102-0.252-0.205-0.378-0.31C61.555,1027.275,61.675,1027.368,61.803,1027.474z M61.341,1027.095
 		c-0.369-0.306-0.734-0.62-1.096-0.94C60.608,1026.467,60.961,1026.773,61.341,1027.095z"
-          ></path>
-        </g>
-      </svg>
+            ></path>
+          </g>
+        </svg>
       </a>
     </div>
   </footer>
@@ -189,86 +151,18 @@
 <script lang="ts">
 // import { Component, Prop, Vue } from "vue-property-decorator";
 import Component from "vue-class-component";
-import Sharing from "./Sharing.vue";
+import Sharing from "../Sharing.vue";
+import SoundButton from "./soundButton/SoundButton.vue";
 
-@Component
-export default class ButtonsFooter extends Sharing {
-}
+@Component({
+  components: {
+    SoundButton
+  }
+})
+export default class ButtonsFooter extends Sharing {}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-@media only screen and (min-width: 500px) {
-  .social-buttons-grp {
-    text-align: right !important;
-  }
-
-  .social-btn {
-    position: relative;
-    fill: rgba(176, 176, 194, 0.664);
-    // width: 15%;
-    width: 12%;
-    height: auto;
-    margin-left: 6px;
-    margin-right: 6px;
-    top: -7px;
-    left: -7px;
-  }
-  stroke {
-    fill: rgba(176, 176, 194, 0.664);
-    color: rgba(176, 176, 194, 0.664);
-  }
-
-  .sound-btn {
-    position: relative;
-    fill: rgba(176, 176, 194, 0.664);
-    width: 12%;
-    height: auto;
-    margin-left: 6px;
-    margin-right: 6px;
-    left: 68px;
-  }
-
-  .sound-off {
-    // fill: rgba(255, 255, 255, 0.664);
-    width: 12%;
-    height: auto;
-    margin-left: -49px;
-    padding-top: 7px;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    color: white;
-    text-align: center;
-    margin: auto;
-    padding: 10px;
-  }
-
-  .social-buttons-grp {
-    // padding-top: 21px;
-    // padding-right: 83px;
-    // position: absolute;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
-  }
-
-  .social-btn {
-    /* fill: rgba(255, 255, 255, 0.664); */
-    fill: rgba(176, 176, 194, 0.664);
-    width: 13%;
-    height: auto;
-    margin-left: 6px;
-    margin-right: 6px;
-    position: relative;
-    top: -7px;
-    left: -7px;
-  }
-}
+@import './buttonsFooter.less';
 </style>
