@@ -118,7 +118,6 @@ export default class SoundButton extends Vue {
 
   playRandomAudio() {
     this.clearHowler();
-
     const audio = this.getAudioFromList();
     console.log(audio);
     const soundHandler = this.playSound(audio);
@@ -155,12 +154,8 @@ export default class SoundButton extends Vue {
     });
 
     EventBus.$on("ShowThanks", (audio: any) => {
-      console.log(audio);
       this.iAudiosList.unshift(audio);
-      this.playSound(audio, false, 'wav');
-      setTimeout(() => {
-        this.playMusic();
-      }, 500);
+      this.playMusic();
     });
 
     EventBus.$on("StopMusic", () => {
