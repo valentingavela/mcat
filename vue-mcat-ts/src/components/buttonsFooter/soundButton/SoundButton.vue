@@ -46,18 +46,12 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Howl, Howler } from "howler";
-import AwsWrapper from "../../aws_wrapper";
 import { EventBus } from "../../../services/EventBus";
 
 @Component
 export default class SoundButton extends Vue {
-  awsWrapper = new AwsWrapper();
-  music: any = {};
-  iAudiosList: any[] = [];
-  audiosList: any[] = [];
-  soundsHandler: Howl[] = [];
   btnStatus = true;
+  
 
   toogleButton() {
     this.btnStatus = !this.btnStatus;
@@ -69,78 +63,11 @@ export default class SoundButton extends Vue {
     }
   }
 
-  playSound(sound: any, loop = false, ext?): Howl {
-    const audio = new Howl({
-      src: [sound],
-      volume: 1,
-      preload: true,
-      html5: true,
-      loop: loop,
-      format: [ext],
-      onplay: () => {},
-      onend: () => {}
-    });
-    return audio;
-  }
-
   playMusic() {
     this.btnStatus = true;
     this.playRandomAudio();
     // this.music.volume(0.6);
     // this.music.play();
-  }
-
-  stopMusic() {
-    this.btnStatus = false;
-    this.music.stop();
-    this.soundsHandler.forEach(sound => {
-      sound.stop();
-    });
-  }
-
-  fillAudioList(): Promise<any> {
-    return this.awsWrapper.getKeys(this.iAudiosList, 3);
-  }
-
-  getRandomInt(min: number, max: number) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
-  clearHowler() {
-    if (this.soundsHandler.length > 3) {
-      this.soundsHandler.forEach(sound => {
-        sound.unload();
-      });
-    }
-  }
-
-  playRandomAudio() {
-    this.clearHowler();
-    const audio = this.getAudioFromList();
-    console.log(audio);
-    const soundHandler = this.playSound(audio);
-    this.soundsHandler.push(soundHandler);
-
-    soundHandler.on("end", () => {
-      this.playRandomAudio();
-    });
-
-    soundHandler.on("loaderror", () => {
-      setTimeout(() => {
-        this.playRandomAudio();
-      }, 1000);
-    });
-
-    soundHandler.play();
-  }
-
-  getAudioFromList() {
-    this.audiosList = this.audiosList.length
-      ? [...this.audiosList]
-      : [...this.iAudiosList];
-    return this.audiosList.pop();
   }
 
   created() {
