@@ -47,47 +47,53 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { EventBus } from "../../../services/EventBus";
+import SoundPlayer from "./soundPlayer.class";
 
 @Component
 export default class SoundButton extends Vue {
-  btnStatus = true;
-  
+  soundPlayer = new SoundPlayer();
+  music: any;
 
-  toogleButton() {
-    this.btnStatus = !this.btnStatus;
-    if (!this.music) return;
-    if (!this.btnStatus) {
-      this.stopMusic();
-    } else {
+  btnStatus = true;
+
+  created() {
+    EventBus.$on("FirstTouch", () => {
+      this.music = this.soundPlayer.playSound("macriMusic.ogg");
       this.playMusic();
-    }
+    });
+
+    //   EventBus.$on("ShowThanks", (audio: any) => {
+    //     this.iAudiosList.unshift(audio);
+    //     this.playMusic();
+    //   });
+
+    EventBus.$on("StopMusic", () => {
+      this.soundPlayer.stopAll();
+    });
   }
 
   playMusic() {
     this.btnStatus = true;
-    this.playRandomAudio();
-    // this.music.volume(0.6);
-    // this.music.play();
+    this.soundPlayer.playSoundCarousel();
+    this.music.volume(0.6);
+    this.music.play();
   }
 
-  created() {
-    EventBus.$on("FirstTouch", () => {
-      setTimeout(() => {
-        this.music = this.playSound("macriMusic.ogg", true);
-        this.fillAudioList().then(() => {
-          this.playMusic();
-        });
-      }, 400);
-    });
+  stopMusic() {
+    this.soundPlayer.stopAll();
+    this.music.stop();
+  }
 
-    EventBus.$on("ShowThanks", (audio: any) => {
-      this.iAudiosList.unshift(audio);
+    toogleButton() {
+    this.btnStatus = !this.btnStatus;
+    if (!this.music) return;
+    if (this.btnStatus) {
+      console.log('p')
       this.playMusic();
-    });
-
-    EventBus.$on("StopMusic", () => {
+    } else {
+      console.log('s')
       this.stopMusic();
-    });
+    }
   }
 }
 </script>

@@ -1,72 +1,119 @@
 import { Howl, Howler } from "howler";
 import AwsWrapper from "../../aws_wrapper";
 
-export default class soundPlayer {
+export default class SoundPlayer {
     private awsWrapper = new AwsWrapper();
-    private music: any = {};
-    private iAudiosList: any[] = [];
-    private audiosList: any[] = [];
+    private iAudiosList: Howl[] = [];
+    private audiosList: Howl[] = [];
     private soundsHandler: Howl[] = [];
+    private carouselTimeout: number = -1;
+    private music: any = {};
+    private iAudiosUrlsList: any[] = [];
 
+    constructor() {
+        this.getAudioList().then((response) => {
+            response.Contents.forEach((obj: any) => {
+                const soundUrl = `https://s3.amazonaws.com/audios-bucket123/${obj.Key}`; 
+                this.iAudiosList.push(
+                    new Howl({
+                        src: [soundUrl],
+                        volume: 1,
+                        preload: false,
+                        html5: true
+                    })
+                );
+            })
+        })
+    }
+    
+    public playSound(soundUrl: string) {
+        const audio = new Howl({
+            src: [soundUrl],
+            volume: 1,
+            preload: false,
+            html5: true,
+            loop: true
+        });
+
+        return audio;
+    }
+
+    private carousel() {
+        this.clearHowler();
+        const audio = this.getAudioFromList() as Howl;
+        this.soundsHandler.push(audio);
+        audio.play();
+    }
+    
+    public playSoundCarousel() {
+        const x = setInterval(() => {
+            this.carousel();
+        }, 3000);
+        this.carouselTimeout = x;
+    }
+
+    //     this.btnStatus = false;
+    public stopAll() {
+        clearInterval(this.carouselTimeout);
+        this.soundsHandler.forEach(sound => {
+            sound.stop();
+        });
+    }
+
+    private getAudioList(){
+        return this.awsWrapper.getKeys(20);
+    }
+
+    private getAudioFromList(): Howl | any {
+        this.audiosList = this.audiosList.length
+        ? [...this.audiosList]
+        : [...this.iAudiosList];
+        return this.audiosList.pop();
+    }
+    
     private clearHowler() {
-        if (this.soundsHandler.length > 3) {
+        if (this.soundsHandler.length > 4) {
             this.soundsHandler.forEach(sound => {
                 sound.unload();
             });
         }
     }
 
-    private fillAudioList(): Promise<any> {
-        return this.awsWrapper.getKeys(this.iAudiosList, 3);
-    }
 
-    public stopAll() {
-        this.btnStatus = false;
-        this.music.stop();
-        this.soundsHandler.forEach(sound => {
-            sound.stop();
-        });
-    }
+    // playSound(sound: Howl | any, loop = false, ext = 'wav'): Howl {
+    //     const audio = new Howl({
+    //         src: [sound],
+    //         volume: 1,
+    //         preload: true,
+    //         html5: true,
+    //         loop: loop,
+    //         format: [ext]
+    //     });
+    //     this.soundsHandler.push(audio);
+    //     audio.play();
+    //     return audio;
+    // }
 
-    playSound(sound: any, loop = false, ext?): Howl {
-        const audio = new Howl({
-            src: [sound],
-            volume: 1,
-            preload: true,
-            html5: true,
-            loop: loop,
-            format: [ext],
-            onplay: () => { },
-            onend: () => { }
-        });
-        return audio;
-    }
+    // playSoundCarousel() {
+    //     this.clearHowler();
+    //     const audio = this.getAudioFromList();
+    //     console.log(audio);
+    //     const soundHandler = this.playSound(audio);
+    //     this.soundsHandler.push(soundHandler);
 
-    playSoundCarousel() {
-        this.clearHowler();
-        const audio = this.getAudioFromList();
-        console.log(audio);
-        const soundHandler = this.playSound(audio);
-        this.soundsHandler.push(soundHandler);
+    //     soundHandler.on("end", () => {
+    //         this.playRandomAudio();
+    //     });
 
-        soundHandler.on("end", () => {
-            this.playRandomAudio();
-        });
+    //     soundHandler.on("loaderror", () => {
+    //         setTimeout(() => {
+    //             this.playRandomAudio();
+    //         }, 1000);
+    //     });
 
-        soundHandler.on("loaderror", () => {
-            setTimeout(() => {
-                this.playRandomAudio();
-            }, 1000);
-        });
+    //     soundHandler.play();
+    // }
 
-        soundHandler.play();
-    }
 
-    getAudioFromList() {
-        this.audiosList = this.audiosList.length
-            ? [...this.audiosList]
-            : [...this.iAudiosList];
-        return this.audiosList.pop();
-    }
 
 }
