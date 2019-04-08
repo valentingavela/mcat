@@ -62,13 +62,13 @@ export default class SoundButton extends Vue {
       this.playMusic();
     });
 
-    //   EventBus.$on("ShowThanks", (audio: any) => {
-    //     this.iAudiosList.unshift(audio);
-    //     this.playMusic();
-    //   });
+    EventBus.$on("ShowThanks", (audio: string) => {
+      this.soundPlayer.addAudio(audio);
+      this.playMusic();
+    });
 
     EventBus.$on("StopMusic", () => {
-      this.soundPlayer.stopAll();
+      this.stopMusic();
     });
   }
 
@@ -84,14 +84,14 @@ export default class SoundButton extends Vue {
     this.music.stop();
   }
 
-    toogleButton() {
+  toogleButton() {
     this.btnStatus = !this.btnStatus;
     if (!this.music) return;
     if (this.btnStatus) {
-      console.log('p')
+      console.log("p");
       this.playMusic();
     } else {
-      console.log('s')
+      console.log("s");
       this.stopMusic();
     }
   }

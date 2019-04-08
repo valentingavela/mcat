@@ -3,8 +3,8 @@
     <div v-if="preload" class="preload">
       <div>
         <img class="vertical-center" src="~@/assets/preload.gif">
-        <div>
-          <!-- <span class="vertical-center">Hacé click para comenzar</span> -->
+        <div class="text-center call-to-action">
+          <span>Hacé click para comenzar</span>
         </div>
       </div>
     </div>
@@ -35,9 +35,9 @@ export default class App extends Vue {
   }
 
   mounted() {
-    setTimeout(() => {
-      this.tooglePreload();
-    }, 3000);
+    // setTimeout(() => {
+    //   this.tooglePreload();
+    // }, 3000);
   }
 }
 </script>
@@ -53,13 +53,32 @@ export default class App extends Vue {
   left: 0;
   position: fixed;
 
-  animation: signup-response 0.5s 1;
+  // animation: signup-response 0.5s 1;
   animation-fill-mode: forwards;
-  animation-delay: 2s;
+  // animation-delay: 2s;
 
   img {
     width: 100%;
     height: auto;
+  }
+
+  .call-to-action {
+    position: absolute;
+    margin-top: 13vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+
+    span {
+      padding-top: 1vh;
+      color: white;
+      font-weight: bold;
+      letter-spacing: 0.01875rem;
+      font-size: 142%;
+      line-height: 1.8rem;
+      letter-spacing: 0.1rem;
+    }
   }
 }
 </style>

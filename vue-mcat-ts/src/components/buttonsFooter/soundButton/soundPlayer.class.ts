@@ -7,8 +7,6 @@ export default class SoundPlayer {
     private audiosList: Howl[] = [];
     private soundsHandler: Howl[] = [];
     private carouselTimeout: number = -1;
-    private music: any = {};
-    private iAudiosUrlsList: any[] = [];
 
     constructor() {
         this.getAudioList().then((response) => {
@@ -38,13 +36,6 @@ export default class SoundPlayer {
         return audio;
     }
 
-    private carousel() {
-        this.clearHowler();
-        const audio = this.getAudioFromList() as Howl;
-        this.soundsHandler.push(audio);
-        audio.play();
-    }
-    
     public playSoundCarousel() {
         const x = setInterval(() => {
             this.carousel();
@@ -52,7 +43,6 @@ export default class SoundPlayer {
         this.carouselTimeout = x;
     }
 
-    //     this.btnStatus = false;
     public stopAll() {
         clearInterval(this.carouselTimeout);
         this.soundsHandler.forEach(sound => {
@@ -60,15 +50,34 @@ export default class SoundPlayer {
         });
     }
 
-    private getAudioList(){
-        return this.awsWrapper.getKeys(20);
+    public addAudio(soundUrl: string) {
+        this.iAudiosList.unshift(
+            new Howl({
+                src: [soundUrl],
+                volume: 1,
+                preload: false,
+                html5: true
+            })
+        );
+        this.audiosList = [...this.iAudiosList];
     }
 
     private getAudioFromList(): Howl | any {
         this.audiosList = this.audiosList.length
-        ? [...this.audiosList]
-        : [...this.iAudiosList];
-        return this.audiosList.pop();
+            ? [...this.audiosList]
+            : [...this.iAudiosList];
+        return this.audiosList.shift();
+    }
+
+    private carousel() {
+        this.clearHowler();
+        const audio = this.getAudioFromList() as Howl;
+        this.soundsHandler.push(audio);
+        audio.play();
+    }
+
+    private getAudioList(){
+        return this.awsWrapper.getKeys(20);
     }
     
     private clearHowler() {
