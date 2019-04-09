@@ -87,42 +87,4 @@ export default class SoundPlayer {
             });
         }
     }
-
-
-    // playSound(sound: Howl | any, loop = false, ext = 'wav'): Howl {
-    //     const audio = new Howl({
-    //         src: [sound],
-    //         volume: 1,
-    //         preload: true,
-    //         html5: true,
-    //         loop: loop,
-    //         format: [ext]
-    //     });
-    //     this.soundsHandler.push(audio);
-    //     audio.play();
-    //     return audio;
-    // }
-
-    // playSoundCarousel() {
-    //     this.clearHowler();
-    //     const audio = this.getAudioFromList();
-    //     console.log(audio);
-    //     const soundHandler = this.playSound(audio);
-    //     this.soundsHandler.push(soundHandler);
-
-    //     soundHandler.on("end", () => {
-    //         this.playRandomAudio();
-    //     });
-
-    //     soundHandler.on("loaderror", () => {
-    //         setTimeout(() => {
-    //             this.playRandomAudio();
-    //         }, 1000);
-    //     });
-
-    //     soundHandler.play();
-    // }
-
-
-
 }

@@ -16,7 +16,7 @@ export default class VoiceRecorder {
     audioBlob: any;
     userMedia: any;
     newAudio: any;
-    audioUrl: string;
+    audioUrl: string = '';
     
     requestUserMedia() {
         this.userMedia = navigator.mediaDevices.getUserMedia({ audio: true })
