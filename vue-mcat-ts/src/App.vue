@@ -2,7 +2,6 @@
   <div v-on:click="firstEvent()">
     <div v-if="preload">
       <div class="preload">
-        <!-- <img class="vertical-center" src="~@/assets/preload.gif"> -->
       </div>
     </div>
     <router-view>
