@@ -1,7 +1,7 @@
 <template>
   <div v-on:click="firstEvent()">
     <div v-if="preload">
-      <div class="preload">
+      <div class="preload overlay-box">
       </div>
     </div>
     <router-view>
@@ -46,37 +46,19 @@ export default class App extends Vue {
 </script>
 
 <style scoped lang="less">
-// .preload {
-//   // opacity: 0.5;
-//   background: #0f1e49;
-//   width: 100%;
-//   height: 100%;
-//   z-index: 10;
-//   top: 0;
-//   left: 0;
-//   position: fixed;
-
-//   // animation: signup-response 0.5s 1;
-//   animation-fill-mode: forwards;
-//   // animation-delay: 2s;
-
-//   img {
-//     width: 100%;
-//     height: auto;
-//   }
-// }
-
+.overlay-box {
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
 .preload {
   background: url("~@/assets/preload.gif");
   background-color: #0f1e49;
   background-repeat: no-repeat;
-  background-position: top center;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  top: 0;
-  left: 0;
-  position: fixed;
+  background-position: center;
 }
 
 @media only screen and (max-width: 500px) {
@@ -84,13 +66,7 @@ export default class App extends Vue {
     background: url("~@/assets/preload_mobile.gif");
     background-color: #0f1e49;
     background-repeat: no-repeat;
-    background-position: top center;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    top: 0;
-    left: 0;
-    position: fixed;
+    background-position: center;
   }
 }
 </style>
