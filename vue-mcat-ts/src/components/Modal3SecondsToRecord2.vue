@@ -8,13 +8,16 @@
           </div>
           <div class="modal-body text-left select-none">
             <div v-if="recordMode">
-              <h1>Tenés
+              <h1>Mantené presionado para grabar.</h1>
+              <h2>Tenés 3 segundos.</h2>
+              <!-- <h1>Tenés
                 <br>3 segundos
                 <br>para grabar
-              </h1>
+              </h1>-->
             </div>
             <div class="dont-be-cat" v-else>
-              <h1>Compartí,
+              <h1>
+                Compartí,
                 <br>no seas gato
               </h1>
             </div>
@@ -178,7 +181,8 @@ export default class Modal3SecondsToRecord2 extends Sharing {
 }
 
 @media only screen and (min-width: 500px) {
-  svg, path {
+  svg,
+  path {
     fill: #151249;
     width: 56%;
     height: auto;
@@ -221,25 +225,16 @@ export default class Modal3SecondsToRecord2 extends Sharing {
   }
 
   .modal-body {
-    // padding-top: 99px;
     h1 {
       color: white;
-      // font-size: 2rem;
       font-size: 443.3%;
       font-weight: 800;
       letter-spacing: -0.2rem;
-      // font-size: 5.7vw;
       padding-left: 0.3rem;
       padding-top: 3rem;
-      // padding-left: 3.3rem;
-      // line-height: 79px;
-      // padding-top: 2.2rem;
     }
   }
 
-  // .modal-default-button {
-  //   float: right;
-  // }
   .semi-transparent-button {
     display: block;
     box-sizing: border-box;
@@ -327,7 +322,8 @@ export default class Modal3SecondsToRecord2 extends Sharing {
     border-image-repeat: repeat;
   }
 
-  svg, path {
+  svg,
+  path {
     fill: #151249;
     width: 56%;
     height: auto;
@@ -378,6 +374,11 @@ export default class Modal3SecondsToRecord2 extends Sharing {
       // padding-left: 10%;
       padding-top: 8%;
       line-height: 108%;
+    }
+    h2 {
+      color: white;
+      font-size: 1.7rem;
+      font-weight: 700;
     }
   }
 

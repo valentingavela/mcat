@@ -52,7 +52,7 @@ import SoundPlayer from "./soundPlayer.class";
 @Component
 export default class SoundButton extends Vue {
   soundPlayer = new SoundPlayer();
-  music: any;
+  music: Howl;
 
   btnStatus = true;
 
@@ -76,7 +76,9 @@ export default class SoundButton extends Vue {
     this.btnStatus = true;
     this.soundPlayer.playSoundCarousel();
     this.music.volume(0.6);
-    this.music.play();
+    if (!this.music.playing()) {
+      this.music.play();
+    }
   }
 
   stopMusic() {
@@ -88,10 +90,8 @@ export default class SoundButton extends Vue {
     this.btnStatus = !this.btnStatus;
     if (!this.music) return;
     if (this.btnStatus) {
-      console.log("p");
       this.playMusic();
     } else {
-      console.log("s");
       this.stopMusic();
     }
   }

@@ -245,7 +245,7 @@ export default class RecordButton extends Vue {
   alertModal: boolean;
   mobileDetection: boolean;
   alertModalMsg: string;
-  showErrorCount = 0;
+  error = false;
 
   constructor() {
     super();
@@ -287,16 +287,10 @@ export default class RecordButton extends Vue {
           break;
         }
         case "media rejected": {
-          this.showRecBtn = true;
-          if (!this.showErrorCount) {
-            localStorage.setItem("microphone", "denied");
-            this.alertModalMsg = this.failMsg();
-            this.showAlertModal();
-          }
-          if (!this.alertModal) {
-            EventBus.$emit("ShowThanks");
-          }
-          this.showErrorCount++;
+          this.error = true;
+          this.showRecBtn = false;
+          this.alertModalMsg = this.failMsg();
+          this.showAlertModal();
           break;
         }
       }
@@ -348,12 +342,15 @@ export default class RecordButton extends Vue {
 
   hideAlertModal() {
     this.alertModal = false;
+    if (this.error) {
+      EventBus.$emit("ShowThanks");
+    }
     this.recorder.requestUserMedia();
   }
 
   failMsg() {
     return isApple()
-      ? "El Iphone es de gato, no permite grabar. Mejor usá un Android o una PC."
+      ? "El Iphone es de gato. Conseguite un Android o una compu y sumá tu miau!"
       : "Tu dispositivo tiene problemas para grabar. Probá con otro movil o con una PC.";
   }
 }
