@@ -1,5 +1,5 @@
 import { Howl, Howler } from "howler";
-import AwsWrapper from "../../aws_wrapper";
+import AwsWrapper from "../../../aws_wrapper";
 
 export default class SoundPlayer {
     private awsWrapper = new AwsWrapper();

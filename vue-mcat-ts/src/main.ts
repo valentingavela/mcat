@@ -1,10 +1,12 @@
 import Vue from "vue";
 import App from "./App.vue";
-import { VueHammer } from 'vue2-hammer';
 import Router from './Router';
-
-Vue.config.productionTip = false;
 Vue.use(VueHammer);
+import { VueHammer } from 'vue2-hammer';
+import { HttpClient } from './http-client';
+Vue.config.productionTip = false;
+
+HttpClient.getData().then(x => console.log(x));
 
 new Vue({
   router: Router,

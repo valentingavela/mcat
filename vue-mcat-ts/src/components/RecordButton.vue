@@ -221,13 +221,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import VoiceRecorder from "./VoiceRecorder";
 import { take } from "rxjs/operators";
 import ModalUploadOrRetry from "./ModalUploadOrRetry.vue";
-import AwsWrapper from "./aws_wrapper";
 import MessageModal from "./MessageModal.vue";
 import { mobileDetection, isApple } from "../mobileDetection";
 import { EventBus } from "../services/EventBus";
+import AwsWrapper from "../aws_wrapper";
+import VoiceRecorder from "./VoiceRecorder";
 
 @Component({
   components: {
