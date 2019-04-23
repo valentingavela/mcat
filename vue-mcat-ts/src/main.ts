@@ -3,7 +3,7 @@ import App from "./App.vue";
 import Router from './Router';
 Vue.use(VueHammer);
 import { VueHammer } from 'vue2-hammer';
-import { HttpClient } from './http-client';
+import { HttpClient } from './services/http-client';
 Vue.config.productionTip = false;
 
 HttpClient.getData().then(x => console.log(x));
