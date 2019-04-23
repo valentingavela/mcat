@@ -4,7 +4,7 @@ var fs = require('fs');
 // Initialize the Amazon Cognito credentials provider
 AWS.config.region = 'us-east-1'; // Region
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-  IdentityPoolId: 'us-east-1:7f6e604a-0216-4bbe-b3b2-b8bb47b720d3',
+  IdentityPoolId: '',
 });
 
 var docClient = new AWS.DynamoDB.DocumentClient();
@@ -16,8 +16,8 @@ allMovies.forEach(function (item) {
   var params = {
     TableName: "audios_keys3",
     Item: {
-      "partKey": (Math.floor(Math.random() * 20) + 1).toString(),
-      "ordKey": item.ordKey.N,
+      "partKey": (Math.floor(Math.random() * 5) + 1).toString(),
+      "ordKey": Date.now(),
       "itemName": item.itemName.S
     }
   };
