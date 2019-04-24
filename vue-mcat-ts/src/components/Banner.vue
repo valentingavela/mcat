@@ -12,14 +12,12 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { EventBus } from "../services/EventBus";
-import VueResource from "vue-resource";
-Vue.use(VueResource);
+import { HttpClient } from "../services/http-client";
 
 @Component
 export default class Banner extends Vue {
 
   countDown = 50000;
-  endpoint = "https://3s06oj11m3.execute-api.us-east-1.amazonaws.com/prod/get-count";
 
   formatNumber(value: number) {
     return value.toString().split( /(?=(?:\d{3})+(?:\.|$))/g ).join( "." );
@@ -29,24 +27,18 @@ export default class Banner extends Vue {
     EventBus.$on("file-uploaded", () => {
       this.countDown--;
     });
-  }
-  mounted() {
-    this.fetchCountDown();
+
+    HttpClient.getData().then(data => {
+      this.countDown = this.countDown - data.data.body.counter.count;
+    });
   }
 
   get getCountDown(): string {
     return this.formatNumber(this.countDown);
   }
-
-  fetchCountDown(): void {
-    this.$http.get(this.endpoint).then(response => {
-      this.countDown = this.countDown - response.data.body;
-    });
-  }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 @fontSizeTitle: 300%;
 @letterSpacingTitle: -0.1rem;

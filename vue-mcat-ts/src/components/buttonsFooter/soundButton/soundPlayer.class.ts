@@ -1,5 +1,6 @@
 import { Howl, Howler } from "howler";
 import AwsWrapper from "../../../aws_wrapper";
+import { HttpClient } from '@/services/http-client';
 
 export default class SoundPlayer {
     private awsWrapper = new AwsWrapper();
@@ -9,9 +10,9 @@ export default class SoundPlayer {
     private carouselTimeout: number = -1;
 
     constructor() {
-        this.getAudioList().then((response) => {
-            response.Contents.forEach((obj: any) => {
-                const soundUrl = `https://s3.amazonaws.com/audios-bucket123/${obj.Key}`; 
+        HttpClient.getData().then((data) => {
+            data.data.body.Items.forEach((obj: any) => {
+                const soundUrl = `https://s3.amazonaws.com/audios-bucket123/${obj.itemName.S}`; 
                 this.iAudiosList.push(
                     new Howl({
                         src: [soundUrl],
