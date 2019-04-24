@@ -8,8 +8,8 @@
           </div>
           <div class="modal-body text-left select-none">
             <div v-if="recordMode">
-              <h1>Mantené presionado para grabar.</h1>
-              <h2>Tenés 3 segundos.</h2>
+              <h1 class="msg-principal"></h1>
+              <h1 class="msg-secondary">Tenés 3 segundos.</h1>
               <!-- <h1>Tenés
                 <br>3 segundos
                 <br>para grabar
@@ -134,17 +134,8 @@ export default class Modal3SecondsToRecord2 extends Sharing {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="less">
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
 
+<style scoped lang="less">
 .modal-enter {
   opacity: 0;
 }
@@ -180,7 +171,15 @@ export default class Modal3SecondsToRecord2 extends Sharing {
   padding-top: 5vh;
 }
 
+.msg-principal:after {
+  content: "Hacé click presionado para grabar.";
+}
+
 @media only screen and (min-width: 500px) {
+  .msg-principal:after {
+    content: "Mantené presionado para grabar.";
+  }
+
   svg,
   path {
     fill: #151249;
@@ -370,15 +369,8 @@ export default class Modal3SecondsToRecord2 extends Sharing {
       font-size: 2rem;
       font-weight: 800;
       letter-spacing: -0.2rem;
-      font-size: 246%;
-      // padding-left: 10%;
-      padding-top: 8%;
-      line-height: 108%;
-    }
-    h2 {
-      color: white;
-      font-size: 1.7rem;
-      font-weight: 700;
+      font-size: 200%;
+      line-height: 90%;
     }
   }
 

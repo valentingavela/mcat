@@ -3,7 +3,7 @@
     <header class="page-head text-center">
       <img class="gif img-fluid select-none" src="~@/assets/macricat_animation_OK.gif">
     </header>
-    <Banner id="banner"/>
+    <CountDown id="CountDown"/>
     <ButtonSumaTuMiau id="buttonMiau"/>
     <ButtonsFooter/>
   </div>
@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Banner from "./Banner.vue";
+import CountDown from "./CountDown.vue";
 import ButtonSumaTuMiau from "./ButtonSumaTuMiau.vue";
 import ButtonsFooter from "./buttonsFooter/ButtonsFooter.vue";
 import MessageModal from "./MessageModal.vue";
@@ -21,7 +21,7 @@ import "bootstrap/dist/css/bootstrap.css";
 @Component({
   name: 'Main',
   components: {
-    Banner,
+    CountDown,
     ButtonSumaTuMiau,
     ButtonsFooter,
     MessageModal

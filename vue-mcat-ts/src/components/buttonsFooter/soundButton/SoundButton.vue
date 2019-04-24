@@ -52,7 +52,7 @@ import SoundPlayer from "./soundPlayer.class";
 @Component
 export default class SoundButton extends Vue {
   soundPlayer = new SoundPlayer();
-  music: Howl;
+  music: Howl | any = {};
 
   btnStatus = true;
 

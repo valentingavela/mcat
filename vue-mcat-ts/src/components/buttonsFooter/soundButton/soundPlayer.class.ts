@@ -1,9 +1,7 @@
 import { Howl, Howler } from "howler";
-import AwsWrapper from "../../../aws_wrapper";
 import { HttpClient } from '@/services/http-client';
 
 export default class SoundPlayer {
-    private awsWrapper = new AwsWrapper();
     private iAudiosList: Howl[] = [];
     private audiosList: Howl[] = [];
     private soundsHandler: Howl[] = [];
@@ -77,10 +75,6 @@ export default class SoundPlayer {
         audio.play();
     }
 
-    private getAudioList(){
-        return this.awsWrapper.getKeys(20);
-    }
-    
     private clearHowler() {
         if (this.soundsHandler.length > 4) {
             this.soundsHandler.forEach(sound => {

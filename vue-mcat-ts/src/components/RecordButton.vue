@@ -289,7 +289,7 @@ export default class RecordButton extends Vue {
         case "media rejected": {
           this.error = true;
           this.showRecBtn = false;
-          this.alertModalMsg = this.failMsg();
+          this.alertModalMsg = "Tu dispositivo tiene problemas para grabar. Probá con un Android o con una PC y sumá tu Miau!";
           this.showAlertModal();
           break;
         }
@@ -348,11 +348,6 @@ export default class RecordButton extends Vue {
     this.recorder.requestUserMedia();
   }
 
-  failMsg() {
-    return isApple()
-      ? "El Iphone es de gato. Conseguite un Android o una compu y sumá tu miau!"
-      : "Tu dispositivo tiene problemas para grabar. Probá con otro movil o con una PC.";
-  }
 }
 </script>
 

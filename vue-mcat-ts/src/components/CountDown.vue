@@ -15,7 +15,7 @@ import { EventBus } from "../services/EventBus";
 import { HttpClient } from "../services/http-client";
 
 @Component
-export default class Banner extends Vue {
+export default class CountDown extends Vue {
 
   countDown = 50000;
 
