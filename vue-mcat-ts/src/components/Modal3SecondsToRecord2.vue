@@ -9,7 +9,7 @@
           <div class="modal-body text-left select-none">
             <div v-if="recordMode">
               <h1 class="msg-principal"></h1>
-              <h1 class="msg-secondary">Tenés 3 segundos.</h1>
+              <h1 class="msg-secondary"></h1>
               <!-- <h1>Tenés
                 <br>3 segundos
                 <br>para grabar
@@ -171,15 +171,39 @@ export default class Modal3SecondsToRecord2 extends Sharing {
   padding-top: 5vh;
 }
 
-.msg-principal:after {
-  content: "Hacé click presionado para grabar.";
+
+
+@media only screen and (min-width: 1100px) {
+  .modal-body {
+    h1 {
+      font-size: 500% !important;
+    }
+    .msg-secondary {
+      padding-top: 0; 
+    }
+  }
 }
 
-@media only screen and (min-width: 500px) {
-  .msg-principal:after {
-    content: "Mantené presionado para grabar.";
+@media only screen and (min-width: 700px) {
+
+  .modal-body {
+    h1 {
+      color: white;
+      font-weight: 800;
+      letter-spacing: -0.2rem;
+      font-size: 362%;
+      line-height: 90%;
+      padding-top: 7rem;
+      padding-left: 1rem;
+    }
+    .msg-secondary {
+      padding-top: 0; 
+    }
   }
 
+.msg-principal:after {
+  content: "Tenés 3 segundos para grabar";
+}
   svg,
   path {
     fill: #151249;
@@ -221,17 +245,6 @@ export default class Modal3SecondsToRecord2 extends Sharing {
 
   .modal-header-r {
     margin-top: 0;
-  }
-
-  .modal-body {
-    h1 {
-      color: white;
-      font-size: 443.3%;
-      font-weight: 800;
-      letter-spacing: -0.2rem;
-      padding-left: 0.3rem;
-      padding-top: 3rem;
-    }
   }
 
   .semi-transparent-button {
@@ -299,7 +312,14 @@ export default class Modal3SecondsToRecord2 extends Sharing {
 }
 
 // Mobile
-@media only screen and (max-width: 500px) and (orientation: portrait) {
+@media only screen and (max-width: 700px) and (orientation: portrait) {
+  .msg-principal:after {
+    content: "Mantené presionado para grabar.";
+  }
+  .msg-secondary:after {
+    content: "Tenés 3 segundos.";
+  }
+
   .modal-container {
     background: url(~@/assets/modal/estrellitas.jpg);
     height: 61%;
@@ -438,6 +458,12 @@ export default class Modal3SecondsToRecord2 extends Sharing {
 
 // XS Mobile
 @media only screen and (max-width: 400px) and (orientation: portrait) {
+  .msg-principal:after {
+    content: "Mantené presionado para grabar.";
+  }
+  .msg-secondary:after {
+    content: "Tenés 3 segundos.";
+  }
   .circle {
     background: white;
     height: 3rem;

@@ -17,7 +17,7 @@ import { HttpClient } from "../services/http-client";
 @Component
 export default class CountDown extends Vue {
 
-  countDown = 50000;
+  countDown = 100000;
 
   formatNumber(value: number) {
     return value.toString().split( /(?=(?:\d{3})+(?:\.|$))/g ).join( "." );
@@ -29,7 +29,8 @@ export default class CountDown extends Vue {
     });
 
     HttpClient.getData().then(data => {
-      this.countDown = this.countDown - data.data.body.counter.count;
+      const item = data.data.body.counter;
+      this.countDown = item.totalCount - item.count;
     });
   }
 
