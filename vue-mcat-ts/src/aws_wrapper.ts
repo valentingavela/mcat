@@ -3,7 +3,7 @@ declare var AWS: any;
 AWS.config.update({
     region: "us-east-1",
     credentials: new AWS.CognitoIdentityCredentials({
-        IdentityPoolId: 'us-east-1:3c1bd43f-db52-40ff-85fb-9fe8737c2f5c'
+        IdentityPoolId: ''
     })
 });
 
